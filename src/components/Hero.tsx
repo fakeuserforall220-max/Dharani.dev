@@ -117,7 +117,7 @@ export function Hero() {
               <div className="flex-1 py-6 font-mono text-sm text-gray-300 space-y-2">
                 <p><span className="text-brand-purple">const</span> <span className="text-brand-blue">developer</span> = {'{'}</p>
                 <p className="pl-4">name: <span className="text-brand-orange">"Dharani"</span>,</p>
-                <p className="pl-4">role: <span className="text-brand-orange">"Frontend"</span>,</p>
+                <p className="pl-4">role: <span className="text-brand-orange">"Full Stack"</span>,</p>
                 <p className="pl-4">passion: <span className="text-brand-orange">"UI/UX"</span>,</p>
                 <p className="pl-4">student: <span className="text-brand-purple">true</span></p>
                 <p>{'}'};</p>
