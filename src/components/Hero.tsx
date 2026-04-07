@@ -20,10 +20,23 @@ export function Hero() {
     >
       {/* Background Effects */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
-        {/* Curved Glowing Waves (SVG) */}
-        <svg className="absolute w-full h-full opacity-30 mix-blend-screen" viewBox="0 0 1000 1000" preserveAspectRatio="none">
-          <path d="M0,500 C200,300 300,700 500,500 C700,300 800,700 1000,500" fill="none" stroke="url(#purpleGlow)" strokeWidth="4" />
-          <path d="M0,600 C250,400 350,800 600,600 C850,400 950,800 1000,600" fill="none" stroke="url(#blueGlow)" strokeWidth="3" />
+        <svg
+          className="absolute w-full h-full opacity-30 mix-blend-screen"
+          viewBox="0 0 1000 1000"
+          preserveAspectRatio="none"
+        >
+          <path
+            d="M0,500 C200,300 300,700 500,500 C700,300 800,700 1000,500"
+            fill="none"
+            stroke="url(#purpleGlow)"
+            strokeWidth="4"
+          />
+          <path
+            d="M0,600 C250,400 350,800 600,600 C850,400 950,800 1000,600"
+            fill="none"
+            stroke="url(#blueGlow)"
+            strokeWidth="3"
+          />
           <defs>
             <linearGradient id="purpleGlow" x1="0%" y1="0%" x2="100%" y2="0%">
               <stop offset="0%" stopColor="#7c3aed" stopOpacity="0" />
@@ -60,7 +73,7 @@ export function Hero() {
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-brand-purple opacity-75"></span>
                 <span className="relative inline-flex rounded-full h-2 w-2 bg-brand-purple"></span>
               </span>
-              Creative Frontend Developer
+              Full Stack Developer · AIML Student
             </div>
 
             <h1 className="text-5xl md:text-7xl lg:text-8xl font-space font-bold leading-[1.1] tracking-tighter text-white">
@@ -70,8 +83,10 @@ export function Hero() {
               </span>
             </h1>
 
-            <p className="text-lg md:text-xl text-gray-400 font-sans leading-relaxed max-w-lg">
-              Designing and building modern web experiences with clean UI and immersive interactions. A first-year AIML student with a strong passion for frontend engineering and digital product design.
+            <p className="text-lg md:text-xl text-gray-400 font-sans leading-relaxed max-w-xl">
+              I’m a first-year AIML student and full stack developer who builds modern,
+              responsive, and real-world web applications with a focus on clean design,
+              performance, and practical functionality.
             </p>
 
             <div className="flex flex-wrap items-center gap-4 pt-4">
@@ -98,10 +113,10 @@ export function Hero() {
           >
             {/* Center Main Card */}
             <motion.div
-              animate={{ 
+              animate={{
                 y: [0, -20, 0],
                 rotateX: [5, 15, 5],
-                rotateY: [-15, -5, -15]
+                rotateY: [-15, -5, -15],
               }}
               transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
               className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-80 lg:w-96 h-96 glass-dark rounded-2xl border border-brand-purple/30 p-6 flex flex-col justify-between shadow-[0_0_50px_rgba(124,58,237,0.2)] z-20 backdrop-blur-md"
@@ -114,21 +129,41 @@ export function Hero() {
                 </div>
                 <Terminal className="text-brand-purple w-5 h-5" />
               </div>
+
               <div className="flex-1 py-6 font-mono text-sm text-gray-300 space-y-2">
-                <p><span className="text-brand-purple">const</span> <span className="text-brand-blue">developer</span> = {'{'}</p>
-                <p className="pl-4">name: <span className="text-brand-orange">"Dharani"</span>,</p>
-                <p className="pl-4">role: <span className="text-brand-orange">"FullStack Developer"</span>,</p>
-                <p className="pl-4">passion: <span className="text-brand-orange">"AI Engineer"</span>,</p>
-                <p className="pl-4">student: <span className="text-brand-purple">true</span></p>
-                <p>{'}'};</p>
-                <p className="mt-4"><span className="text-brand-purple">await</span> developer.<span className="text-brand-blue">build</span>();</p>
+                <p>
+                  <span className="text-brand-purple">const</span>{" "}
+                  <span className="text-brand-blue">dharani</span> = {"{"}
+                </p>
+                <p className="pl-4">
+                  name: <span className="text-brand-orange">"Dharani Govardhan"</span>,
+                </p>
+                <p className="pl-4">
+                  role: <span className="text-brand-orange">"Full Stack Developer"</span>,
+                </p>
+                <p className="pl-4">
+                  focus: <span className="text-brand-orange">["Frontend", "Backend", "Web Apps"]</span>,
+                </p>
+                <p className="pl-4">
+                  student: <span className="text-brand-purple">true</span>,
+                </p>
+                <p>{"}"};</p>
+                <p className="mt-4">
+                  <span className="text-brand-purple">await</span>{" "}
+                  dharani.<span className="text-brand-blue">build</span>();
+                </p>
               </div>
             </motion.div>
 
             {/* Floating Layer 1 */}
             <motion.div
               animate={{ y: [0, 20, 0], x: [0, -10, 0] }}
-              transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 1 }}
+              transition={{
+                duration: 5,
+                repeat: Infinity,
+                ease: "easeInOut",
+                delay: 1,
+              }}
               className="absolute top-10 right-0 lg:right-10 w-32 lg:w-40 h-32 lg:h-40 glass rounded-xl border border-brand-blue/40 flex items-center justify-center shadow-[0_0_40px_rgba(59,130,246,0.3)] backdrop-blur-xl z-10"
             >
               <Code2 className="w-12 h-12 lg:w-16 lg:h-16 text-brand-blue drop-shadow-[0_0_15px_rgba(59,130,246,0.8)]" />
@@ -137,7 +172,12 @@ export function Hero() {
             {/* Floating Layer 2 */}
             <motion.div
               animate={{ y: [0, -30, 0], x: [0, 20, 0] }}
-              transition={{ duration: 7, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
+              transition={{
+                duration: 7,
+                repeat: Infinity,
+                ease: "easeInOut",
+                delay: 0.5,
+              }}
               className="absolute bottom-10 left-0 lg:left-10 w-28 lg:w-32 h-28 lg:h-32 glass rounded-full border border-brand-orange/40 flex items-center justify-center shadow-[0_0_40px_rgba(249,115,22,0.3)] backdrop-blur-xl z-30"
             >
               <Cpu className="w-10 h-10 lg:w-12 lg:h-12 text-brand-orange drop-shadow-[0_0_15px_rgba(249,115,22,0.8)]" />
