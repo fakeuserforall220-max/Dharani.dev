@@ -1,177 +1,152 @@
 import { motion } from "framer-motion";
-import { GraduationCap, Briefcase, Code2, Sparkles } from "lucide-react";
+import { Code2, Cpu, Braces } from "lucide-react";
 
-const cards = [
+const stats = [
   {
-    icon: GraduationCap,
-    label: "Education",
-    value: "1st Year AIML",
-    color: "text-brand-violet",
-    border: "border-brand-violet/30",
-    bg: "from-brand-violet/10 to-transparent",
+    value: "1st",
+    label: "YEAR AIML",
+    color: "from-cyan-300 to-blue-500",
+    bg: "bg-[#14111d]",
   },
   {
-    icon: Briefcase,
-    label: "Projects",
-    value: "6+ Live Websites",
-    color: "text-brand-blue",
-    border: "border-brand-blue/30",
-    bg: "from-brand-blue/10 to-transparent",
+    value: "100%",
+    label: "DEDICATION",
+    color: "from-white to-white",
+    bg: "bg-[#13283a]",
   },
+  {
+    value: "6+",
+    label: "LIVE PROJECTS",
+    color: "from-white to-white",
+    bg: "bg-[#14111d]",
+  },
+  {
+    value: "24/7",
+    label: "LEARNING",
+    color: "from-orange-400 to-orange-200",
+    bg: "bg-[#14111d]",
+  },
+];
+
+const tags = [
   {
     icon: Code2,
-    label: "Role",
-    value: "Full Stack Developer",
-    color: "text-brand-orange",
-    border: "border-brand-orange/30",
-    bg: "from-brand-orange/10 to-transparent",
+    label: "Full Stack Dev",
+    iconColor: "text-cyan-400",
   },
   {
-    icon: Sparkles,
-    label: "Focus",
-    value: "Modern Web Apps",
-    color: "text-pink-400",
-    border: "border-pink-400/30",
-    bg: "from-pink-400/10 to-transparent",
+    icon: Cpu,
+    label: "AIML Enthusiast",
+    iconColor: "text-violet-500",
+  },
+  {
+    icon: Braces,
+    label: "Creative Coder",
+    iconColor: "text-orange-500",
   },
 ];
 
 export function About() {
   return (
-    <section id="about" className="relative py-24 md:py-32 overflow-hidden">
-      {/* Background */}
+    <section
+      id="about"
+      className="relative overflow-hidden py-24 md:py-32 bg-gradient-to-br from-[#050816] via-[#090312] to-[#14051f]"
+    >
+      {/* Background glow */}
       <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute top-20 left-1/4 w-80 h-80 bg-brand-purple/10 rounded-full blur-[120px]" />
-        <div className="absolute bottom-10 right-1/4 w-80 h-80 bg-brand-blue/10 rounded-full blur-[120px]" />
+        <div className="absolute left-[10%] top-[20%] h-72 w-72 rounded-full bg-purple-700/10 blur-[120px]" />
+        <div className="absolute right-[10%] bottom-[20%] h-72 w-72 rounded-full bg-blue-600/10 blur-[120px]" />
       </div>
 
       <div className="container mx-auto px-6 md:px-12 relative z-10">
-        {/* Heading */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.7 }}
-          className="mb-16"
-        >
-          <span className="inline-flex items-center gap-2 rounded-full border border-brand-purple/30 px-4 py-2 text-sm text-brand-violet glass mb-5">
-            About Me
-          </span>
-
-          <h2 className="text-4xl md:text-6xl font-space font-bold text-white leading-tight">
-            More than just code — <br />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-violet via-brand-purple to-brand-blue">
-              I build real digital experiences
-            </span>
-          </h2>
-        </motion.div>
-
-        <div className="grid lg:grid-cols-[1.1fr_0.9fr] gap-10 items-center">
-          {/* Left Main 3D Card */}
+        <div className="grid lg:grid-cols-2 gap-14 lg:gap-20 items-center">
+          {/* Left Content */}
           <motion.div
-            initial={{ opacity: 0, x: -40, rotateY: -8 }}
-            whileInView={{ opacity: 1, x: 0, rotateY: 0 }}
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-            whileHover={{ rotateY: 4, rotateX: -2, scale: 1.01 }}
-            className="relative rounded-[32px] border border-white/10 bg-white/[0.04] backdrop-blur-2xl p-8 md:p-10 min-h-[520px] shadow-[0_0_50px_rgba(124,58,237,0.08)] overflow-hidden"
-            style={{ transformStyle: "preserve-3d" }}
+            transition={{ duration: 0.7 }}
           >
-            {/* glow layers */}
-            <div className="absolute inset-0 bg-gradient-to-br from-brand-purple/10 via-transparent to-brand-blue/10" />
-            <div className="absolute -top-16 -right-16 w-48 h-48 bg-brand-purple/20 rounded-full blur-3xl" />
-            <div className="absolute -bottom-16 -left-16 w-48 h-48 bg-brand-blue/20 rounded-full blur-3xl" />
+            <h2 className="text-4xl md:text-6xl lg:text-7xl font-space font-bold leading-tight tracking-tight text-white">
+              Decoding the{" "}
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-blue-500 to-violet-500">
+                Future
+              </span>
+              .
+            </h2>
 
-            <div className="relative z-10 h-full flex flex-col justify-between">
-              {/* Top */}
-              <div>
-                <div className="flex items-center gap-4 mb-8">
-                  <div className="w-20 h-20 rounded-3xl border border-white/10 bg-gradient-to-br from-brand-violet/20 to-brand-blue/20 flex items-center justify-center shadow-[0_0_30px_rgba(124,58,237,0.2)]">
-                    <span className="text-3xl font-bold text-white">DG</span>
-                  </div>
+            <div className="mt-8 space-y-8 max-w-3xl">
+              <p className="text-lg md:text-xl leading-relaxed text-gray-400">
+                I'm <span className="text-white font-medium">Dharani Govardhan</span>, a
+                1st-year AIML student with a strong passion for building modern web
+                applications. While my academic foundation is in Artificial
+                Intelligence and Machine Learning, I actively create immersive,
+                functional, and real-world digital experiences through full stack
+                development.
+              </p>
 
-                  <div>
-                    <h3 className="text-2xl md:text-3xl font-bold text-white">
-                      Dharani Govardhan
-                    </h3>
-                    <p className="text-brand-violet mt-1">
-                      Full Stack Developer · AIML Student
-                    </p>
-                  </div>
-                </div>
-
-                <p className="text-lg md:text-xl text-gray-300 leading-relaxed max-w-2xl">
-                  I’m a first-year AIML student and full stack developer passionate
-                  about building modern, responsive, and real-world digital
-                  products. I enjoy combining clean design, practical functionality,
-                  and smooth user experiences to create websites that feel both
-                  polished and purposeful.
-                </p>
-
-                <p className="mt-6 text-gray-400 leading-relaxed text-base md:text-lg">
-                  Even at an early stage in my journey, I’ve already built and
-                  deployed multiple live websites, exploring both frontend and
-                  backend development while continuously pushing toward better UI,
-                  performance, and product quality.
-                </p>
-              </div>
-
-              {/* Bottom Tags */}
-              <div className="mt-10 flex flex-wrap gap-3">
-                <span className="px-4 py-2 rounded-full border border-brand-violet/30 bg-brand-violet/10 text-brand-violet text-sm shadow-[0_0_20px_rgba(124,58,237,0.12)]">
-                  Full Stack
+              <p className="text-lg md:text-xl leading-relaxed text-gray-400">
+                Having already built{" "}
+                <span className="text-white font-semibold">
+                  6+ live, production-ready websites
                 </span>
-                <span className="px-4 py-2 rounded-full border border-brand-blue/30 bg-brand-blue/10 text-brand-blue text-sm shadow-[0_0_20px_rgba(59,130,246,0.12)]">
-                  6+ Live Projects
-                </span>
-                <span className="px-4 py-2 rounded-full border border-brand-orange/30 bg-brand-orange/10 text-brand-orange text-sm shadow-[0_0_20px_rgba(249,115,22,0.12)]">
-                  AIML Student
-                </span>
-                <span className="px-4 py-2 rounded-full border border-pink-400/30 bg-pink-400/10 text-pink-400 text-sm shadow-[0_0_20px_rgba(236,72,153,0.12)]">
-                  Modern Web Apps
-                </span>
-              </div>
+                , I focus on bridging clean frontend experiences with practical backend
+                functionality. I don’t just write code — I build digital products that
+                are modern, useful, and impactful.
+              </p>
+            </div>
+
+            {/* Tags */}
+            <div className="mt-10 flex flex-wrap gap-4">
+              {tags.map((tag, index) => {
+                const Icon = tag.icon;
+                return (
+                  <motion.div
+                    key={tag.label}
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.5, delay: index * 0.1 }}
+                    whileHover={{ y: -4, scale: 1.03 }}
+                    className="inline-flex items-center gap-3 rounded-2xl border border-white/10 bg-white/[0.03] px-6 py-4 text-white backdrop-blur-md shadow-[0_0_20px_rgba(255,255,255,0.03)]"
+                  >
+                    <Icon className={`h-5 w-5 ${tag.iconColor}`} />
+                    <span className="text-base font-medium">{tag.label}</span>
+                  </motion.div>
+                );
+              })}
             </div>
           </motion.div>
 
-          {/* Right Floating Cards */}
-          <div className="grid sm:grid-cols-2 lg:grid-cols-1 gap-6">
-            {cards.map((card, index) => {
-              const Icon = card.icon;
-              return (
-                <motion.div
-                  key={card.label}
-                  initial={{ opacity: 0, y: 30, x: 20 }}
-                  whileInView={{ opacity: 1, y: 0, x: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.6, delay: index * 0.1 }}
-                  whileHover={{
-                    y: -8,
-                    scale: 1.02,
-                    rotateX: 4,
-                    rotateY: -4,
-                  }}
-                  className={`relative rounded-[26px] border ${card.border} bg-white/[0.04] backdrop-blur-xl p-6 overflow-hidden shadow-[0_0_30px_rgba(255,255,255,0.04)]`}
-                  style={{ transformStyle: "preserve-3d" }}
+          {/* Right Stat Cards */}
+          <motion.div
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+            className="grid grid-cols-1 sm:grid-cols-2 gap-5"
+          >
+            {stats.map((stat, index) => (
+              <motion.div
+                key={stat.label}
+                initial={{ opacity: 0, scale: 0.95 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+                whileHover={{ y: -6, scale: 1.02 }}
+                className={`rounded-[28px] border border-white/10 ${stat.bg} min-h-[180px] flex flex-col items-center justify-center text-center px-6 shadow-[0_0_30px_rgba(255,255,255,0.03)] backdrop-blur-md`}
+              >
+                <h3
+                  className={`text-5xl md:text-6xl font-bold tracking-tight text-transparent bg-clip-text bg-gradient-to-r ${stat.color}`}
                 >
-                  <div className={`absolute inset-0 bg-gradient-to-br ${card.bg}`} />
-
-                  <div className="relative z-10 flex items-start gap-4">
-                    <div className="w-14 h-14 rounded-2xl border border-white/10 bg-black/20 flex items-center justify-center">
-                      <Icon className={`w-7 h-7 ${card.color}`} />
-                    </div>
-
-                    <div>
-                      <p className="text-sm text-gray-400 mb-1">{card.label}</p>
-                      <h4 className="text-xl font-semibold text-white leading-snug">
-                        {card.value}
-                      </h4>
-                    </div>
-                  </div>
-                </motion.div>
-              );
-            })}
-          </div>
+                  {stat.value}
+                </h3>
+                <p className="mt-4 text-sm md:text-base tracking-wide text-gray-500 font-semibold">
+                  {stat.label}
+                </p>
+              </motion.div>
+            ))}
+          </motion.div>
         </div>
       </div>
     </section>
