@@ -1,6 +1,5 @@
 import { motion } from "framer-motion";
 import { Code2, Cpu, Sparkles, Layers3 } from "lucide-react";
-import { ComputersCanvas } from "../canvas";
 
 const highlights = [
   {
@@ -23,6 +22,13 @@ const highlights = [
     label: "Modern Web Apps",
     color: "text-pink-400",
   },
+];
+
+const stats = [
+  { value: "1st", label: "Year AIML" },
+  { value: "6+", label: "Live Projects" },
+  { value: "100%", label: "Dedication" },
+  { value: "24/7", label: "Learning" },
 ];
 
 export function About() {
@@ -122,9 +128,37 @@ export function About() {
                 );
               })}
             </motion.div>
+
+            {/* Stats */}
+            <motion.div
+              initial={{ opacity: 0, y: 22 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.7, delay: 0.4 }}
+              className="mt-10 grid grid-cols-2 sm:grid-cols-4 gap-4"
+            >
+              {stats.map((stat, index) => (
+                <motion.div
+                  key={stat.label}
+                  initial={{ opacity: 0, scale: 0.95 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.45, delay: 0.45 + index * 0.08 }}
+                  whileHover={{ y: -5 }}
+                  className="rounded-2xl border border-white/10 bg-white/[0.04] px-4 py-5 text-center backdrop-blur-xl"
+                >
+                  <h3 className="text-2xl md:text-3xl font-bold text-white">
+                    {stat.value}
+                  </h3>
+                  <p className="mt-1 text-xs md:text-sm uppercase tracking-wider text-gray-500">
+                    {stat.label}
+                  </p>
+                </motion.div>
+              ))}
+            </motion.div>
           </motion.div>
 
-          {/* Right 3D Canvas */}
+          {/* Right Animated 3D-style Desktop */}
           <motion.div
             initial={{ opacity: 0, x: 40, scale: 0.97 }}
             whileInView={{ opacity: 1, x: 0, scale: 1 }}
@@ -132,7 +166,6 @@ export function About() {
             transition={{ duration: 0.8 }}
             className="relative h-[420px] sm:h-[520px] lg:h-[620px] w-full"
           >
-            {/* glowing background */}
             <div className="absolute -top-8 -right-8 h-32 w-32 rounded-full bg-brand-purple/20 blur-3xl" />
             <div className="absolute -bottom-8 -left-8 h-32 w-32 rounded-full bg-brand-blue/20 blur-3xl" />
 
@@ -148,8 +181,78 @@ export function About() {
                 3D Workspace
               </div>
 
-              <div className="h-full w-full">
-                <ComputersCanvas />
+              <div className="relative flex h-full w-full items-center justify-center">
+                <div className="absolute w-72 h-72 rounded-full bg-brand-purple/20 blur-[100px]" />
+                <div className="absolute w-64 h-64 rounded-full bg-brand-blue/20 blur-[100px]" />
+
+                {/* Monitor */}
+                <motion.div
+                  animate={{
+                    rotateY: [0, 8, 0, -8, 0],
+                    rotateX: [0, 4, 0],
+                  }}
+                  transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
+                  className="relative w-[320px] sm:w-[380px] h-[220px] sm:h-[250px] rounded-2xl border border-white/10 bg-[#0b0f1c] shadow-[0_0_40px_rgba(124,58,237,0.2)]"
+                  style={{ transformStyle: "preserve-3d" }}
+                >
+                  <div className="absolute inset-3 rounded-xl bg-[#050816] border border-white/5 overflow-hidden">
+                    <div className="flex items-center gap-2 px-4 py-3 border-b border-white/5">
+                      <div className="w-3 h-3 rounded-full bg-red-500/80" />
+                      <div className="w-3 h-3 rounded-full bg-yellow-500/80" />
+                      <div className="w-3 h-3 rounded-full bg-green-500/80" />
+                    </div>
+
+                    <div className="p-5 font-mono text-xs sm:text-sm text-gray-400 space-y-2">
+                      <p>
+                        <span className="text-brand-purple">const</span>{" "}
+                        <span className="text-brand-blue">developer</span> = {"{"}
+                      </p>
+                      <p className="pl-4">
+                        name: <span className="text-brand-orange">"Dharani"</span>,
+                      </p>
+                      <p className="pl-4">
+                        role:{" "}
+                        <span className="text-brand-orange">
+                          "Full Stack Developer"
+                        </span>
+                        ,
+                      </p>
+                      <p className="pl-4">
+                        builds:{" "}
+                        <span className="text-brand-orange">
+                          ["Web Apps", "UI", "Backend"]
+                        </span>
+                        ,
+                      </p>
+                      <p className="pl-4">
+                        student: <span className="text-brand-purple">true</span>
+                      </p>
+                      <p>{"}"};</p>
+                    </div>
+                  </div>
+
+                  {/* Monitor Stand */}
+                  <div className="absolute -bottom-8 left-1/2 -translate-x-1/2 w-16 h-10 bg-gradient-to-b from-slate-700 to-slate-900 rounded-b-xl" />
+                  <div className="absolute -bottom-12 left-1/2 -translate-x-1/2 w-32 h-3 bg-slate-800 rounded-full shadow-[0_0_20px_rgba(124,58,237,0.2)]" />
+                </motion.div>
+
+                {/* Floating Chip */}
+                <motion.div
+                  animate={{ y: [0, -12, 0], x: [0, 6, 0] }}
+                  transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+                  className="absolute bottom-16 left-10 sm:left-16 w-20 h-20 rounded-full border border-orange-400/30 bg-orange-400/10 backdrop-blur-xl flex items-center justify-center shadow-[0_0_30px_rgba(249,115,22,0.25)]"
+                >
+                  <Cpu className="w-8 h-8 text-orange-400" />
+                </motion.div>
+
+                {/* Floating Code Icon */}
+                <motion.div
+                  animate={{ y: [0, 10, 0], x: [0, -8, 0] }}
+                  transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
+                  className="absolute top-16 right-10 sm:right-16 w-20 h-20 rounded-2xl border border-cyan-400/20 bg-cyan-400/10 backdrop-blur-xl flex items-center justify-center shadow-[0_0_30px_rgba(34,211,238,0.2)]"
+                >
+                  <Code2 className="w-8 h-8 text-cyan-400" />
+                </motion.div>
               </div>
             </motion.div>
           </motion.div>
