@@ -1,178 +1,172 @@
 import { motion } from "framer-motion";
-import { Code2, Cpu, Braces } from "lucide-react";
+import { User, Code, Sparkles, BookOpen, BrainCircuit, MonitorSmartphone, Rocket } from "lucide-react";
+import { cn } from "../utils/cn";
 
 const stats = [
-  {
-    value: "1st",
-    label: "YEAR AIML",
-    textClass: "bg-gradient-to-r from-cyan-300 to-blue-500",
-    cardClass: "bg-[#15121d]",
-  },
-  {
-    value: "100%",
-    label: "DEDICATION",
-    textClass: "bg-gradient-to-r from-white to-white",
-    cardClass: "bg-[#13283a]",
-  },
-  {
-    value: "6+",
-    label: "LIVE PROJECTS",
-    textClass: "bg-gradient-to-r from-white to-white",
-    cardClass: "bg-[#15121d]",
-  },
-  {
-    value: "24/7",
-    label: "LEARNING",
-    textClass: "bg-gradient-to-r from-orange-400 to-orange-200",
-    cardClass: "bg-[#15121d]",
-  },
+  { icon: BookOpen, label: "Education", value: "1st Year AIML", color: "text-brand-purple", shadow: "group-hover:shadow-brand-purple/20" },
+  { icon: Code, label: "Experience", value: "6+ Live Projects", color: "text-brand-blue", shadow: "group-hover:shadow-brand-blue/20" },
+  { icon: Sparkles, label: "Focus", value: "Modern UI/UX", color: "text-brand-orange", shadow: "group-hover:shadow-brand-orange/20" },
 ];
 
-const tags = [
-  {
-    icon: Code2,
-    label: "Full Stack Dev",
-    color: "text-cyan-400",
+const skills = ["React.js", "Python", "Machine Learning", "Tailwind CSS", "Framer Motion"];
+
+// Framer Motion Variants for staggered animations
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.15,
+      delayChildren: 0.2,
+    },
   },
-  {
-    icon: Cpu,
-    label: "AIML Enthusiast",
-    color: "text-violet-500",
+};
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: { 
+    opacity: 1, 
+    y: 0,
+    transition: { type: "spring", stiffness: 100, damping: 10 }
   },
-  {
-    icon: Braces,
-    label: "Creative Coder",
-    color: "text-orange-500",
-  },
-];
+};
 
 export function About() {
   return (
-    <section
-      id="about"
-      className="relative overflow-hidden py-24 md:py-32 bg-[radial-gradient(circle_at_top_left,rgba(124,58,237,0.10),transparent_30%),radial-gradient(circle_at_bottom_right,rgba(59,130,246,0.08),transparent_30%),linear-gradient(135deg,#050816_0%,#0a0614_45%,#12051d_100%)]"
-    >
-      {/* background glow */}
-      <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute left-[10%] top-[20%] h-72 w-72 rounded-full bg-purple-700/10 blur-[120px]" />
-        <div className="absolute right-[10%] bottom-[20%] h-72 w-72 rounded-full bg-blue-600/10 blur-[120px]" />
-      </div>
-
+    <section id="about" className="py-24 relative overflow-hidden">
+      {/* Ambient Animated Backgrounds */}
+      <motion.div 
+        animate={{ 
+          scale: [1, 1.2, 1],
+          opacity: [0.3, 0.5, 0.3],
+          rotate: [0, 90, 0]
+        }}
+        transition={{ duration: 15, repeat: Infinity, ease: "linear" }}
+        className="absolute top-0 right-[-10%] w-[600px] h-[600px] bg-brand-orange/10 rounded-full blur-[120px] pointer-events-none" 
+      />
+      <motion.div 
+        animate={{ 
+          scale: [1, 1.5, 1],
+          opacity: [0.2, 0.4, 0.2],
+        }}
+        transition={{ duration: 10, repeat: Infinity, ease: "easeInOut", delay: 2 }}
+        className="absolute bottom-[-10%] left-[-10%] w-[500px] h-[500px] bg-brand-purple/10 rounded-full blur-[100px] pointer-events-none" 
+      />
+      
       <div className="container mx-auto px-6 md:px-12 relative z-10">
-        <div className="grid lg:grid-cols-[1.05fr_0.95fr] gap-14 lg:gap-20 items-center">
-          {/* Left Content */}
+        
+        {/* Section Header */}
+        <motion.div
+          initial={{ opacity: 0, y: -20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.6, type: "spring", bounce: 0.4 }}
+          className="mb-16 text-center md:text-left"
+        >
+          <h2 className="text-4xl md:text-6xl font-space font-bold text-white mb-4 tracking-tight">
+            About <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-purple to-brand-blue">Me</span>
+          </h2>
+          <motion.div 
+            initial={{ width: 0 }}
+            whileInView={{ width: "80px" }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            className="h-1.5 bg-gradient-to-r from-brand-purple to-brand-blue mx-auto md:mx-0 rounded-full" 
+          />
+        </motion.div>
+
+        <div className="grid lg:grid-cols-12 gap-10 items-stretch">
+          
+          {/* Main Info Card */}
           <motion.div
-            initial={{ opacity: 0, y: 40 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.3 }}
-            transition={{ duration: 0.8, ease: "easeOut" }}
-            className="max-w-3xl"
+            variants={containerVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-50px" }}
+            className="lg:col-span-7 glass rounded-[2rem] p-8 md:p-12 relative overflow-hidden group border border-white/10 hover:border-brand-purple/40 transition-all duration-500 hover:shadow-[0_0_40px_-10px_rgba(168,85,247,0.2)]"
           >
-            <motion.h2
-              initial={{ opacity: 0, y: 24 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.7, delay: 0.1 }}
-              className="text-[3rem] sm:text-[4rem] lg:text-[5.2rem] leading-[0.95] font-bold tracking-[-0.04em] text-white"
-            >
-              Decoding the{" "}
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-blue-500 to-violet-500">
-                Future
-              </span>
-              .
-            </motion.h2>
-
-            <motion.div
-              initial={{ opacity: 0, y: 24 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.75, delay: 0.2 }}
-              className="mt-10 space-y-10"
-            >
-              <p className="max-w-[860px] text-[1.15rem] md:text-[1.28rem] leading-[1.75] text-[#9ca3af] font-medium">
-                I'm{" "}
-                <span className="text-white">Dharani Govardhan</span>, a 1st-year AIML
-                student with a strong passion for intelligent systems and modern web
-                technologies. While my academic foundation is in Artificial
-                Intelligence and Machine Learning, my real creative playground is full
-                stack development.
-              </p>
-
-              <p className="max-w-[860px] text-[1.15rem] md:text-[1.28rem] leading-[1.75] text-[#9ca3af] font-medium">
-                Having already built{" "}
-                <span className="text-white font-semibold">
-                  6+ live, production-ready websites
-                </span>
-                , I focus on connecting elegant frontend experiences with practical
-                backend functionality. I don’t just build interfaces — I create real
-                digital products.
-              </p>
-            </motion.div>
-
-            {/* tags */}
-            <motion.div
-              initial={{ opacity: 0, y: 24 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.7, delay: 0.3 }}
-              className="mt-12 flex flex-wrap gap-5"
-            >
-              {tags.map((tag, index) => {
-                const Icon = tag.icon;
-                return (
-                  <motion.div
-                    key={tag.label}
-                    initial={{ opacity: 0, y: 18 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.5, delay: 0.35 + index * 0.08 }}
-                    whileHover={{ y: -5, scale: 1.03 }}
-                    className="group inline-flex items-center gap-4 rounded-2xl border border-white/8 bg-[#0e0e12]/80 px-7 py-4 text-white shadow-[0_10px_30px_rgba(0,0,0,0.25)] backdrop-blur-xl transition-all duration-300 hover:border-white/15 hover:bg-[#121218]"
-                  >
-                    <Icon
-                      className={`h-5 w-5 ${tag.color} transition-transform duration-300 group-hover:scale-110`}
-                    />
-                    <span className="text-[1.05rem] font-semibold tracking-[-0.02em]">
-                      {tag.label}
-                    </span>
-                  </motion.div>
-                );
-              })}
-            </motion.div>
-          </motion.div>
-
-          {/* Right Stat Cards */}
-          <motion.div
-            initial={{ opacity: 0, x: 40 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true, amount: 0.25 }}
-            transition={{ duration: 0.8, ease: "easeOut" }}
-            className="grid grid-cols-1 sm:grid-cols-2 gap-5"
-          >
-            {stats.map((stat, index) => (
-              <motion.div
-                key={stat.label}
-                initial={{ opacity: 0, y: 28, scale: 0.96 }}
-                whileInView={{ opacity: 1, y: 0, scale: 1 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.55, delay: index * 0.08 }}
-                whileHover={{ y: -6, scale: 1.02 }}
-                className={`relative min-h-[178px] rounded-[28px] border border-white/8 ${stat.cardClass} overflow-hidden shadow-[0_20px_60px_rgba(0,0,0,0.25)]`}
-              >
-                <div className="absolute inset-0 bg-gradient-to-br from-white/[0.03] to-transparent" />
-                <div className="relative z-10 flex h-full flex-col items-center justify-center text-center px-6">
-                  <h3
-                    className={`bg-clip-text text-transparent ${stat.textClass} text-[3.6rem] md:text-[4.4rem] font-bold tracking-[-0.05em] leading-none`}
-                  >
-                    {stat.value}
-                  </h3>
-                  <p className="mt-4 text-[0.95rem] md:text-[1rem] font-semibold tracking-[0.06em] text-[#8b8f98]">
-                    {stat.label}
-                  </p>
+            {/* Inner Hover Glow */}
+            <div className="absolute top-0 right-0 w-72 h-72 bg-brand-purple/15 rounded-full blur-3xl -mr-32 -mt-32 transition-transform duration-700 group-hover:scale-[1.8]" />
+            
+            <div className="relative z-10 h-full flex flex-col justify-center">
+              <motion.div variants={itemVariants} className="flex items-center gap-4 mb-6">
+                <div className="p-3 bg-white/5 rounded-2xl border border-white/10">
+                  <BrainCircuit className="w-8 h-8 text-brand-purple" />
                 </div>
+                <h3 className="text-3xl font-space font-bold text-white">
+                  Creative Tech Mindset
+                </h3>
               </motion.div>
-            ))}
+
+              <motion.p variants={itemVariants} className="text-lg text-gray-300 leading-relaxed mb-6">
+                I’m an <span className="text-white font-semibold bg-white/10 px-2 py-1 rounded-md border border-white/5">AIML student</span> and <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-purple to-brand-blue font-semibold">frontend developer</span> focused on creating sleek, responsive, and visually engaging web interfaces.
+              </motion.p>
+              
+              <motion.p variants={itemVariants} className="text-lg text-gray-400 leading-relaxed mb-8">
+                I enjoy transforming ideas into real, interactive experiences that feel smooth, modern, and user-centered. My goal is to build digital products that leave a lasting impression through seamless motion and elegant design.
+              </motion.p>
+
+              {/* Skill Tags */}
+              <motion.div variants={itemVariants} className="flex flex-wrap gap-3 mt-auto">
+                {skills.map((skill, index) => (
+                  <motion.span
+                    key={skill}
+                    whileHover={{ scale: 1.05, y: -2 }}
+                    className="px-4 py-2 text-sm font-medium text-gray-300 glass-dark rounded-full border border-white/5 cursor-default hover:text-white hover:border-brand-purple/50 transition-colors"
+                  >
+                    {skill}
+                  </motion.span>
+                ))}
+              </motion.div>
+            </div>
           </motion.div>
+
+          {/* Stats/Highlights Column */}
+          <div className="lg:col-span-5 flex flex-col gap-5 justify-center">
+            {stats.map((stat, idx) => {
+              const Icon = stat.icon;
+              return (
+                <motion.div
+                  key={stat.label}
+                  initial={{ opacity: 0, x: 50 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true, margin: "-50px" }}
+                  transition={{ 
+                    duration: 0.5, 
+                    delay: 0.3 + idx * 0.15,
+                    type: "spring",
+                    stiffness: 100
+                  }}
+                  whileHover={{ scale: 1.03, x: -5 }}
+                  className={cn(
+                    "glass rounded-2xl p-5 flex items-center gap-6 border border-white/5 transition-all duration-300 group cursor-pointer hover:bg-white/[0.03]",
+                    stat.shadow
+                  )}
+                >
+                  <motion.div 
+                    whileHover={{ rotate: [0, -10, 10, -10, 0] }}
+                    transition={{ duration: 0.5 }}
+                    className="w-16 h-16 rounded-2xl glass-dark flex items-center justify-center border border-white/5 group-hover:border-white/20 transition-colors relative overflow-hidden"
+                  >
+                    {/* Icon Background Glow */}
+                    <div className={cn("absolute inset-0 opacity-0 group-hover:opacity-20 transition-opacity duration-500", stat.color.replace('text-', 'bg-'))} />
+                    <Icon className={cn("w-7 h-7 relative z-10", stat.color)} />
+                  </motion.div>
+                  
+                  <div>
+                    <p className="text-sm text-gray-400 font-medium mb-1 uppercase tracking-wider">{stat.label}</p>
+                    <p className="text-2xl font-space font-bold text-white">{stat.value}</p>
+                  </div>
+                  
+                  {/* Subtle decorative arrow/indicator */}
+                  <div className="ml-auto opacity-0 group-hover:opacity-100 transition-opacity -translate-x-4 group-hover:translate-x-0 duration-300">
+                    <Rocket className="w-5 h-5 text-gray-600" />
+                  </div>
+                </motion.div>
+              );
+            })}
+          </div>
+          
         </div>
       </div>
     </section>
