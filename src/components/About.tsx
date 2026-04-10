@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { Terminal, Code, Cpu, Sparkles, Rocket, Zap, Heart, Layers, Box, Globe } from 'lucide-react';
+import { Sparkles, Rocket, Zap, Heart } from 'lucide-react';
 
 export function About() {
   return (
@@ -71,7 +71,7 @@ export function About() {
         {/* Bento Grid Layout */}
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-7xl mx-auto">
           
-          {/* Large Bio Card */}
+          {/* Large Bio Card with Profile Image */}
           <motion.div
             initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -84,12 +84,21 @@ export function About() {
             />
             <div className="relative z-10">
               <div className="flex items-center gap-4 mb-6">
+                {/* Profile Picture */}
                 <motion.div
-                  whileHover={{ rotate: 360 }}
-                  transition={{ duration: 0.6 }}
-                  className="w-20 h-20 rounded-full bg-gradient-to-br from-brand-purple to-brand-blue flex items-center justify-center"
+                  whileHover={{ scale: 1.05 }}
+                  transition={{ duration: 0.3 }}
+                  className="w-20 h-20 rounded-full bg-gradient-to-br from-brand-purple to-brand-blue flex items-center justify-center overflow-hidden ring-2 ring-brand-purple/30"
                 >
-                  <Terminal className="w-10 h-10 text-white" />
+                  <img 
+                    src="/path-to-your-profile-image.jpg" 
+                    alt="Dharani Govardhan"
+                    className="w-full h-full object-cover"
+                    onError={(e) => {
+                      e.target.style.display = 'none';
+                      e.target.parentElement.innerHTML = '<div class="w-full h-full flex items-center justify-center text-white text-2xl font-bold">DG</div>';
+                    }}
+                  />
                 </motion.div>
                 <div>
                   <h3 className="text-3xl font-bold text-white">Dharani Govardhan</h3>
@@ -110,18 +119,26 @@ export function About() {
               </div>
 
               <div className="flex flex-wrap gap-3 mt-8">
-                {['React', 'TypeScript', 'Node.js', 'AI/ML', 'Tailwind', 'Python', 'MongoDB'].map((tech, index) => (
-                  <motion.span
-                    key={tech}
+                {[
+                  { name: 'React', img: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg' },
+                  { name: 'TypeScript', img: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg' },
+                  { name: 'Node.js', img: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg' },
+                  { name: 'Python', img: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg' },
+                  { name: 'MongoDB', img: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg' },
+                  { name: 'Tailwind', img: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-plain.svg' }
+                ].map((tech, index) => (
+                  <motion.div
+                    key={tech.name}
                     initial={{ opacity: 0, scale: 0 }}
                     whileInView={{ opacity: 1, scale: 1 }}
                     viewport={{ once: true }}
                     transition={{ delay: index * 0.1 }}
                     whileHover={{ scale: 1.1, y: -2 }}
-                    className="px-4 py-2 rounded-full bg-white/5 border border-white/10 text-sm font-medium text-gray-300 backdrop-blur-sm hover:border-brand-purple/50 transition-all"
+                    className="flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 hover:border-brand-purple/50 transition-all backdrop-blur-sm"
                   >
-                    {tech}
-                  </motion.span>
+                    <img src={tech.img} alt={tech.name} className="w-5 h-5" />
+                    <span className="text-sm font-medium text-gray-300">{tech.name}</span>
+                  </motion.div>
                 ))}
               </div>
             </div>
@@ -172,24 +189,24 @@ export function About() {
             </div>
           </motion.div>
 
-          {/* Skills Cards */}
+          {/* Skills Cards with Images */}
           {[
             { 
-              icon: Code, 
+              img: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg',
               title: "Frontend Development", 
               desc: "Crafting pixel-perfect, responsive interfaces",
               gradient: "from-blue-500/20 to-cyan-500/20",
               color: "text-blue-400"
             },
             { 
-              icon: Terminal, 
+              img: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg',
               title: "Backend Engineering", 
               desc: "Building robust and scalable server solutions",
               gradient: "from-purple-500/20 to-pink-500/20",
               color: "text-purple-400"
             },
             { 
-              icon: Cpu, 
+              img: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg',
               title: "AI & Machine Learning", 
               desc: "Exploring intelligent systems and algorithms",
               gradient: "from-orange-500/20 to-red-500/20",
@@ -212,9 +229,9 @@ export function About() {
                 <motion.div
                   whileHover={{ rotate: 360, scale: 1.1 }}
                   transition={{ duration: 0.6 }}
-                  className="w-16 h-16 rounded-full bg-gradient-to-br from-brand-purple to-brand-blue flex items-center justify-center mb-4"
+                  className="w-16 h-16 rounded-full bg-gradient-to-br from-brand-purple to-brand-blue flex items-center justify-center mb-4 p-3"
                 >
-                  <skill.icon className="w-8 h-8 text-white" />
+                  <img src={skill.img} alt={skill.title} className="w-full h-full object-contain" />
                 </motion.div>
                 <h3 className={`text-xl font-bold mb-2 ${skill.color} group-hover:text-white transition-colors`}>
                   {skill.title}
@@ -224,7 +241,7 @@ export function About() {
             </motion.div>
           ))}
 
-          {/* Education Card */}
+          {/* Education Card with Image */}
           <motion.div
             initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -241,8 +258,12 @@ export function About() {
               className="absolute -bottom-10 -right-10 w-32 h-32 bg-gradient-to-br from-brand-purple/20 to-brand-blue/20 rounded-full blur-2xl"
             />
             <div className="relative z-10">
-              <div className="w-14 h-14 rounded-full bg-gradient-to-br from-brand-purple to-brand-blue flex items-center justify-center mb-4">
-                <Layers className="w-7 h-7 text-white" />
+              <div className="w-14 h-14 rounded-full bg-gradient-to-br from-brand-purple to-brand-blue flex items-center justify-center mb-4 p-3">
+                <img 
+                  src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/google/google-original.svg" 
+                  alt="Education" 
+                  className="w-full h-full object-contain"
+                />
               </div>
               <h3 className="text-xl font-bold text-white mb-2">Education</h3>
               <p className="text-gray-400 text-sm mb-4">Currently Pursuing</p>
@@ -254,7 +275,7 @@ export function About() {
             </div>
           </motion.div>
 
-          {/* Experience Card */}
+          {/* What I Love Card */}
           <motion.div
             initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -271,8 +292,12 @@ export function About() {
               className="absolute -top-10 -left-10 w-32 h-32 bg-gradient-to-br from-brand-blue/20 to-brand-purple/20 rounded-full blur-2xl"
             />
             <div className="relative z-10">
-              <div className="w-14 h-14 rounded-full bg-gradient-to-br from-brand-blue to-brand-purple flex items-center justify-center mb-4">
-                <Box className="w-7 h-7 text-white" />
+              <div className="w-14 h-14 rounded-full bg-gradient-to-br from-brand-blue to-brand-purple flex items-center justify-center mb-4 p-3">
+                <img 
+                  src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vscode/vscode-original.svg" 
+                  alt="Love" 
+                  className="w-full h-full object-contain"
+                />
               </div>
               <h3 className="text-xl font-bold text-white mb-2">What I Love</h3>
               <ul className="space-y-3 mt-4">
@@ -307,8 +332,12 @@ export function About() {
             className="glass border border-white/10 rounded-[2.5rem] p-8 backdrop-blur-xl relative overflow-hidden group"
           >
             <div className="relative z-10">
-              <div className="w-14 h-14 rounded-full bg-gradient-to-br from-brand-purple to-brand-blue flex items-center justify-center mb-4">
-                <Globe className="w-7 h-7 text-white" />
+              <div className="w-14 h-14 rounded-full bg-gradient-to-br from-brand-purple to-brand-blue flex items-center justify-center mb-4 p-3">
+                <img 
+                  src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" 
+                  alt="Philosophy" 
+                  className="w-full h-full object-contain invert"
+                />
               </div>
               <h3 className="text-xl font-bold text-white mb-3">My Philosophy</h3>
               <blockquote className="text-gray-300 text-sm italic leading-relaxed border-l-2 border-brand-purple pl-4">
