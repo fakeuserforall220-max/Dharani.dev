@@ -1,20 +1,7 @@
 import { motion } from 'framer-motion';
-import { Terminal, Code, Cpu, Sparkles, Award, Zap } from 'lucide-react';
+import { Terminal, Code, Cpu, Mail, Github, Linkedin, Twitter } from 'lucide-react';
 
 export function About() {
-  const stats = [
-    { icon: Terminal, value: "6+", label: "Live Projects", color: "from-brand-blue to-blue-400" },
-    { icon: Award, value: "1st", label: "Year AIML", color: "from-brand-purple to-purple-400" },
-    { icon: Zap, value: "24/7", label: "Learning", color: "from-brand-orange to-orange-400" },
-    { icon: Sparkles, value: "100%", label: "Dedication", color: "from-brand-violet to-violet-400" },
-  ];
-
-  const skills = [
-    { icon: Terminal, label: "Full Stack Dev", color: "brand-blue" },
-    { icon: Cpu, label: "AIML Enthusiast", color: "brand-purple" },
-    { icon: Code, label: "Creative Coder", color: "brand-orange" },
-  ];
-
   return (
     <section id="about" className="py-32 relative overflow-hidden">
       {/* Background Elements */}
@@ -32,179 +19,277 @@ export function About() {
           transition={{ duration: 0.6 }}
           className="text-center mb-20"
         >
+          <h2 className="text-4xl md:text-6xl font-black font-space mb-4">
+            About <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-violet via-brand-purple to-brand-blue">Me</span>
+          </h2>
+        </motion.div>
+
+        {/* Card Container */}
+        <div className="flex justify-center">
           <motion.div
             initial={{ opacity: 0, scale: 0.9 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass border border-brand-purple/30 text-sm font-medium text-brand-violet mb-6"
-          >
-            <Sparkles className="w-4 h-4" />
-            About Me
-          </motion.div>
-          <h2 className="text-4xl md:text-6xl font-black font-space mb-4">
-            Decoding the <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-violet via-brand-purple to-brand-blue">Future</span>
-          </h2>
-        </motion.div>
-
-        <div className="grid lg:grid-cols-2 gap-16 items-start">
-          
-          {/* Left Column - Text Content */}
-          <motion.div
-            initial={{ opacity: 0, x: -50 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true, margin: "-100px" }}
             transition={{ duration: 0.8 }}
-            className="space-y-6"
+            className="about-card-wrapper"
           >
-            <div className="space-y-6">
-              <p className="text-lg md:text-xl text-gray-300 leading-relaxed">
-                I'm <span className="text-white font-semibold">Dharani Govardhan</span>, a 1st-year AIML student with an insatiable curiosity for intelligent systems and cutting-edge web technologies.
-              </p>
-              <p className="text-lg text-gray-400 leading-relaxed">
-                While my academic roots are in Artificial Intelligence, my creative playground is the frontend world. I don't just write code; I craft digital ecosystems that blend functionality with immersive experiences.
-              </p>
-              <div className="glass border border-brand-purple/20 rounded-2xl p-6 bg-gradient-to-br from-brand-purple/5 to-transparent">
-                <p className="text-lg text-gray-300 leading-relaxed">
-                  Having already built <span className="text-brand-purple font-bold">6+ live, production-ready websites</span>, I specialize in bridging the gap between highly functional backend logic and cinematic frontend experiences.
-                </p>
-              </div>
-            </div>
-
-            {/* Skills Tags */}
-            <div className="pt-6">
-              <h3 className="text-sm font-semibold text-gray-400 uppercase tracking-wider mb-4">What I Do</h3>
-              <div className="flex flex-wrap gap-3">
-                {skills.map((skill, index) => (
-                  <motion.div
-                    key={skill.label}
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.5, delay: index * 0.1 }}
-                    whileHover={{ scale: 1.05, y: -2 }}
-                    className="flex items-center gap-3 px-5 py-3 rounded-full glass border border-white/10 hover:border-brand-purple/50 transition-all duration-300 group cursor-pointer"
-                  >
-                    <skill.icon className={`text-${skill.color} w-5 h-5 group-hover:scale-110 transition-transform`} />
-                    <span className="font-medium text-sm text-gray-300 group-hover:text-white transition-colors">{skill.label}</span>
-                  </motion.div>
-                ))}
-              </div>
-            </div>
-
-            {/* CTA Button */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.4 }}
-              className="pt-4"
-            >
-              <a
-                href="#projects"
-                className="inline-flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-brand-purple to-brand-blue text-white rounded-full font-semibold hover:shadow-[0_0_30px_rgba(124,58,237,0.5)] transition-all duration-300 hover:scale-105"
-              >
-                View My Work
-                <Code className="w-4 h-4" />
+            <div className="about-card group">
+              {/* Mail Button */}
+              <a href="mailto:your.email@example.com" className="mail-button">
+                <Mail className="w-6 h-6" />
               </a>
-            </motion.div>
-          </motion.div>
 
-          {/* Right Column - Stats Grid */}
-          <motion.div
-            initial={{ opacity: 0, x: 50 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            className="relative"
-          >
-            <div className="grid grid-cols-2 gap-4 lg:gap-6">
-              {stats.map((stat, index) => (
-                <motion.div
-                  key={stat.label}
-                  initial={{ opacity: 0, scale: 0.8 }}
-                  whileInView={{ opacity: 1, scale: 1 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.5, delay: index * 0.1 }}
-                  whileHover={{ y: -8, scale: 1.02 }}
-                  className="group relative"
-                >
-                  {/* Card */}
-                  <div className="glass-card rounded-2xl p-6 lg:p-8 border border-white/10 hover:border-brand-purple/30 transition-all duration-300 relative overflow-hidden">
-                    {/* Gradient Background on Hover */}
-                    <div className={`absolute inset-0 bg-gradient-to-br ${stat.color} opacity-0 group-hover:opacity-10 transition-opacity duration-300`} />
-                    
-                    {/* Icon */}
-                    <div className="flex justify-center mb-4">
-                      <div className={`w-14 h-14 rounded-xl bg-gradient-to-br ${stat.color} p-3 group-hover:scale-110 transition-transform duration-300`}>
-                        <stat.icon className="w-full h-full text-white" />
-                      </div>
-                    </div>
+              {/* Profile Picture */}
+              <div className="profile-picture">
+                <div className="profile-image-placeholder">
+                  <Terminal className="w-24 h-24 text-brand-purple" />
+                </div>
+              </div>
 
-                    {/* Value */}
-                    <h3 className={`text-4xl lg:text-5xl font-black font-space text-transparent bg-clip-text bg-gradient-to-br ${stat.color} mb-2 text-center`}>
-                      {stat.value}
-                    </h3>
+              {/* Bottom Content */}
+              <div className="card-bottom">
+                <div className="card-content">
+                  <span className="profile-name">Dharani Govardhan</span>
+                  <span className="profile-title">Full Stack Developer & AIML Student</span>
+                  <span className="profile-about">
+                    I'm a 1st-year AIML student who builds modern, responsive web applications. 
+                    Specializing in bridging AI with beautiful frontend experiences. 
+                    6+ live projects and counting!
+                  </span>
+                </div>
 
-                    {/* Label */}
-                    <p className="text-gray-400 text-xs lg:text-sm font-medium uppercase tracking-wider text-center group-hover:text-gray-300 transition-colors">
-                      {stat.label}
-                    </p>
-
-                    {/* Decorative Corner */}
-                    <div className="absolute top-0 right-0 w-16 h-16 bg-gradient-to-br from-white/5 to-transparent rounded-bl-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                <div className="card-bottom-actions">
+                  <div className="social-links">
+                    <a href="#" aria-label="GitHub" className="social-link">
+                      <Github className="w-5 h-5" />
+                    </a>
+                    <a href="#" aria-label="LinkedIn" className="social-link">
+                      <Linkedin className="w-5 h-5" />
+                    </a>
+                    <a href="#" aria-label="Twitter" className="social-link">
+                      <Twitter className="w-5 h-5" />
+                    </a>
                   </div>
-                </motion.div>
-              ))}
+                  <a href="#contact" className="contact-button">
+                    Contact Me
+                  </a>
+                </div>
+              </div>
             </div>
-
-            {/* Floating Element */}
-            <motion.div
-              animate={{
-                y: [0, -10, 0],
-                rotate: [0, 5, 0],
-              }}
-              transition={{
-                duration: 4,
-                repeat: Infinity,
-                ease: "easeInOut",
-              }}
-              className="absolute -top-6 -right-6 w-24 h-24 bg-gradient-to-br from-brand-purple/20 to-brand-blue/20 rounded-2xl blur-xl -z-10"
-            />
-            <motion.div
-              animate={{
-                y: [0, 10, 0],
-                rotate: [0, -5, 0],
-              }}
-              transition={{
-                duration: 5,
-                repeat: Infinity,
-                ease: "easeInOut",
-              }}
-              className="absolute -bottom-6 -left-6 w-32 h-32 bg-gradient-to-br from-brand-orange/20 to-brand-purple/20 rounded-2xl blur-xl -z-10"
-            />
           </motion.div>
-
         </div>
 
-        {/* Bottom Quote/Highlight */}
+        {/* Stats Below Card */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.8, delay: 0.4 }}
-          className="mt-20 text-center max-w-3xl mx-auto"
+          transition={{ duration: 0.8, delay: 0.3 }}
+          className="grid grid-cols-2 md:grid-cols-4 gap-6 mt-20 max-w-4xl mx-auto"
         >
-          <div className="glass border border-brand-blue/20 rounded-2xl p-8 lg:p-12 relative overflow-hidden">
-            <div className="absolute inset-0 bg-gradient-to-r from-brand-purple/5 via-brand-blue/5 to-brand-purple/5" />
-            <blockquote className="relative z-10">
-              <p className="text-xl lg:text-2xl font-medium text-gray-200 italic leading-relaxed">
-                "Turning complex problems into elegant solutions, one line of code at a time."
-              </p>
-              <footer className="mt-4 text-brand-purple font-semibold">— Dharani Govardhan</footer>
-            </blockquote>
-          </div>
+          {[
+            { icon: Terminal, value: "6+", label: "Live Projects" },
+            { icon: Code, value: "1st", label: "Year AIML" },
+            { icon: Cpu, value: "24/7", label: "Learning" },
+            { icon: Mail, value: "100%", label: "Dedication" },
+          ].map((stat, index) => (
+            <motion.div
+              key={stat.label}
+              initial={{ opacity: 0, scale: 0.8 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.4 + index * 0.1 }}
+              whileHover={{ y: -5 }}
+              className="glass border border-white/10 rounded-2xl p-6 text-center hover:border-brand-purple/30 transition-all duration-300"
+            >
+              <stat.icon className="w-8 h-8 mx-auto mb-3 text-brand-purple" />
+              <h3 className="text-3xl font-bold text-white mb-1">{stat.value}</h3>
+              <p className="text-sm text-gray-400">{stat.label}</p>
+            </motion.div>
+          ))}
         </motion.div>
       </div>
+
+      <style jsx>{`
+        .about-card-wrapper {
+          perspective: 1000px;
+        }
+
+        .about-card {
+          width: 320px;
+          height: 420px;
+          background: linear-gradient(135deg, rgba(124, 58, 237, 0.1), rgba(59, 130, 246, 0.1));
+          backdrop-filter: blur(10px);
+          border-radius: 32px;
+          padding: 3px;
+          position: relative;
+          box-shadow: 0 70px 30px -50px rgba(124, 58, 237, 0.3);
+          transition: all 0.5s ease-in-out;
+          border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .about-card:hover {
+          border-top-left-radius: 55px;
+          box-shadow: 0 80px 40px -50px rgba(124, 58, 237, 0.5);
+        }
+
+        .mail-button {
+          position: absolute;
+          right: 1.5rem;
+          top: 1.5rem;
+          background: transparent;
+          border: none;
+          z-index: 10;
+          color: rgba(124, 58, 237, 0.6);
+          transition: all 0.3s ease;
+          cursor: pointer;
+        }
+
+        .mail-button:hover {
+          color: #7c3aed;
+          transform: scale(1.1);
+        }
+
+        .profile-picture {
+          position: absolute;
+          width: calc(100% - 6px);
+          height: calc(100% - 6px);
+          top: 3px;
+          left: 3px;
+          border-radius: 29px;
+          z-index: 1;
+          overflow: hidden;
+          transition: all 0.5s ease-in-out 0.2s, z-index 0.5s ease-in-out 0.2s;
+          background: linear-gradient(135deg, rgba(124, 58, 237, 0.2), rgba(59, 130, 246, 0.2));
+          backdrop-filter: blur(20px);
+          border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .profile-image-placeholder {
+          width: 100%;
+          height: 100%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          transition: all 0.5s ease-in-out;
+        }
+
+        .about-card:hover .profile-picture {
+          width: 120px;
+          height: 120px;
+          top: 10px;
+          left: 10px;
+          border-radius: 50%;
+          z-index: 3;
+          border: 7px solid rgba(124, 58, 237, 0.5);
+          box-shadow: 0 5px 15px rgba(124, 58, 237, 0.3);
+          transition: all 0.5s ease-in-out, z-index 0.5s ease-in-out 0.1s;
+        }
+
+        .about-card:hover .profile-picture:hover {
+          transform: scale(1.3);
+          border-radius: 20px;
+        }
+
+        .about-card:hover .profile-image-placeholder {
+          transform: scale(0.8);
+        }
+
+        .card-bottom {
+          position: absolute;
+          bottom: 3px;
+          left: 3px;
+          right: 3px;
+          background: linear-gradient(135deg, #7c3aed, #3b82f6);
+          top: 80%;
+          border-radius: 29px;
+          z-index: 2;
+          box-shadow: inset 0 5px 5px rgba(0, 0, 0, 0.1);
+          overflow: hidden;
+          transition: all 0.5s cubic-bezier(0.645, 0.045, 0.355, 1) 0s;
+        }
+
+        .about-card:hover .card-bottom {
+          top: 150px;
+          border-radius: 80px 29px 29px 29px;
+          transition: all 0.5s cubic-bezier(0.645, 0.045, 0.355, 1) 0.2s;
+        }
+
+        .card-content {
+          position: absolute;
+          bottom: 0;
+          left: 1.5rem;
+          right: 1.5rem;
+          padding-bottom: 4rem;
+          display: flex;
+          flex-direction: column;
+          gap: 0.5rem;
+        }
+
+        .profile-name {
+          font-size: 1.5rem;
+          color: white;
+          font-weight: bold;
+          font-family: 'Space Grotesk', sans-serif;
+        }
+
+        .profile-title {
+          font-size: 0.9rem;
+          color: rgba(255, 255, 255, 0.9);
+          font-weight: 500;
+        }
+
+        .profile-about {
+          font-size: 0.85rem;
+          color: rgba(255, 255, 255, 0.8);
+          margin-top: 0.5rem;
+          line-height: 1.5;
+        }
+
+        .card-bottom-actions {
+          position: absolute;
+          bottom: 1rem;
+          left: 1.5rem;
+          right: 1.5rem;
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+        }
+
+        .social-links {
+          display: flex;
+          gap: 1rem;
+        }
+
+        .social-link {
+          color: white;
+          transition: all 0.3s ease;
+          filter: drop-shadow(0 5px 5px rgba(0, 0, 0, 0.1));
+        }
+
+        .social-link:hover {
+          color: rgba(255, 255, 255, 0.7);
+          transform: scale(1.2);
+        }
+
+        .contact-button {
+          background: white;
+          color: #7c3aed;
+          border: none;
+          border-radius: 20px;
+          font-size: 0.75rem;
+          padding: 0.5rem 1rem;
+          font-weight: 600;
+          box-shadow: 0 5px 5px rgba(0, 0, 0, 0.1);
+          transition: all 0.3s ease;
+          cursor: pointer;
+        }
+
+        .contact-button:hover {
+          background: rgba(255, 255, 255, 0.9);
+          transform: scale(1.05);
+        }
+      `}</style>
     </section>
   );
 }
