@@ -1,190 +1,281 @@
-import { motion, useScroll, useTransform } from "framer-motion";
-import { ArrowRight, Terminal, Code2, Cpu } from "lucide-react";
-import { useRef } from "react";
+import { motion } from "framer-motion";
+import { ArrowRight, Github, Linkedin, Mail, Sparkles } from "lucide-react";
+import { Canvas } from "@react-three/fiber";
+import { OrbitControls, Sphere, MeshDistortMaterial, Float } from "@react-three/drei";
+
+// 3D Animated Sphere Component
+function AnimatedSphere() {
+  return (
+    <Float speed={1.5} rotationIntensity={1} floatIntensity={2}>
+      <Sphere args={[1, 100, 200]} scale={2.5}>
+        <MeshDistortMaterial
+          color="#7c3aed"
+          attach="material"
+          distort={0.4}
+          speed={2}
+          roughness={0.2}
+          metalness={0.8}
+        />
+      </Sphere>
+    </Float>
+  );
+}
+
+// Floating particles background
+function FloatingParticles() {
+  return (
+    <div className="absolute inset-0 overflow-hidden pointer-events-none">
+      {[...Array(20)].map((_, i) => (
+        <motion.div
+          key={i}
+          className="absolute w-1 h-1 bg-brand-purple/30 rounded-full"
+          initial={{
+            x: Math.random() * window.innerWidth,
+            y: Math.random() * window.innerHeight,
+          }}
+          animate={{
+            y: [null, Math.random() * window.innerHeight],
+            x: [null, Math.random() * window.innerWidth],
+          }}
+          transition={{
+            duration: Math.random() * 10 + 10,
+            repeat: Infinity,
+            repeatType: "reverse",
+          }}
+        />
+      ))}
+    </div>
+  );
+}
 
 export function Hero() {
-  const containerRef = useRef<HTMLElement>(null);
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ["start start", "end start"],
-  });
-
-  const y1 = useTransform(scrollYProgress, [0, 1], [0, 200]);
-  const opacity = useTransform(scrollYProgress, [0, 0.8], [1, 0]);
-
   return (
     <section
       id="home"
-      ref={containerRef}
-      className="relative min-h-screen flex items-center justify-center pt-32 pb-20 overflow-hidden"
+      className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-b from-brand-black via-brand-black to-brand-black/95"
     >
-      {/* Background Effects */}
-      <div className="absolute inset-0 pointer-events-none overflow-hidden">
-        <svg
-          className="absolute w-full h-full opacity-30 mix-blend-screen"
-          viewBox="0 0 1000 1000"
-          preserveAspectRatio="none"
-        >
-          <path
-            d="M0,500 C200,300 300,700 500,500 C700,300 800,700 1000,500"
-            fill="none"
-            stroke="url(#purpleGlow)"
-            strokeWidth="4"
-          />
-          <path
-            d="M0,600 C250,400 350,800 600,600 C850,400 950,800 1000,600"
-            fill="none"
-            stroke="url(#blueGlow)"
-            strokeWidth="3"
-          />
-          <defs>
-            <linearGradient id="purpleGlow" x1="0%" y1="0%" x2="100%" y2="0%">
-              <stop offset="0%" stopColor="#7c3aed" stopOpacity="0" />
-              <stop offset="50%" stopColor="#7c3aed" stopOpacity="0.8" />
-              <stop offset="100%" stopColor="#7c3aed" stopOpacity="0" />
-            </linearGradient>
-            <linearGradient id="blueGlow" x1="0%" y1="0%" x2="100%" y2="0%">
-              <stop offset="0%" stopColor="#3b82f6" stopOpacity="0" />
-              <stop offset="50%" stopColor="#3b82f6" stopOpacity="0.8" />
-              <stop offset="100%" stopColor="#3b82f6" stopOpacity="0" />
-            </linearGradient>
-          </defs>
-        </svg>
+      {/* Animated Background Grid */}
+      <div className="absolute inset-0 bg-[linear-gradient(to_right,#4f4f4f12_1px,transparent_1px),linear-gradient(to_bottom,#4f4f4f12_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_80%_50%_at_50%_50%,#000_70%,transparent_100%)]" />
 
-        <div className="absolute top-1/4 left-1/4 w-[500px] h-[500px] bg-brand-purple/20 rounded-full blur-[120px] mix-blend-screen" />
-        <div className="absolute bottom-1/4 right-1/4 w-[400px] h-[400px] bg-brand-blue/20 rounded-full blur-[100px] mix-blend-screen" />
-        <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20 mix-blend-overlay" />
-        <div className="absolute inset-0 bg-brand-black/40 backdrop-blur-[2px]" />
-      </div>
+      {/* Floating Particles */}
+      <FloatingParticles />
 
-      <div className="container mx-auto px-6 md:px-12 relative z-10">
-        <div className="grid lg:grid-cols-2 gap-12 items-center">
-          
+      {/* Gradient Orbs */}
+      <div className="absolute top-1/4 -left-48 w-96 h-96 bg-brand-purple/20 rounded-full blur-3xl animate-pulse" />
+      <div className="absolute bottom-1/4 -right-48 w-96 h-96 bg-violet-500/20 rounded-full blur-3xl animate-pulse delay-1000" />
+
+      <div className="container mx-auto px-4 md:px-12 max-w-7xl relative z-10">
+        <div className="grid lg:grid-cols-2 gap-12 items-center min-h-screen py-20">
           {/* Left Content */}
           <motion.div
             initial={{ opacity: 0, x: -50 }}
             animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 1, delay: 0.2 }}
-            className="flex flex-col gap-6 md:gap-8 max-w-2xl"
-            style={{ opacity }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            className="space-y-8 text-center lg:text-left"
           >
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass border border-brand-purple/30 text-sm font-medium text-brand-violet w-fit shadow-[0_0_15px_rgba(124,58,237,0.2)]">
-              <span className="relative flex h-2 w-2">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-brand-purple opacity-75"></span>
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-brand-purple"></span>
-              </span>
-              Full Stack Developer · AIML Student
+            {/* Badge */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.3 }}
+              className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 backdrop-blur-sm mx-auto lg:mx-0"
+            >
+              <Sparkles className="w-4 h-4 text-brand-purple" />
+              <span className="text-sm text-gray-300">Available for freelance</span>
+            </motion.div>
+
+            {/* Main Heading */}
+            <div className="space-y-4">
+              <motion.h1
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.4 }}
+                className="text-4xl md:text-6xl lg:text-7xl font-bold text-white leading-tight"
+              >
+                Hi, I'm{" "}
+                <span className="bg-gradient-to-r from-brand-purple via-violet-400 to-brand-purple bg-clip-text text-transparent animate-gradient">
+                  Dharani
+                </span>
+              </motion.h1>
+
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.5 }}
+                className="space-y-2"
+              >
+                <h2 className="text-2xl md:text-4xl lg:text-5xl font-bold text-gray-200">
+                  Full Stack Developer
+                </h2>
+                <div className="flex items-center gap-3 text-xl md:text-2xl text-gray-400 justify-center lg:justify-start">
+                  <span className="w-12 h-[2px] bg-brand-purple" />
+                  <span>Creative Designer</span>
+                </div>
+              </motion.div>
             </div>
 
-            <h1 className="text-5xl md:text-7xl lg:text-8xl font-space font-bold leading-[1.1] tracking-tighter text-white">
-              Hi, I'm <br />
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-violet via-brand-purple to-brand-blue">
-                Dharani Govardhan
-              </span>
-            </h1>
+            {/* Description */}
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.6 }}
+              className="text-lg md:text-xl text-gray-400 max-w-2xl mx-auto lg:mx-0 leading-relaxed"
+            >
+              I craft beautiful, functional, and user-friendly digital experiences.
+              Specializing in modern web technologies and innovative solutions.
+            </motion.p>
 
-            <p className="text-lg md:text-xl text-gray-400 font-sans leading-relaxed max-w-xl">
-              I’m a first-year AIML student and full stack developer who builds modern,
-              responsive, and real-world web applications with a focus on clean design,
-              performance, and practical functionality.
-            </p>
-
-            <div className="flex flex-wrap items-center gap-4 pt-4">
+            {/* CTA Buttons */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.7 }}
+              className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start"
+            >
               <a
                 href="#projects"
-                className="group relative inline-flex items-center gap-2 px-8 py-4 bg-white text-brand-black rounded-full font-semibold overflow-hidden transition-all hover:scale-105 shadow-[0_0_20px_rgba(255,255,255,0.3)]"
+                className="group px-8 py-4 bg-brand-purple hover:bg-brand-purple/90 text-white rounded-full font-medium transition-all duration-300 flex items-center justify-center gap-2 shadow-lg shadow-brand-purple/30 hover:shadow-xl hover:shadow-brand-purple/50 hover:scale-105"
               >
-                <span className="relative z-10">View Projects</span>
-                <ArrowRight className="relative z-10 w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                View My Work
+                <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
               </a>
               <a
                 href="#contact"
-                className="inline-flex items-center gap-2 px-8 py-4 glass rounded-full font-semibold text-white hover:bg-white/10 transition-all border border-white/20 hover:border-brand-purple/50 hover:shadow-[0_0_20px_rgba(124,58,237,0.3)]"
+                className="px-8 py-4 bg-white/5 hover:bg-white/10 text-white rounded-full font-medium transition-all duration-300 border border-white/10 hover:border-brand-purple flex items-center justify-center gap-2 hover:scale-105"
               >
-                Contact Me
+                Get In Touch
               </a>
-            </div>
+            </motion.div>
+
+            {/* Social Links */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.8 }}
+              className="flex items-center gap-4 justify-center lg:justify-start pt-4"
+            >
+              <span className="text-gray-400 text-sm">Follow me:</span>
+              <div className="flex gap-3">
+                {[
+                  { icon: Github, href: "#", label: "GitHub" },
+                  { icon: Linkedin, href: "#", label: "LinkedIn" },
+                  { icon: Mail, href: "#", label: "Email" },
+                ].map((social, index) => (
+                  <motion.a
+                    key={social.label}
+                    href={social.href}
+                    whileHover={{ scale: 1.1, y: -2 }}
+                    whileTap={{ scale: 0.95 }}
+                    className="w-12 h-12 rounded-full bg-white/5 hover:bg-brand-purple/20 border border-white/10 hover:border-brand-purple flex items-center justify-center transition-all duration-300 group"
+                    aria-label={social.label}
+                  >
+                    <social.icon className="w-5 h-5 text-gray-400 group-hover:text-brand-purple transition-colors" />
+                  </motion.a>
+                ))}
+              </div>
+            </motion.div>
           </motion.div>
 
-          {/* Right 3D Visual Scene */}
+          {/* Right Content - 3D Sphere */}
           <motion.div
-            className="relative h-[400px] sm:h-[500px] lg:h-[600px] w-full perspective-1000 hidden md:block"
-            style={{ y: y1 }}
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 1, delay: 0.4 }}
+            className="relative h-[400px] md:h-[600px] lg:h-[700px]"
           >
-            {/* Center Main Card */}
+            {/* 3D Canvas */}
+            <div className="absolute inset-0 rounded-3xl overflow-hidden">
+              <Canvas camera={{ position: [0, 0, 5], fov: 45 }}>
+                <ambientLight intensity={0.5} />
+                <directionalLight position={[10, 10, 5]} intensity={1} />
+                <pointLight position={[-10, -10, -5]} intensity={0.5} color="#7c3aed" />
+                <AnimatedSphere />
+                <OrbitControls
+                  enableZoom={false}
+                  enablePan={false}
+                  autoRotate
+                  autoRotateSpeed={0.5}
+                />
+              </Canvas>
+            </div>
+
+            {/* Decorative Elements */}
             <motion.div
               animate={{
                 y: [0, -20, 0],
-                rotateX: [5, 15, 5],
-                rotateY: [-15, -5, -15],
               }}
-              transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
-              className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-80 lg:w-96 h-96 glass-dark rounded-2xl border border-brand-purple/30 p-6 flex flex-col justify-between shadow-[0_0_50px_rgba(124,58,237,0.2)] z-20 backdrop-blur-md"
+              transition={{
+                duration: 3,
+                repeat: Infinity,
+                repeatType: "reverse",
+              }}
+              className="absolute top-10 right-10 w-20 h-20 rounded-2xl bg-gradient-to-br from-brand-purple to-violet-600 opacity-20 blur-xl"
+            />
+            <motion.div
+              animate={{
+                y: [0, 20, 0],
+              }}
+              transition={{
+                duration: 4,
+                repeat: Infinity,
+                repeatType: "reverse",
+              }}
+              className="absolute bottom-10 left-10 w-32 h-32 rounded-full bg-gradient-to-br from-violet-500 to-brand-purple opacity-20 blur-2xl"
+            />
+
+            {/* Stats Cards */}
+            <motion.div
+              initial={{ opacity: 0, x: 50 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8, delay: 1 }}
+              className="absolute top-1/4 -right-4 lg:right-0 bg-white/5 backdrop-blur-md border border-white/10 rounded-2xl p-4 shadow-xl"
             >
-              <div className="flex items-center justify-between border-b border-white/10 pb-4">
-                <div className="flex gap-2">
-                  <div className="w-3 h-3 rounded-full bg-red-500/80 shadow-[0_0_10px_rgba(239,68,68,0.5)]" />
-                  <div className="w-3 h-3 rounded-full bg-yellow-500/80 shadow-[0_0_10px_rgba(234,179,8,0.5)]" />
-                  <div className="w-3 h-3 rounded-full bg-green-500/80 shadow-[0_0_10px_rgba(34,197,94,0.5)]" />
+              <div className="flex items-center gap-3">
+                <div className="w-12 h-12 rounded-full bg-brand-purple/20 flex items-center justify-center">
+                  <span className="text-2xl">🚀</span>
                 </div>
-                <Terminal className="text-brand-purple w-5 h-5" />
-              </div>
-
-              <div className="flex-1 py-6 font-mono text-sm text-gray-300 space-y-2">
-                <p>
-                  <span className="text-brand-purple">const</span>{" "}
-                  <span className="text-brand-blue">dharani</span> = {"{"}
-                </p>
-                <p className="pl-4">
-                  name: <span className="text-brand-orange">"Dharani Govardhan"</span>,
-                </p>
-                <p className="pl-4">
-                  role: <span className="text-brand-orange">"Full Stack Developer"</span>,
-                </p>
-                <p className="pl-4">
-                  focus: <span className="text-brand-orange">["Frontend", "Backend", "Web Apps"]</span>,
-                </p>
-                <p className="pl-4">
-                  student: <span className="text-brand-purple">true</span>,
-                </p>
-                <p>{"}"};</p>
-                <p className="mt-4">
-                  <span className="text-brand-purple">await</span>{" "}
-                  dharani.<span className="text-brand-blue">build</span>();
-                </p>
+                <div>
+                  <p className="text-2xl font-bold text-white">50+</p>
+                  <p className="text-sm text-gray-400">Projects Done</p>
+                </div>
               </div>
             </motion.div>
 
-            {/* Floating Layer 1 */}
             <motion.div
-              animate={{ y: [0, 20, 0], x: [0, -10, 0] }}
-              transition={{
-                duration: 5,
-                repeat: Infinity,
-                ease: "easeInOut",
-                delay: 1,
-              }}
-              className="absolute top-10 right-0 lg:right-10 w-32 lg:w-40 h-32 lg:h-40 glass rounded-xl border border-brand-blue/40 flex items-center justify-center shadow-[0_0_40px_rgba(59,130,246,0.3)] backdrop-blur-xl z-10"
+              initial={{ opacity: 0, x: 50 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8, delay: 1.2 }}
+              className="absolute bottom-1/4 -left-4 lg:left-0 bg-white/5 backdrop-blur-md border border-white/10 rounded-2xl p-4 shadow-xl"
             >
-              <Code2 className="w-12 h-12 lg:w-16 lg:h-16 text-brand-blue drop-shadow-[0_0_15px_rgba(59,130,246,0.8)]" />
-            </motion.div>
-
-            {/* Floating Layer 2 */}
-            <motion.div
-              animate={{ y: [0, -30, 0], x: [0, 20, 0] }}
-              transition={{
-                duration: 7,
-                repeat: Infinity,
-                ease: "easeInOut",
-                delay: 0.5,
-              }}
-              className="absolute bottom-10 left-0 lg:left-10 w-28 lg:w-32 h-28 lg:h-32 glass rounded-full border border-brand-orange/40 flex items-center justify-center shadow-[0_0_40px_rgba(249,115,22,0.3)] backdrop-blur-xl z-30"
-            >
-              <Cpu className="w-10 h-10 lg:w-12 lg:h-12 text-brand-orange drop-shadow-[0_0_15px_rgba(249,115,22,0.8)]" />
+              <div className="flex items-center gap-3">
+                <div className="w-12 h-12 rounded-full bg-violet-500/20 flex items-center justify-center">
+                  <span className="text-2xl">⭐</span>
+                </div>
+                <div>
+                  <p className="text-2xl font-bold text-white">5 Years</p>
+                  <p className="text-sm text-gray-400">Experience</p>
+                </div>
+              </div>
             </motion.div>
           </motion.div>
         </div>
       </div>
+
+      {/* Scroll Indicator */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 1.5 }}
+        className="absolute bottom-8 left-1/2 -translate-x-1/2 hidden lg:block"
+      >
+        <motion.div
+          animate={{ y: [0, 10, 0] }}
+          transition={{ duration: 2, repeat: Infinity }}
+          className="w-6 h-10 rounded-full border-2 border-white/20 flex items-start justify-center p-2"
+        >
+          <motion.div className="w-1 h-2 bg-brand-purple rounded-full" />
+        </motion.div>
+      </motion.div>
     </section>
   );
 }
