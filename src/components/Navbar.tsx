@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
@@ -15,6 +14,7 @@ const navItems = [
 export function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [activeSection, setActiveSection] = useState("home");
 
   useEffect(() => {
     const handleScroll = () => {
@@ -35,46 +35,51 @@ export function Navbar() {
         <div className="container mx-auto px-4 md:px-12 max-w-7xl">
           <div
             className={cn(
-              "rounded-full transition-all duration-300 px-4 md:px-6 py-3 md:py-4",
+              "rounded-full transition-all duration-300 px-4 md:px-8 py-3 md:py-4",
               "bg-brand-black/50 backdrop-blur-md border border-white/10",
               "shadow-lg shadow-black/20",
               isScrolled && "bg-brand-black/70 shadow-xl"
             )}
           >
-            <div className="flex items-center justify-between">
-              <a
-                href="#home"
-                className="text-xl md:text-2xl font-space font-bold text-white tracking-tighter"
-              >
-                Dharani<span className="text-brand-purple">.</span>
-              </a>
-
-              {/* Desktop Nav */}
-              <nav className="hidden md:flex items-center gap-8">
-                <ul className="flex items-center gap-8">
-                  {navItems.map((item) => (
-                    <li key={item.name}>
-                      <a
-                        href={item.href}
-                        className="text-sm font-medium text-gray-300 hover:text-white transition-colors relative group"
-                      >
-                        {item.name}
-                        <span className="absolute -bottom-1 left-0 w-0 h-[2px] bg-brand-purple transition-all duration-300 group-hover:w-full" />
-                      </a>
-                    </li>
-                  ))}
-                </ul>
+            {/* Desktop Nav - Centered */}
+            <div className="hidden md:flex items-center justify-center">
+              <nav className="flex items-center gap-2">
+                {navItems.map((item) => (
+                  <a
+                    key={item.name}
+                    href={item.href}
+                    className={cn(
+                      "px-5 py-2 rounded-full text-sm font-medium transition-all duration-300",
+                      "hover:bg-white/10 hover:text-white",
+                      activeSection === item.href.slice(1)
+                        ? "bg-brand-purple text-white shadow-[0_0_15px_rgba(124,58,237,0.4)]"
+                        : "text-gray-300 bg-white/5"
+                    )}
+                    onClick={() => setActiveSection(item.href.slice(1))}
+                  >
+                    {item.name}
+                  </a>
+                ))}
                 <a
                   href="#contact"
-                  className="px-5 py-2.5 rounded-full text-sm font-medium bg-white/5 hover:bg-white/10 border border-white/10 transition-all hover:border-brand-purple hover:shadow-[0_0_15px_rgba(124,58,237,0.3)] text-white"
+                  className="ml-2 px-6 py-2 rounded-full text-sm font-medium bg-white text-brand-black hover:bg-gray-100 transition-all duration-300 shadow-lg hover:shadow-xl"
                 >
                   Let's Talk
                 </a>
               </nav>
+            </div>
 
-              {/* Mobile Nav Toggle */}
+            {/* Mobile Nav - Original Layout */}
+            <div className="flex md:hidden items-center justify-between">
+              <a
+                href="#home"
+                className="text-xl font-space font-bold text-white tracking-tighter"
+              >
+                Dharani<span className="text-brand-purple">.</span>
+              </a>
+
               <button
-                className="md:hidden text-gray-300 hover:text-white transition-colors"
+                className="text-gray-300 hover:text-white transition-colors"
                 onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
                 aria-label="Toggle menu"
               >
@@ -94,13 +99,21 @@ export function Navbar() {
             exit={{ opacity: 0, height: 0 }}
             className="fixed top-[72px] left-0 right-0 z-40 md:hidden bg-brand-black/95 backdrop-blur-xl border-b border-white/10 overflow-hidden"
           >
-            <div className="px-6 py-6 flex flex-col gap-4">
+            <div className="px-6 py-6 flex flex-col gap-3">
               {navItems.map((item) => (
                 <a
                   key={item.name}
                   href={item.href}
-                  onClick={() => setIsMobileMenuOpen(false)}
-                  className="text-lg font-medium text-gray-300 hover:text-white py-2 border-b border-white/5 transition-colors"
+                  onClick={() => {
+                    setIsMobileMenuOpen(false);
+                    setActiveSection(item.href.slice(1));
+                  }}
+                  className={cn(
+                    "text-center px-5 py-3 rounded-full text-base font-medium transition-all duration-300",
+                    activeSection === item.href.slice(1)
+                      ? "bg-brand-purple text-white"
+                      : "text-gray-300 bg-white/5 hover:bg-white/10"
+                  )}
                 >
                   {item.name}
                 </a>
@@ -108,7 +121,7 @@ export function Navbar() {
               <a
                 href="#contact"
                 onClick={() => setIsMobileMenuOpen(false)}
-                className="mt-4 px-5 py-3 text-center rounded-lg font-medium bg-brand-purple text-white hover:bg-brand-purple/90 transition-colors"
+                className="mt-2 px-6 py-3 text-center rounded-full font-medium bg-white text-brand-black hover:bg-gray-100 transition-all duration-300"
               >
                 Let's Talk
               </a>
