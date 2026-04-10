@@ -14,7 +14,6 @@ const navItems = [
 export function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [activeSection, setActiveSection] = useState("home");
 
   useEffect(() => {
     const handleScroll = () => {
@@ -56,18 +55,10 @@ export function Navbar() {
                     <li key={item.name}>
                       <a
                         href={item.href}
-                        onClick={() => setActiveSection(item.href.slice(1))}
-                        className={cn(
-                          "text-sm font-medium transition-all duration-300 relative group px-4 py-1.5 rounded-full",
-                          activeSection === item.href.slice(1)
-                            ? "text-white bg-brand-purple/20 border border-brand-purple/50"
-                            : "text-gray-300 hover:text-white"
-                        )}
+                        className="text-sm font-medium text-gray-300 hover:text-white transition-colors relative group"
                       >
                         {item.name}
-                        {activeSection !== item.href.slice(1) && (
-                          <span className="absolute -bottom-1 left-0 w-0 h-[2px] bg-brand-purple transition-all duration-300 group-hover:w-full" />
-                        )}
+                        <span className="absolute -bottom-1 left-0 w-0 h-[2px] bg-brand-purple transition-all duration-300 group-hover:w-full" />
                       </a>
                     </li>
                   ))}
@@ -107,16 +98,8 @@ export function Navbar() {
                 <a
                   key={item.name}
                   href={item.href}
-                  onClick={() => {
-                    setIsMobileMenuOpen(false);
-                    setActiveSection(item.href.slice(1));
-                  }}
-                  className={cn(
-                    "text-lg font-medium py-2 border-b border-white/5 transition-all duration-300 rounded-lg px-4",
-                    activeSection === item.href.slice(1)
-                      ? "text-white bg-brand-purple/20 border-brand-purple/50"
-                      : "text-gray-300 hover:text-white"
-                  )}
+                  onClick={() => setIsMobileMenuOpen(false)}
+                  className="text-lg font-medium text-gray-300 hover:text-white py-2 border-b border-white/5 transition-colors"
                 >
                   {item.name}
                 </a>
