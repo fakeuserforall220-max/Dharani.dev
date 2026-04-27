@@ -1,199 +1,150 @@
-import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
-import { ArrowRight, Terminal, Brain, Cpu, Sparkles } from "lucide-react";
-import React, { useRef } from "react";
+import { motion, useScroll, useTransform } from "framer-motion";
+import { ArrowRight, Terminal, Code2, Cpu } from "lucide-react";
+import { useRef } from "react";
 
 export function Hero() {
   const containerRef = useRef<HTMLElement>(null);
-  
-  // Mouse tracking for the 3D Card
-  const mouseX = useMotionValue(0);
-  const mouseY = useMotionValue(0);
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start start", "end start"],
+  });
 
-  const springConfig = { damping: 20, stiffness: 100 };
-  const rotateX = useSpring(useTransform(mouseY, [-0.5, 0.5], [15, -15]), springConfig);
-  const rotateY = useSpring(useTransform(mouseX, [-0.5, 0.5], [-15, 15]), springConfig);
-
-  const handleMouseMove = (e: React.MouseEvent) => {
-    if (!containerRef.current) return;
-    const rect = containerRef.current.getBoundingClientRect();
-    const x = (e.clientX - rect.left) / rect.width - 0.5;
-    const y = (e.clientY - rect.top) / rect.height - 0.5;
-    mouseX.set(x);
-    mouseY.set(y);
-  };
-
-  const handleMouseLeave = () => {
-    mouseX.set(0);
-    mouseY.set(0);
-  };
+  const y1 = useTransform(scrollYProgress, [0, 1], [0, 200]);
+  const opacity = useTransform(scrollYProgress, [0, 0.8], [1, 0]);
 
   return (
     <section
       id="home"
       ref={containerRef}
-      onMouseMove={handleMouseMove}
-      onMouseLeave={handleMouseLeave}
-      className="relative min-h-screen flex items-center pt-32 pb-20 overflow-hidden bg-[#FAFAFA] cursor-default"
+      className="relative min-h-screen flex items-center justify-center pt-32 pb-20 overflow-hidden bg-[#FAFAFA]"
     >
-      {/* --- LAYER 1: ADVANCED BLUEPRINT BACKGROUND --- */}
-      <div className="absolute inset-0 z-0 pointer-events-none">
-        {/* The Grid */}
-        <div 
-          className="absolute inset-0 opacity-[0.4]" 
-          style={{ 
-            backgroundImage: `linear-gradient(#E5E7EB 1.5px, transparent 1.5px), linear-gradient(90deg, #E5E7EB 1.5px, transparent 1.5px)`,
-            backgroundSize: '50px 50px' 
-          }}
-        />
-        
-        {/* Animated Scanning Line */}
-        <motion.div 
-          animate={{ y: ["0%", "100%"] }}
-          transition={{ duration: 10, repeat: Infinity, ease: "linear" }}
-          className="absolute inset-x-0 h-[200px] bg-gradient-to-b from-transparent via-violet-100/20 to-transparent z-10"
-        />
-
-        {/* Huge Outlined Background Text */}
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 select-none pointer-events-none">
-          <h2 className="text-[20vw] font-space font-black text-gray-200/30 uppercase tracking-tighter">
-            Architect
-          </h2>
-        </div>
-
-        {/* Ambient Mesh Glows */}
-        <div className="absolute top-[-10%] right-[-10%] w-[700px] h-[700px] bg-violet-200/30 rounded-full blur-[120px]" />
-        <div className="absolute bottom-[-10%] left-[-10%] w-[600px] h-[600px] bg-blue-100/40 rounded-full blur-[120px]" />
+      {/* Background Effects - Light Version */}
+      <div className="absolute inset-0 pointer-events-none overflow-hidden">
+        {/* Soft Ambient Globs for white theme */}
+        <div className="absolute top-[-10%] left-[-10%] w-[600px] h-[600px] bg-violet-100/50 rounded-full blur-[120px]" />
+        <div className="absolute bottom-[-10%] right-[-10%] w-[500px] h-[500px] bg-blue-50/50 rounded-full blur-[100px]" />
       </div>
 
       <div className="container mx-auto px-6 md:px-12 relative z-10">
-        <div className="grid lg:grid-cols-12 gap-16 items-center">
+        <div className="grid lg:grid-cols-2 gap-12 items-center">
           
-          {/* --- LEFT CONTENT: TYPOGRAPHY & CTA --- */}
-          <div className="lg:col-span-7 flex flex-col items-start">
+          {/* Left Content */}
+          <motion.div
+            initial={{ opacity: 0, x: -50 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 1, delay: 0.2 }}
+            className="flex flex-col gap-6 md:gap-8 max-w-2xl"
+            style={{ opacity }}
+          >
+            {/* Kept original font-medium and badge style */}
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white border border-gray-200 text-sm font-medium text-violet-600 w-fit shadow-sm">
+              <span className="relative flex h-2 w-2">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-violet-400 opacity-75"></span>
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-violet-500"></span>
+              </span>
+              Full Stack Developer · AIML Student
+            </div>
+
+            {/* RESTORED font-space */}
+            <h1 className="text-5xl md:text-7xl lg:text-8xl font-space font-bold leading-[1.1] tracking-tighter text-gray-900">
+              Hi, I'm <br />
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-violet-600 via-purple-600 to-blue-600">
+                Dharani Govardhan
+              </span>
+            </h1>
+
+            {/* RESTORED font-sans */}
+            <p className="text-lg md:text-xl text-gray-600 font-sans leading-relaxed max-w-xl">
+              I’m a first-year AIML student and full stack developer who builds modern,
+              responsive, and real-world web applications with a focus on clean design,
+              performance, and practical functionality.
+            </p>
+
+            <div className="flex flex-wrap items-center gap-4 pt-4">
+              <a
+                href="#projects"
+                className="group relative inline-flex items-center gap-2 px-8 py-4 bg-gray-900 text-white rounded-full font-semibold overflow-hidden transition-all hover:scale-105 shadow-lg shadow-gray-200"
+              >
+                <span className="relative z-10">View Projects</span>
+                <ArrowRight className="relative z-10 w-4 h-4 group-hover:translate-x-1 transition-transform" />
+              </a>
+              <a
+                href="#contact"
+                className="inline-flex items-center gap-2 px-8 py-4 bg-white border border-gray-200 rounded-full font-semibold text-gray-900 hover:bg-gray-50 transition-all shadow-sm"
+              >
+                Contact Me
+              </a>
+            </div>
+          </motion.div>
+
+          {/* Right 3D Visual Scene */}
+          <motion.div
+            className="relative h-[400px] sm:h-[500px] lg:h-[600px] w-full perspective-1000 hidden md:block"
+            style={{ y: y1 }}
+          >
+            {/* Center Main Card - Light Version */}
             <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8 }}
+              animate={{
+                y: [0, -20, 0],
+                rotateX: [5, 15, 5],
+                rotateY: [-15, -5, -15],
+              }}
+              transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
+              className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-80 lg:w-96 h-96 bg-white rounded-2xl border border-gray-100 p-6 flex flex-col justify-between shadow-[0_20px_50px_rgba(0,0,0,0.1)] z-20 backdrop-blur-md"
             >
-              <div className="inline-flex items-center gap-3 px-5 py-2 rounded-full bg-white border border-gray-200 text-[10px] font-black tracking-[0.3em] uppercase text-gray-900 mb-10 shadow-sm">
-                <span className="flex h-2 w-2 rounded-full bg-emerald-500 shadow-[0_0_10px_#10b981]" />
-                System.Status: Online
+              <div className="flex items-center justify-between border-b border-gray-100 pb-4">
+                <div className="flex gap-2">
+                  <div className="w-3 h-3 rounded-full bg-red-400/80 shadow-sm" />
+                  <div className="w-3 h-3 rounded-full bg-amber-400/80 shadow-sm" />
+                  <div className="w-3 h-3 rounded-full bg-emerald-400/80 shadow-sm" />
+                </div>
+                <Terminal className="text-violet-500 w-5 h-5" />
               </div>
 
-              <h1 className="text-7xl md:text-8xl lg:text-[110px] font-space font-bold leading-[0.85] tracking-tighter text-gray-900 mb-10">
-                Crafting <br />
-                <span className="italic font-light text-gray-400">Digital</span> <br />
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-violet-600 via-blue-600 to-cyan-500">
-                  Intelligenze.
-                </span>
-              </h1>
-
-              <p className="text-xl md:text-2xl text-gray-500 font-sans leading-relaxed max-w-xl mb-12">
-                I am <span className="text-gray-900 font-bold">Dharani Govardhan</span>, 
-                merging industrial-grade <span className="text-violet-600">Full Stack</span> systems 
-                with advanced <span className="text-blue-600">Neural Engineering</span>.
-              </p>
-
-              <div className="flex flex-wrap items-center gap-8">
-                <a
-                  href="#projects"
-                  className="group relative px-12 py-6 bg-gray-900 text-white rounded-[2rem] font-bold text-lg overflow-hidden transition-all shadow-2xl shadow-gray-300"
-                >
-                  <div className="relative z-10 flex items-center gap-3">
-                    Launch Projects <ArrowRight size={22} className="group-hover:translate-x-1 transition-transform" />
-                  </div>
-                  <div className="absolute inset-0 bg-gradient-to-r from-violet-600 to-blue-600 opacity-0 group-hover:opacity-100 transition-opacity" />
-                </a>
-                
-                {/* Micro-stats */}
-                <div className="hidden md:flex gap-8 border-l border-gray-200 pl-8">
-                  <div>
-                    <p className="text-2xl font-space font-bold text-gray-900">06+</p>
-                    <p className="text-[10px] font-black text-gray-400 uppercase tracking-widest">Deployments</p>
-                  </div>
-                  <div>
-                    <p className="text-2xl font-space font-bold text-gray-900">1st</p>
-                    <p className="text-[10px] font-black text-gray-400 uppercase tracking-widest">Year AIML</p>
-                  </div>
-                </div>
+              {/* RESTORED font-mono */}
+              <div className="flex-1 py-6 font-mono text-sm text-gray-600 space-y-2">
+                <p>
+                  <span className="text-violet-600">const</span>{" "}
+                  <span className="text-blue-600">dharani</span> = {"{"}
+                </p>
+                <p className="pl-4">
+                  name: <span className="text-emerald-600">"Dharani Govardhan"</span>,
+                </p>
+                <p className="pl-4">
+                  role: <span className="text-emerald-600">"Full Stack Developer"</span>,
+                </p>
+                <p className="pl-4">
+                  focus: <span className="text-emerald-600">["Frontend", "Backend"]</span>,
+                </p>
+                <p className="pl-4">
+                  student: <span className="text-violet-600">true</span>,
+                </p>
+                <p>{"}"};</p>
+                <p className="mt-4">
+                  <span className="text-violet-600">await</span>{" "}
+                  dharani.<span className="text-blue-600">build</span>();
+                </p>
               </div>
             </motion.div>
-          </div>
 
-          {/* --- RIGHT VISUAL: INTERACTIVE 3D STACK --- */}
-          <div className="lg:col-span-5 relative perspective-2000 hidden lg:block">
+            {/* Floating Layer 1 */}
             <motion.div
-              style={{ rotateX, rotateY, transformStyle: "preserve-3d" }}
-              className="relative w-full aspect-[4/5]"
+              animate={{ y: [0, 20, 0], x: [0, -10, 0] }}
+              transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 1 }}
+              className="absolute top-10 right-0 lg:right-10 w-32 lg:w-40 h-32 lg:h-40 bg-white rounded-xl border border-blue-100 flex items-center justify-center shadow-xl z-10"
             >
-              {/* Card 1: The Base (Shadow Layer) */}
-              <div className="absolute inset-4 bg-gray-200/20 rounded-[4rem] blur-2xl translate-z-[-50px]" />
-
-              {/* Card 2: The UI Layer */}
-              <div className="absolute inset-0 bg-white rounded-[3.5rem] border border-gray-100 shadow-[0_50px_100px_rgba(0,0,0,0.05)] p-12 flex flex-col justify-between overflow-hidden translate-z-[50px]">
-                <div className="flex items-center justify-between border-b border-gray-50 pb-8">
-                  <Terminal size={24} className="text-violet-500" />
-                  <div className="flex gap-2">
-                    <div className="w-8 h-1.5 rounded-full bg-gray-100" />
-                    <div className="w-4 h-1.5 rounded-full bg-gray-100" />
-                  </div>
-                </div>
-
-                <div className="flex-1 py-10">
-                  <p className="font-mono text-sm text-gray-400 mb-6 tracking-tight">
-                    <span className="text-violet-500">import</span> {'{ GPT }'} <span className="text-violet-500">from</span> 'brain';
-                  </p>
-                  <h3 className="text-4xl font-space font-bold text-gray-900 leading-[1.1] mb-6">
-                    Building the <br /> Next-Gen <br /> <span className="text-gray-300 italic">Interface.</span>
-                  </h3>
-                  <div className="inline-flex items-center gap-2 px-3 py-1 bg-emerald-50 rounded-lg border border-emerald-100">
-                    <span className="w-1.5 h-1.5 bg-emerald-500 rounded-full animate-pulse" />
-                    <span className="text-[10px] font-black text-emerald-700 tracking-tighter uppercase">Ready for Production</span>
-                  </div>
-                </div>
-
-                <div className="pt-8 border-t border-gray-50 flex items-center justify-between">
-                   <div className="flex -space-x-3">
-                      {[1, 2, 3].map(i => (
-                        <div key={i} className="w-10 h-10 rounded-full bg-gray-50 border-2 border-white flex items-center justify-center">
-                           <Sparkles size={14} className="text-gray-300" />
-                        </div>
-                      ))}
-                   </div>
-                   <Cpu className="text-gray-200" size={32} />
-                </div>
-              </div>
-
-              {/* Card 3: Floating "AI" Element */}
-              <motion.div
-                style={{ translateZ: "120px" }}
-                animate={{ y: [0, -20, 0] }}
-                transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-                className="absolute -top-12 -right-12 w-48 h-48 bg-white/90 backdrop-blur-xl rounded-[2.5rem] shadow-2xl border border-white p-8 flex flex-col items-center justify-center text-center z-30"
-              >
-                <div className="w-16 h-16 bg-gradient-to-br from-violet-500 to-blue-600 rounded-2xl flex items-center justify-center text-white mb-4 shadow-xl shadow-violet-200">
-                  <Brain size={32} />
-                </div>
-                <p className="text-[10px] font-black uppercase tracking-widest text-gray-400">Logic.v15</p>
-                <p className="text-sm font-bold text-gray-900 mt-1 uppercase tracking-tighter">Neural Engine</p>
-              </motion.div>
+              <Code2 className="w-12 h-12 lg:w-16 lg:h-16 text-blue-500 drop-shadow-sm" />
             </motion.div>
 
-            {/* Floating Tech Chips */}
-            {['Next.js 15', 'PyTorch', 'Bun'].map((tech, i) => (
-              <motion.div
-                key={tech}
-                animate={{ 
-                  y: [0, i % 2 === 0 ? -40 : 40, 0],
-                  x: [0, i % 2 === 0 ? 20 : -20, 0]
-                }}
-                transition={{ duration: 8 + i, repeat: Infinity, ease: "easeInOut" }}
-                className={`absolute ${i === 0 ? 'top-0 -left-20' : i === 1 ? 'bottom-20 -left-32' : 'top-1/2 -right-20'} px-5 py-2.5 bg-white border border-gray-100 rounded-full shadow-lg text-[10px] font-bold text-gray-500 uppercase tracking-widest z-0`}
-              >
-                {tech}
-              </motion.div>
-            ))}
-          </div>
+            {/* Floating Layer 2 */}
+            <motion.div
+              animate={{ y: [0, -30, 0], x: [0, 20, 0] }}
+              transition={{ duration: 7, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
+              className="absolute bottom-10 left-0 lg:left-10 w-28 lg:w-32 h-28 lg:h-32 bg-white rounded-full border border-orange-100 flex items-center justify-center shadow-xl z-30"
+            >
+              <Cpu className="w-10 h-10 lg:w-12 lg:h-12 text-orange-500 drop-shadow-sm" />
+            </motion.div>
+          </motion.div>
         </div>
       </div>
     </section>
