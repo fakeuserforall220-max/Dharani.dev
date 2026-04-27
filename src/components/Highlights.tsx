@@ -8,39 +8,40 @@ const highlights = [
     value: "6+",
     description: "Successfully built and deployed multiple functional web applications from scratch.",
     icon: Zap,
-    color: "text-brand-orange",
-    bg: "bg-brand-orange/10 border-brand-orange/20",
+    color: "text-orange-600",
+    bg: "bg-orange-50 border-orange-100",
   },
   {
     title: "Academic Background",
     value: "1st Yr",
     description: "Currently pursuing B.Tech in Artificial Intelligence and Machine Learning.",
     icon: Target,
-    color: "text-brand-purple",
-    bg: "bg-brand-purple/10 border-brand-purple/20",
+    color: "text-purple-600",
+    bg: "bg-purple-50 border-purple-100",
   },
   {
     title: "Core Expertise",
     value: "UI/UX",
     description: "Strong frontend focus with a modern mindset for building premium user interfaces.",
     icon: CheckCircle2,
-    color: "text-brand-blue",
-    bg: "bg-brand-blue/10 border-brand-blue/20",
+    color: "text-blue-600",
+    bg: "bg-blue-50 border-blue-100",
   },
   {
     title: "Growth Mindset",
     value: "Fast",
     description: "Quick learner and practical builder constantly exploring new web technologies.",
     icon: TrendingUp,
-    color: "text-brand-violet",
-    bg: "bg-brand-violet/10 border-brand-violet/20",
+    color: "text-violet-600",
+    bg: "bg-violet-50 border-violet-100",
   },
 ];
 
 export function Highlights() {
   return (
-    <section className="py-24 relative overflow-hidden">
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-brand-violet/5 rounded-full blur-[150px] pointer-events-none" />
+    <section className="py-24 relative overflow-hidden bg-[#FAFAFA]">
+      {/* Subtle Background Glow */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-violet-100/30 rounded-full blur-[150px] pointer-events-none" />
       
       <div className="container mx-auto px-6 md:px-12 relative z-10">
         <motion.div
@@ -49,10 +50,10 @@ export function Highlights() {
           viewport={{ once: true }}
           className="mb-16 text-center"
         >
-          <h2 className="text-3xl md:text-5xl font-space font-bold text-white mb-4">
-            Why Work With <span className="text-brand-orange">Me</span>
+          <h2 className="text-3xl md:text-5xl font-space font-bold text-gray-900 mb-4">
+            Why Work With <span className="text-orange-600">Me</span>
           </h2>
-          <div className="w-20 h-1 bg-brand-orange mx-auto rounded-full" />
+          <div className="w-20 h-1.5 bg-orange-500 mx-auto rounded-full" />
         </motion.div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -66,25 +67,36 @@ export function Highlights() {
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: idx * 0.1 }}
                 className={cn(
-                  "glass rounded-3xl p-8 border hover:shadow-[0_0_30px_rgba(255,255,255,0.05)] transition-all duration-300 group hover:-translate-y-2",
-                  item.bg
+                  "bg-white rounded-[2.5rem] p-8 border border-gray-100 hover:shadow-2xl hover:shadow-gray-200/50 transition-all duration-500 group hover:-translate-y-2",
+                  "relative overflow-hidden"
                 )}
               >
-                <div className="flex items-center justify-between mb-8">
-                  <div className="w-12 h-12 rounded-xl bg-black/50 flex items-center justify-center border border-white/10 group-hover:scale-110 transition-transform duration-300">
-                    <Icon className={cn("w-6 h-6", item.color)} />
+                {/* Top Section: Icon and Value */}
+                <div className="flex items-center justify-between mb-8 relative z-10">
+                  <div className={cn(
+                    "w-14 h-14 rounded-2xl flex items-center justify-center border transition-transform duration-500 group-hover:scale-110 shadow-sm",
+                    item.bg
+                  )}>
+                    <Icon className={cn("w-7 h-7", item.color)} />
                   </div>
-                  <h3 className={cn("text-4xl font-space font-bold", item.color)}>
+                  <h3 className={cn("text-4xl font-space font-bold tracking-tighter", item.color)}>
                     {item.value}
                   </h3>
                 </div>
                 
-                <h4 className="text-xl font-space font-bold text-white mb-3 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-white group-hover:to-gray-400 transition-colors">
+                {/* Content Section */}
+                <h4 className="text-xl font-space font-bold text-gray-900 mb-3 group-hover:text-orange-600 transition-colors duration-300">
                   {item.title}
                 </h4>
-                <p className="text-gray-400 leading-relaxed text-sm group-hover:text-gray-300 transition-colors">
+                <p className="text-gray-500 font-sans leading-relaxed text-sm group-hover:text-gray-600 transition-colors">
                   {item.description}
                 </p>
+
+                {/* Subtle bottom accent line that appears on hover */}
+                <div className={cn(
+                  "absolute bottom-0 left-0 h-1 w-0 group-hover:w-full transition-all duration-500 bg-gradient-to-r",
+                  item.color.replace('text', 'from')
+                )} />
               </motion.div>
             );
           })}
