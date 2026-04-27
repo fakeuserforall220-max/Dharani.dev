@@ -1,72 +1,50 @@
 @import "tailwindcss";
-@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;700&display=swap');
 
 @theme {
-  /* Updated to match the screenshot colors */
-  --color-brand-blue: #1E6BFF;
-  --color-brand-black: #111111;
-  --color-brand-gray: #64748b;
-  --color-bg-light: #FAFAFA;
+  --color-brand-black: #050816;
+  --color-brand-navy: #0b1020;
+  --color-brand-purple: #7c3aed;
+  --color-brand-blue: #3b82f6;
+  --color-brand-violet: #a78bfa;
+  --color-brand-orange: #f97316;
 
-  /* The exact font from the screenshot */
-  --font-sans: "Plus Jakarta Sans", sans-serif;
-  --font-space: "Plus Jakarta Sans", sans-serif; /* Using Jakarta Sans for headers too for consistency */
-  --font-mono: "Space Grotesk", monospace;
+  --font-sans: "Inter", sans-serif;
+  --font-space: "Space Grotesk", sans-serif;
 }
 
 @layer utilities {
-  /* Premium Light Glassmorphism */
   .glass {
-    @apply bg-white/70 backdrop-blur-xl border border-white/20 shadow-[0_8px_32px_rgba(0,0,0,0.04)];
+    @apply bg-white/5 backdrop-blur-md border border-white/10;
   }
-  
-  /* Pill style used in the screenshot center nav */
-  .pill-nav {
-    @apply bg-white border border-gray-100 px-2 py-1.5 rounded-full shadow-[0_10px_30px_rgba(0,0,0,0.04)];
+  .glass-dark {
+    @apply bg-black/40 backdrop-blur-lg border border-white/5;
   }
-
-  .text-glow-blue {
-    text-shadow: 0 0 20px rgba(30, 107, 255, 0.2);
+  .text-glow {
+    text-shadow: 0 0 20px rgba(124, 58, 237, 0.5);
   }
-
-  /* Blueprint Grid Pattern utility */
-  .bg-grid {
-    background-image: radial-gradient(#E2E8F0 1px, transparent 1px);
-    background-size: 40px 40px;
+  .box-glow {
+    box-shadow: 0 0 30px rgba(59, 130, 246, 0.2);
   }
 }
 
 html, body {
-  background-color: var(--color-bg-light);
-  color: var(--color-brand-black);
-  font-family: var(--font-sans);
+  background-color: var(--color-brand-black);
+  color: white;
   overflow-x: hidden;
-  scroll-behavior: smooth;
 }
 
-/* Updated Selection to Blue */
-::selection {
-  background-color: rgba(30, 107, 255, 0.1);
-  color: #1E6BFF;
-}
-
-/* Clean Light Scrollbar */
+/* Custom Scrollbar */
 ::-webkit-scrollbar {
-  width: 6px;
+  width: 8px;
 }
 ::-webkit-scrollbar-track {
-  background: #FAFAFA;
+  background: var(--color-brand-black);
 }
 ::-webkit-scrollbar-thumb {
-  background: #E2E8F0;
-  border-radius: 10px;
+  background: var(--color-brand-navy);
+  border-radius: 4px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #CBD5E1;
+  background: var(--color-brand-purple);
 }
 
-/* Smooth Headings */
-h1, h2, h3, h4 {
-  letter-spacing: -0.03em;
-  font-weight: 800;
-}
