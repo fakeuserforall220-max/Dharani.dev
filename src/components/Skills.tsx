@@ -1,73 +1,51 @@
 import { motion } from "framer-motion";
 import { 
   Code2, PenTool, Database, Sparkles, Layout, 
-  Smartphone, Cloud, ShieldCheck, Zap, Terminal 
+  Smartphone, Layers, Terminal 
 } from "lucide-react";
 
 const skillCategories = [
   {
-    title: "Next-Gen Frontend",
+    title: "Frontend Development",
     icon: Layout,
-    // Modern abstract code
-    image: "https://images.unsplash.com/photo-1633356122544-f134324a6cee?auto=format&fit=crop&w=800&q=80", 
+    image: "https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=1000&q=80", 
     color: "bg-blue-50 text-blue-600",
-    skills: ["Next.js 15", "React Server Actions", "TypeScript", "Tailwind CSS", "TanStack Query"],
-  },
-  {
-    title: "GenAI & LLM Apps",
-    icon: Sparkles,
-    // Futuristic AI brain
-    image: "https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&w=800&q=80", 
-    color: "bg-purple-50 text-purple-600",
-    skills: ["LangChain", "OpenAI API", "Vector Databases", "Prompt Engineering", "RAG"],
+    skills: ["Next.js 15", "React 19", "Tailwind CSS", "Framer Motion", "TypeScript"],
   },
   {
     title: "Backend Engineering",
     icon: Database,
-    // Datacenter/Servers
-    image: "https://images.unsplash.com/photo-1558494949-ef010cbdcc48?auto=format&fit=crop&w=800&q=80", 
+    image: "https://images.unsplash.com/photo-1558494949-ef010cbdcc48?auto=format&fit=crop&w=1000&q=80", 
     color: "bg-emerald-50 text-emerald-600",
-    skills: ["Hono.js", "Bun", "PostgreSQL", "Drizzle ORM", "Redis", "WebSockets"],
+    skills: ["Bun.js", "Node.js", "Drizzle ORM", "PostgreSQL", "Redis"],
   },
   {
-    title: "Cloud & Serverless",
-    icon: Cloud,
-    // Abstract Cloud
-    image: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=800&q=80", 
-    color: "bg-cyan-50 text-cyan-600",
-    skills: ["AWS Lambda", "Supabase", "Firebase", "Vercel Edge", "Docker"],
+    title: "Full Stack Architecture",
+    icon: Layers,
+    image: "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?auto=format&fit=crop&w=1000&q=80", 
+    color: "bg-purple-50 text-purple-600",
+    skills: ["T3 Stack", "Server Actions", "Supabase", "Auth.js", "TRPC"],
   },
   {
-    title: "Mobile Development",
-    icon: Smartphone,
-    // Mobile interface
-    image: "https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?auto=format&fit=crop&w=800&q=80", 
+    title: "AI & Machine Learning",
+    icon: Sparkles,
+    image: "https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&w=1000&q=80", 
     color: "bg-orange-50 text-orange-600",
-    skills: ["React Native", "Expo Router", "NativeWind", "iOS/Android Dev"],
+    skills: ["Python", "LangChain", "OpenAI SDK", "Vector DBs", "PyTorch"],
   },
   {
-    title: "Creative Tech",
-    icon: Zap,
-    // Motion/Abstract
-    image: "https://images.unsplash.com/photo-1614850523296-d8c1af93d400?auto=format&fit=crop&w=800&q=80", 
-    color: "bg-amber-50 text-amber-600",
-    skills: ["Three.js", "GSAP", "Framer Motion", "Shaders", "SVG Animation"],
+    title: "Mobile App Dev",
+    icon: Smartphone,
+    image: "https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?auto=format&fit=crop&w=1000&q=80", 
+    color: "bg-rose-50 text-rose-600",
+    skills: ["React Native", "Expo Router", "NativeWind", "iOS/Android"],
   },
   {
-    title: "Cyber Security",
-    icon: ShieldCheck,
-    // Digital Lock
-    image: "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&w=800&q=80", 
-    color: "bg-red-50 text-red-600",
-    skills: ["OAuth 2.0", "JWT", "HTTPS/SSL", "Web Crypto API", "Security Audits"],
-  },
-  {
-    title: "Developer Tools",
-    icon: Terminal,
-    // Minimalist keyboard/setup
-    image: "https://images.unsplash.com/photo-1587620962725-abab7fe55159?auto=format&fit=crop&w=800&q=80", 
-    color: "bg-slate-50 text-slate-600",
-    skills: ["Git/GitHub", "Turborepo", "CI/CD", "Testing (Vitest)", "Neovim"],
+    title: "UI/UX Creative",
+    icon: PenTool,
+    image: "https://images.unsplash.com/photo-1586717791821-3f44a563dc4c?auto=format&fit=crop&w=1000&q=80", 
+    color: "bg-cyan-50 text-cyan-600",
+    skills: ["Figma", "Adobe Suite", "Design Systems", "Prototyping"],
   },
 ];
 
@@ -87,13 +65,13 @@ export function Skills() {
             Technical <span className="text-gray-400">Arsenal</span>
           </h2>
           <p className="text-gray-500 text-xl font-sans leading-relaxed">
-            Continuously evolving with the latest industry standards. 
-            Focused on building scalable, AI-integrated, and highly performant digital solutions.
+            Building modern solutions with high-performance frameworks and 
+            industry-standard cloud infrastructure.
           </p>
         </motion.div>
 
-        {/* Skills Grid - Responsive 4 columns */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        {/* Skills Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {skillCategories.map((category, idx) => {
             const Icon = category.icon;
             return (
@@ -106,9 +84,9 @@ export function Skills() {
                 className="group flex flex-col bg-white rounded-[2.5rem] p-4 shadow-sm hover:shadow-2xl hover:shadow-gray-200/50 transition-all duration-500 border border-gray-100"
               >
                 {/* Image Container */}
-                <div className="relative aspect-square rounded-[2rem] bg-gradient-to-br from-gray-100 to-gray-200 overflow-hidden flex items-center justify-center">
+                <div className="relative aspect-[16/10] rounded-[2rem] bg-gray-200 overflow-hidden flex items-center justify-center">
                   <motion.div 
-                    whileHover={{ scale: 1.08 }}
+                    whileHover={{ scale: 1.05 }}
                     transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
                     className="w-full h-full"
                   >
@@ -116,9 +94,9 @@ export function Skills() {
                       src={category.image} 
                       alt="" 
                       loading="lazy"
-                      className="w-full h-full object-cover transition-opacity duration-500"
+                      className="w-full h-full object-cover transition-opacity duration-700"
                       onLoad={(e) => (e.currentTarget.style.opacity = "1")}
-                      style={{ opacity: 0 }} // Start invisible to avoid "broken link" flash
+                      style={{ opacity: 0 }} 
                     />
                   </motion.div>
                   
@@ -129,14 +107,14 @@ export function Skills() {
                 </div>
 
                 {/* Content Area */}
-                <div className="px-4 py-8 flex-1 flex flex-col">
+                <div className="px-5 py-8 flex-1 flex flex-col">
                   <div className="flex items-center mb-4">
                     <span className={`px-4 py-1 rounded-full text-[10px] font-bold tracking-[0.2em] uppercase ${category.color}`}>
-                      Trending
+                      Mastery
                     </span>
                   </div>
                   
-                  <h3 className="text-2xl font-space font-bold text-gray-900 mb-5 tracking-tight group-hover:text-blue-600 transition-colors">
+                  <h3 className="text-2xl font-space font-bold text-gray-900 mb-5 tracking-tight">
                     {category.title}
                   </h3>
                   
@@ -145,7 +123,7 @@ export function Skills() {
                     {category.skills.map((skill) => (
                       <span
                         key={skill}
-                        className="px-3 py-1.5 text-[10px] font-bold bg-gray-50 text-gray-400 border border-gray-100 rounded-xl uppercase tracking-tighter group-hover:bg-white group-hover:border-gray-200 group-hover:text-gray-900 transition-all duration-300"
+                        className="px-3 py-2 text-[10px] font-bold bg-gray-50 text-gray-500 border border-gray-100 rounded-xl uppercase tracking-tighter group-hover:bg-white group-hover:border-blue-100 group-hover:text-gray-900 transition-all duration-300"
                       >
                         {skill}
                       </span>
