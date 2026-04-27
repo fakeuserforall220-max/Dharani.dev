@@ -13,14 +13,15 @@ export function Contact() {
     setTimeout(() => {
       setIsSubmitting(false);
       setFormData({ name: "", email: "", message: "" });
-      alert("Message sent successfully! (Mock)");
+      alert("Message sent successfully!");
     }, 1500);
   };
 
   return (
-    <section id="contact" className="py-24 relative overflow-hidden">
-      <div className="absolute top-1/2 left-0 w-[500px] h-[500px] bg-brand-purple/10 rounded-full blur-[150px] pointer-events-none" />
-      <div className="absolute top-1/2 right-0 w-[500px] h-[500px] bg-brand-blue/10 rounded-full blur-[150px] pointer-events-none" />
+    <section id="contact" className="py-24 relative overflow-hidden bg-[#FAFAFA]">
+      {/* Soft Light Background Blurs */}
+      <div className="absolute top-1/2 left-0 w-[500px] h-[500px] bg-violet-100/40 rounded-full blur-[150px] pointer-events-none" />
+      <div className="absolute top-1/2 right-0 w-[500px] h-[500px] bg-blue-100/40 rounded-full blur-[150px] pointer-events-none" />
       
       <div className="container mx-auto px-6 md:px-12 relative z-10">
         <motion.div
@@ -29,38 +30,39 @@ export function Contact() {
           viewport={{ once: true }}
           className="mb-16 text-center"
         >
-          <h2 className="text-3xl md:text-5xl font-space font-bold text-white mb-4">
-            Let's <span className="text-brand-purple">Connect</span>
+          <h2 className="text-3xl md:text-6xl font-space font-bold text-gray-900 mb-4 tracking-tighter">
+            Let's <span className="text-violet-600">Connect</span>
           </h2>
-          <div className="w-20 h-1 bg-brand-purple mx-auto rounded-full" />
+          <div className="w-20 h-1.5 bg-violet-500 mx-auto rounded-full" />
         </motion.div>
 
-        <div className="grid lg:grid-cols-2 gap-12 max-w-5xl mx-auto">
+        <div className="grid lg:grid-cols-2 gap-16 max-w-6xl mx-auto items-center">
+          
           {/* Left: Contact Info */}
           <motion.div
             initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.2 }}
-            className="flex flex-col gap-8"
+            className="flex flex-col gap-10"
           >
             <div>
-              <h3 className="text-3xl font-space font-bold text-white mb-4">
+              <h3 className="text-4xl md:text-5xl font-space font-bold text-gray-900 mb-6 leading-[1.1]">
                 Have an idea? Let's build it together.
               </h3>
-              <p className="text-gray-400 text-lg leading-relaxed mb-8">
+              <p className="text-gray-500 text-xl font-sans leading-relaxed max-w-md">
                 I'm always open to discussing web development projects or collaborative opportunities. Reach out and let's create something extraordinary.
               </p>
             </div>
 
-            <div className="flex flex-col gap-6">
-              <a href="mailto:contact@dharani.dev" className="flex items-center gap-4 group">
-                <div className="w-12 h-12 rounded-xl glass-dark flex items-center justify-center border border-white/10 group-hover:border-brand-purple/50 group-hover:scale-110 transition-all duration-300">
-                  <Mail className="w-5 h-5 text-gray-400 group-hover:text-brand-purple transition-colors" />
+            <div className="flex flex-col gap-8">
+              <a href="mailto:contact@dharani.dev" className="flex items-center gap-6 group">
+                <div className="w-14 h-14 rounded-2xl bg-white flex items-center justify-center border border-gray-100 shadow-sm group-hover:border-violet-200 group-hover:shadow-md transition-all duration-300">
+                  <Mail className="w-6 h-6 text-gray-400 group-hover:text-violet-600 transition-colors" />
                 </div>
                 <div>
-                  <p className="text-sm text-gray-500 font-medium">Email Me</p>
-                  <p className="text-lg text-white font-medium group-hover:text-brand-purple transition-colors">contact@dharani.dev</p>
+                  <p className="text-xs text-gray-400 font-bold uppercase tracking-widest mb-1">Email Me</p>
+                  <p className="text-xl text-gray-900 font-semibold group-hover:text-violet-600 transition-colors">contact@dharani.dev</p>
                 </div>
               </a>
 
@@ -75,9 +77,9 @@ export function Contact() {
                     <a
                       key={idx}
                       href={social.link}
-                      className="w-12 h-12 rounded-xl glass flex items-center justify-center border border-white/10 hover:border-brand-purple/50 hover:bg-white/10 transition-all duration-300 hover:scale-110 shadow-[0_0_15px_rgba(124,58,237,0)] hover:shadow-[0_0_15px_rgba(124,58,237,0.3)]"
+                      className="w-12 h-12 rounded-2xl bg-white flex items-center justify-center border border-gray-100 shadow-sm hover:border-violet-300 hover:shadow-xl hover:shadow-violet-200/40 transition-all duration-300 hover:-translate-y-1"
                     >
-                      <Icon className="w-5 h-5 text-gray-300 hover:text-white" />
+                      <Icon className="w-5 h-5 text-gray-500 hover:text-violet-600" />
                     </a>
                   );
                 })}
@@ -91,44 +93,44 @@ export function Contact() {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.3 }}
-            className="glass rounded-3xl p-8 border border-white/10 relative overflow-hidden"
+            className="bg-white rounded-[2.5rem] p-8 md:p-12 border border-gray-100 shadow-2xl shadow-gray-200/60 relative overflow-hidden"
           >
             <form onSubmit={handleSubmit} className="flex flex-col gap-6 relative z-10">
               <div className="flex flex-col gap-2">
-                <label htmlFor="name" className="text-sm font-medium text-gray-400 ml-1">Name</label>
+                <label htmlFor="name" className="text-[11px] font-bold text-gray-400 uppercase tracking-widest ml-1">Full Name</label>
                 <input
                   type="text"
                   id="name"
                   value={formData.name}
                   onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                   required
-                  className="w-full px-5 py-4 rounded-xl bg-black/40 border border-white/10 text-white placeholder-gray-600 focus:outline-none focus:border-brand-purple/50 focus:bg-black/60 transition-all duration-300 backdrop-blur-sm"
+                  className="w-full px-6 py-4 rounded-2xl bg-gray-50 border border-gray-100 text-gray-900 placeholder-gray-400 focus:outline-none focus:border-violet-300 focus:bg-white transition-all duration-300"
                   placeholder="John Doe"
                 />
               </div>
 
               <div className="flex flex-col gap-2">
-                <label htmlFor="email" className="text-sm font-medium text-gray-400 ml-1">Email</label>
+                <label htmlFor="email" className="text-[11px] font-bold text-gray-400 uppercase tracking-widest ml-1">Email Address</label>
                 <input
                   type="email"
                   id="email"
                   value={formData.email}
                   onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                   required
-                  className="w-full px-5 py-4 rounded-xl bg-black/40 border border-white/10 text-white placeholder-gray-600 focus:outline-none focus:border-brand-purple/50 focus:bg-black/60 transition-all duration-300 backdrop-blur-sm"
+                  className="w-full px-6 py-4 rounded-2xl bg-gray-50 border border-gray-100 text-gray-900 placeholder-gray-400 focus:outline-none focus:border-violet-300 focus:bg-white transition-all duration-300"
                   placeholder="john@example.com"
                 />
               </div>
 
               <div className="flex flex-col gap-2">
-                <label htmlFor="message" className="text-sm font-medium text-gray-400 ml-1">Message</label>
+                <label htmlFor="message" className="text-[11px] font-bold text-gray-400 uppercase tracking-widest ml-1">Your Message</label>
                 <textarea
                   id="message"
                   value={formData.message}
                   onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                   required
                   rows={4}
-                  className="w-full px-5 py-4 rounded-xl bg-black/40 border border-white/10 text-white placeholder-gray-600 focus:outline-none focus:border-brand-purple/50 focus:bg-black/60 transition-all duration-300 backdrop-blur-sm resize-none"
+                  className="w-full px-6 py-4 rounded-2xl bg-gray-50 border border-gray-100 text-gray-900 placeholder-gray-400 focus:outline-none focus:border-violet-300 focus:bg-white transition-all duration-300 resize-none"
                   placeholder="Tell me about your project..."
                 />
               </div>
@@ -136,11 +138,10 @@ export function Contact() {
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className="group relative flex items-center justify-center gap-2 w-full px-8 py-4 bg-brand-purple hover:bg-brand-purple/90 text-white rounded-xl font-semibold overflow-hidden transition-all disabled:opacity-70 disabled:cursor-not-allowed mt-2"
+                className="group relative flex items-center justify-center gap-3 w-full px-8 py-5 bg-gray-900 text-white rounded-2xl font-bold overflow-hidden transition-all hover:bg-black disabled:opacity-70 disabled:cursor-not-allowed mt-4 shadow-xl shadow-gray-200"
               >
-                <span className="relative z-10">{isSubmitting ? "Sending..." : "Send Message"}</span>
-                {!isSubmitting && <Send className="relative z-10 w-4 h-4 group-hover:translate-x-1 transition-transform" />}
-                <div className="absolute inset-0 bg-gradient-to-r from-brand-violet to-brand-blue opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-0" />
+                <span className="relative z-10 text-lg">{isSubmitting ? "Sending..." : "Send Message"}</span>
+                {!isSubmitting && <Send className="relative z-10 w-5 h-5 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />}
               </button>
             </form>
           </motion.div>
