@@ -1,65 +1,58 @@
 import { motion } from "framer-motion";
 import { 
-  Cpu, Brain, Database, Sparkles, Binary, 
-  Search, BarChart3, Terminal 
+  Cpu, Brain, Database, Sparkles, Layout, 
+  Layers, Terminal, BarChart3 
 } from "lucide-react";
 
 const skillCategories = [
   {
-    title: "Mathematics for ML",
-    icon: Binary,
-    image: "https://images.unsplash.com/photo-1635070041078-e363dbe005cb?auto=format&fit=crop&w=800&q=80", 
-    color: "bg-blue-50 text-blue-600",
-    skills: ["Linear Algebra", "Calculus", "Probability", "Statistics", "Optimization"],
+    title: "Frontend Development",
+    icon: Layout,
+    image: "https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=800&q=80", 
+    skills: ["Next.js 15", "React 19", "TypeScript", "Tailwind CSS", "Framer Motion"],
   },
   {
-    title: "Python Ecosystem",
-    icon: Terminal,
-    image: "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?auto=format&fit=crop&w=800&q=80", 
-    color: "bg-emerald-50 text-emerald-600",
-    skills: ["NumPy", "Pandas", "Matplotlib", "Scikit-Learn", "Jupyter"],
-  },
-  {
-    title: "Deep Learning",
-    icon: Brain,
-    image: "https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&w=800&q=80", 
-    color: "bg-purple-50 text-purple-600",
-    skills: ["PyTorch", "TensorFlow", "Neural Networks", "CNNs", "RNNs/LSTMs"],
-  },
-  {
-    title: "Generative AI & LLMs",
-    icon: Sparkles,
-    image: "https://images.unsplash.com/photo-1675557009875-436f595b1812?auto=format&fit=crop&w=800&q=80", 
-    color: "bg-orange-50 text-orange-600",
-    skills: ["LangChain", "OpenAI API", "RAG", "Vector DBs", "Transformers"],
-  },
-  {
-    title: "Computer Vision",
-    icon: Search,
-    image: "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&w=800&q=80", 
-    color: "bg-rose-50 text-rose-600",
-    skills: ["OpenCV", "YOLOv8", "Object Detection", "Image Processing"],
-  },
-  {
-    title: "Natural Language",
+    title: "Backend Engineering",
     icon: Database,
-    image: "https://images.unsplash.com/photo-1544383023-53f2c64b13bd?auto=format&fit=crop&w=800&q=80", 
-    color: "bg-cyan-50 text-cyan-600",
-    skills: ["NLTK", "BERT", "Tokenization", "Sentiment Analysis", "HuggingFace"],
+    image: "https://images.unsplash.com/photo-1558494949-ef010cbdcc48?auto=format&fit=crop&w=800&q=80", 
+    skills: ["Bun.js", "Node.js", "PostgreSQL", "Drizzle ORM", "Redis"],
   },
   {
-    title: "Data Engineering",
+    title: "Full Stack Architecture",
+    icon: Layers,
+    image: "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?auto=format&fit=crop&w=800&q=80", 
+    skills: ["T3 Stack", "Server Actions", "Auth.js", "Supabase", "TRPC"],
+  },
+  {
+    title: "Deep Learning (AIML)",
+    icon: Brain,
+    // NEW High-Quality Neural Network Image
+    image: "https://images.unsplash.com/photo-1620712943543-bcc4628c9757?auto=format&fit=crop&w=800&q=80", 
+    skills: ["PyTorch", "TensorFlow", "Neural Networks", "CNNs / RNNs", "OpenCV"],
+  },
+  {
+    title: "Generative AI",
+    icon: Sparkles,
+    image: "https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&w=800&q=80", 
+    skills: ["LangChain", "OpenAI API", "RAG", "Vector DBs", "Prompt Eng."],
+  },
+  {
+    title: "Data Science",
     icon: BarChart3,
     image: "https://images.unsplash.com/photo-1551288049-bbda646267a4?auto=format&fit=crop&w=800&q=80", 
-    color: "bg-amber-50 text-amber-600",
-    skills: ["SQL", "ETL Pipelines", "Big Data", "Data Cleaning", "Feature Eng."],
+    skills: ["Python", "NumPy", "Pandas", "Scikit-Learn", "Statistics"],
   },
   {
-    title: "MLOps & Deploy",
+    title: "MLOps & Tools",
     icon: Cpu,
     image: "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=800&q=80", 
-    color: "bg-slate-50 text-slate-600",
-    skills: ["FastAPI", "Docker", "ONNX", "Streamlit", "Model Monitoring"],
+    skills: ["FastAPI", "Docker", "Git/GitHub", "Streamlit", "Model Training"],
+  },
+  {
+    title: "Core Programming",
+    icon: Terminal,
+    image: "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?auto=format&fit=crop&w=800&q=80", 
+    skills: ["C / C++", "Java Basics", "Data Structures", "Algorithms"],
   },
 ];
 
@@ -76,11 +69,11 @@ export function Skills() {
           className="mb-16 text-left max-w-3xl"
         >
           <h2 className="text-5xl md:text-7xl font-space font-bold text-gray-900 mb-6 tracking-tighter">
-            AIML <span className="text-gray-400">Expertise</span>
+            Technical <span className="text-gray-400">Arsenal</span>
           </h2>
           <p className="text-gray-500 text-xl font-sans leading-relaxed">
-            As an AIML student, I focus on the intersection of deep mathematical 
-            foundations and modern Generative AI implementations.
+            Bridging the gap between high-performance Web Development and 
+            advanced Artificial Intelligence.
           </p>
         </motion.div>
 
@@ -98,7 +91,7 @@ export function Skills() {
                 className="group flex flex-col bg-white rounded-[2.5rem] p-4 shadow-sm hover:shadow-2xl hover:shadow-gray-200/50 transition-all duration-500 border border-gray-100"
               >
                 {/* Image Container */}
-                <div className="relative aspect-square rounded-[2rem] bg-gray-100 overflow-hidden flex items-center justify-center">
+                <div className="relative aspect-square rounded-[2rem] bg-gray-200 overflow-hidden flex items-center justify-center">
                   <motion.div 
                     whileHover={{ scale: 1.05 }}
                     transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
@@ -121,13 +114,14 @@ export function Skills() {
 
                 {/* Content Area */}
                 <div className="px-4 py-8 flex-1 flex flex-col">
-                  <div className="flex items-center mb-4">
-                    <span className={`px-4 py-1 rounded-full text-[10px] font-bold tracking-[0.2em] uppercase ${category.color}`}>
-                      Domain
+                  {/* The PILL Style from your screenshot */}
+                  <div className="flex items-center mb-5">
+                    <span className="px-6 py-2 rounded-full bg-[#F0F7FF] text-[#1E6BFF] text-[11px] font-black tracking-[0.15em] uppercase">
+                      DOMAIN
                     </span>
                   </div>
                   
-                  <h3 className="text-xl font-space font-bold text-gray-900 mb-5 tracking-tight group-hover:text-violet-600 transition-colors">
+                  <h3 className="text-xl font-space font-bold text-gray-900 mb-5 tracking-tight group-hover:text-[#1E6BFF] transition-colors">
                     {category.title}
                   </h3>
                   
@@ -136,7 +130,7 @@ export function Skills() {
                     {category.skills.map((skill) => (
                       <span
                         key={skill}
-                        className="px-3 py-1.5 text-[10px] font-bold bg-gray-50 text-gray-400 border border-gray-100 rounded-xl uppercase tracking-tighter group-hover:bg-white group-hover:border-gray-200 group-hover:text-gray-900 transition-all duration-300"
+                        className="px-3 py-1.5 text-[10px] font-bold bg-gray-50 text-gray-400 border border-gray-100 rounded-xl uppercase tracking-tighter group-hover:bg-white group-hover:border-blue-100 group-hover:text-gray-900 transition-all duration-300"
                       >
                         {skill}
                       </span>
