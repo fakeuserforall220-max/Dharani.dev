@@ -29,10 +29,10 @@ export function Hero() {
           }}
         />
         
-        {/* Radial Mask: Makes the grid fade out smoothly towards the edges */}
+        {/* Radial Mask */}
         <div className="absolute inset-0 bg-[#FAFAFA] [mask-image:radial-gradient(ellipse_at_center,transparent_20%,black)]" />
 
-        {/* Soft Ambient Globs for Depth */}
+        {/* Soft Ambient Globs */}
         <div className="absolute top-0 left-0 w-[500px] h-[500px] bg-violet-100/50 rounded-full blur-[120px]" />
         <div className="absolute bottom-0 right-0 w-[500px] h-[500px] bg-blue-50/50 rounded-full blur-[120px]" />
       </div>
@@ -57,7 +57,7 @@ export function Hero() {
               Full Stack Developer · AIML Student
             </div>
 
-            {/* Typography - font-space */}
+            {/* Title */}
             <h1 className="text-5xl md:text-7xl lg:text-8xl font-space font-bold leading-[1.1] tracking-tighter text-gray-900">
               Hi, I'm <br />
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-violet-600 via-purple-600 to-blue-600">
@@ -65,25 +65,26 @@ export function Hero() {
               </span>
             </h1>
 
-            {/* Typography - font-sans */}
+            {/* Description */}
             <p className="text-lg md:text-xl text-gray-600 font-sans leading-relaxed max-w-xl">
               I’m a first-year AIML student and full stack developer who builds modern,
               responsive, and real-world web applications with a focus on clean design,
               performance, and practical functionality.
             </p>
 
+            {/* BUTTONS - Refined to Pill Shape */}
             <div className="flex flex-wrap items-center gap-4 pt-4">
               <a
                 href="#projects"
-                className="group relative inline-flex items-center gap-2 px-10 py-5 bg-gray-900 text-white rounded-[1.5rem] font-bold overflow-hidden transition-all hover:bg-black shadow-xl shadow-gray-200"
+                className="group relative inline-flex items-center gap-2 px-8 py-3.5 bg-gray-900 text-white rounded-full font-bold overflow-hidden transition-all hover:bg-black shadow-lg shadow-gray-200"
               >
-                <span className="relative z-10 flex items-center gap-2">
-                  View Projects <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
+                <span className="relative z-10 flex items-center gap-2 text-[15px]">
+                  View Projects <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
                 </span>
               </a>
               <a
                 href="#contact"
-                className="inline-flex items-center gap-2 px-10 py-5 bg-white border border-gray-200 rounded-[1.5rem] font-bold text-gray-900 hover:bg-gray-50 transition-all shadow-sm"
+                className="inline-flex items-center gap-2 px-8 py-3.5 bg-white border border-gray-200 rounded-full font-bold text-gray-900 text-[15px] hover:bg-gray-50 transition-all shadow-sm"
               >
                 Contact Me
               </a>
@@ -95,7 +96,7 @@ export function Hero() {
             className="relative h-[400px] sm:h-[500px] lg:h-[600px] w-full perspective-1000 hidden md:block"
             style={{ y: y1 }}
           >
-            {/* Center Main Card - Apple White Terminal */}
+            {/* Center Main Card */}
             <motion.div
               animate={{
                 y: [0, -20, 0],
@@ -114,7 +115,6 @@ export function Hero() {
                 <Terminal className="text-violet-500 w-5 h-5" />
               </div>
 
-              {/* Typography - font-mono */}
               <div className="flex-1 py-6 font-mono text-sm text-gray-600 space-y-2">
                 <p>
                   <span className="text-violet-600">const</span>{" "}
@@ -128,7 +128,7 @@ export function Hero() {
                 <p>{"}"};</p>
                 <p className="mt-4">
                   <span className="text-violet-600">await</span>{" "}
-                  dharani.<span className="text-blue-600">deploy</span>();
+                  dharani.<span className="text-blue-600">build</span>();
                 </p>
               </div>
             </motion.div>
