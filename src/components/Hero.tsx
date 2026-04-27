@@ -1,164 +1,199 @@
-import { motion, useScroll, useTransform } from "framer-motion";
-import { ArrowRight, Terminal, Brain, Zap, Cpu } from "lucide-react";
-import { useRef } from "react";
+import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
+import { ArrowRight, Terminal, Brain, Cpu, Sparkles } from "lucide-react";
+import React, { useRef } from "react";
 
 export function Hero() {
   const containerRef = useRef<HTMLElement>(null);
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ["start start", "end start"],
-  });
+  
+  // Mouse tracking for the 3D Card
+  const mouseX = useMotionValue(0);
+  const mouseY = useMotionValue(0);
 
-  // Parallax effects for the 3D cards
-  const y1 = useTransform(scrollYProgress, [0, 1], [0, 300]);
-  const rotate = useTransform(scrollYProgress, [0, 1], [0, 12]);
+  const springConfig = { damping: 20, stiffness: 100 };
+  const rotateX = useSpring(useTransform(mouseY, [-0.5, 0.5], [15, -15]), springConfig);
+  const rotateY = useSpring(useTransform(mouseX, [-0.5, 0.5], [-15, 15]), springConfig);
+
+  const handleMouseMove = (e: React.MouseEvent) => {
+    if (!containerRef.current) return;
+    const rect = containerRef.current.getBoundingClientRect();
+    const x = (e.clientX - rect.left) / rect.width - 0.5;
+    const y = (e.clientY - rect.top) / rect.height - 0.5;
+    mouseX.set(x);
+    mouseY.set(y);
+  };
+
+  const handleMouseLeave = () => {
+    mouseX.set(0);
+    mouseY.set(0);
+  };
 
   return (
     <section
       id="home"
       ref={containerRef}
-      className="relative min-h-screen flex items-center pt-32 pb-20 overflow-hidden bg-[#FAFAFA]"
+      onMouseMove={handleMouseMove}
+      onMouseLeave={handleMouseLeave}
+      className="relative min-h-screen flex items-center pt-32 pb-20 overflow-hidden bg-[#FAFAFA] cursor-default"
     >
-      {/* --- PREMIUM BLUEPRINT BACKGROUND --- */}
+      {/* --- LAYER 1: ADVANCED BLUEPRINT BACKGROUND --- */}
       <div className="absolute inset-0 z-0 pointer-events-none">
         {/* The Grid */}
         <div 
-          className="absolute inset-0 opacity-[0.3]" 
+          className="absolute inset-0 opacity-[0.4]" 
           style={{ 
-            backgroundImage: `linear-gradient(#E5E7EB 1px, transparent 1px), linear-gradient(90deg, #E5E7EB 1px, transparent 1px)`,
-            backgroundSize: '45px 45px' 
+            backgroundImage: `linear-gradient(#E5E7EB 1.5px, transparent 1.5px), linear-gradient(90deg, #E5E7EB 1.5px, transparent 1.5px)`,
+            backgroundSize: '50px 50px' 
           }}
         />
-        {/* Radial masking so the grid fades at the edges */}
-        <div className="absolute inset-0 bg-[#FAFAFA] [mask-image:radial-gradient(ellipse_at_center,transparent_20%,black)]" />
         
-        {/* Soft Mesh Glows */}
-        <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-violet-100/40 rounded-full blur-[140px] -translate-y-1/2 translate-x-1/4" />
-        <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-blue-50/50 rounded-full blur-[120px] translate-y-1/2 -translate-x-1/4" />
+        {/* Animated Scanning Line */}
+        <motion.div 
+          animate={{ y: ["0%", "100%"] }}
+          transition={{ duration: 10, repeat: Infinity, ease: "linear" }}
+          className="absolute inset-x-0 h-[200px] bg-gradient-to-b from-transparent via-violet-100/20 to-transparent z-10"
+        />
+
+        {/* Huge Outlined Background Text */}
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 select-none pointer-events-none">
+          <h2 className="text-[20vw] font-space font-black text-gray-200/30 uppercase tracking-tighter">
+            Architect
+          </h2>
+        </div>
+
+        {/* Ambient Mesh Glows */}
+        <div className="absolute top-[-10%] right-[-10%] w-[700px] h-[700px] bg-violet-200/30 rounded-full blur-[120px]" />
+        <div className="absolute bottom-[-10%] left-[-10%] w-[600px] h-[600px] bg-blue-100/40 rounded-full blur-[120px]" />
       </div>
 
       <div className="container mx-auto px-6 md:px-12 relative z-10">
-        <div className="grid lg:grid-cols-12 gap-12 items-center">
+        <div className="grid lg:grid-cols-12 gap-16 items-center">
           
-          {/* LEFT CONTENT: High-Impact Typography */}
-          <motion.div
-            initial={{ opacity: 0, x: -50 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8, ease: "easeOut" }}
-            className="lg:col-span-7 flex flex-col items-start"
-          >
-            {/* Status Badge */}
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white border border-gray-200 text-[11px] font-black tracking-[0.2em] uppercase text-violet-600 mb-8 shadow-sm">
-              <span className="relative flex h-2 w-2">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-violet-400 opacity-75"></span>
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-violet-500"></span>
-              </span>
-              Available for Projects
-            </div>
-
-            <h1 className="text-6xl md:text-8xl lg:text-[100px] font-space font-bold leading-[0.9] tracking-tighter text-gray-900 mb-8">
-              Engineering <br />
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-violet-600 via-blue-600 to-cyan-500">
-                Intelligence.
-              </span>
-            </h1>
-
-            <p className="text-xl md:text-2xl text-gray-500 font-sans leading-relaxed max-w-xl mb-12">
-              I'm <span className="text-gray-900 font-bold tracking-tight">Dharani Govardhan</span>. 
-              I build production-grade web systems powered by Artificial Intelligence.
-            </p>
-
-            <div className="flex flex-wrap items-center gap-6">
-              <a
-                href="#projects"
-                className="group px-10 py-5 bg-gray-900 text-white rounded-[1.5rem] font-bold text-lg flex items-center gap-3 hover:bg-black transition-all shadow-2xl shadow-gray-300"
-              >
-                Explore Work
-                <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
-              </a>
-              <a
-                href="#contact"
-                className="px-10 py-5 bg-white border border-gray-200 text-gray-900 rounded-[1.5rem] font-bold text-lg hover:bg-gray-50 transition-all shadow-sm"
-              >
-                Let's Talk
-              </a>
-            </div>
-          </motion.div>
-
-          {/* RIGHT VISUAL: Layered 3D Perspective Card */}
-          <motion.div
-            className="lg:col-span-5 relative perspective-1000 hidden lg:block"
-            style={{ y: y1, rotate }}
-          >
-            {/* The Main Terminal Card */}
+          {/* --- LEFT CONTENT: TYPOGRAPHY & CTA --- */}
+          <div className="lg:col-span-7 flex flex-col items-start">
             <motion.div
-              animate={{ 
-                y: [0, -20, 0],
-                rotateY: [-5, 5, -5]
-              }}
-              transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
-              className="w-full aspect-[4/5] bg-white rounded-[3rem] border border-gray-100 shadow-[0_40px_100px_rgba(0,0,0,0.06)] p-10 flex flex-col justify-between relative overflow-hidden"
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8 }}
             >
-              {/* Card Header */}
-              <div className="flex items-center justify-between border-b border-gray-50 pb-6">
-                <div className="flex gap-2">
-                  <div className="w-3 h-3 rounded-full bg-red-100 border border-red-200" />
-                  <div className="w-3 h-3 rounded-full bg-amber-100 border border-amber-200" />
-                  <div className="w-3 h-3 rounded-full bg-emerald-100 border border-emerald-200" />
-                </div>
-                <Terminal className="text-gray-300 w-5 h-5" />
+              <div className="inline-flex items-center gap-3 px-5 py-2 rounded-full bg-white border border-gray-200 text-[10px] font-black tracking-[0.3em] uppercase text-gray-900 mb-10 shadow-sm">
+                <span className="flex h-2 w-2 rounded-full bg-emerald-500 shadow-[0_0_10px_#10b981]" />
+                System.Status: Online
               </div>
 
-              {/* Code Content */}
-              <div className="flex-1 py-10 font-mono text-sm leading-relaxed text-gray-400">
-                <p><span className="text-violet-500">import</span> {'{ Brain }'} <span className="text-violet-500">from</span> 'aiml';</p>
-                <div className="mt-8 space-y-2">
-                  <p className="text-gray-900 font-bold text-xl leading-tight">
-                    Building the next <br /> 
-                    generation of <br />
-                    digital products.
+              <h1 className="text-7xl md:text-8xl lg:text-[110px] font-space font-bold leading-[0.85] tracking-tighter text-gray-900 mb-10">
+                Crafting <br />
+                <span className="italic font-light text-gray-400">Digital</span> <br />
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-violet-600 via-blue-600 to-cyan-500">
+                  Intelligenze.
+                </span>
+              </h1>
+
+              <p className="text-xl md:text-2xl text-gray-500 font-sans leading-relaxed max-w-xl mb-12">
+                I am <span className="text-gray-900 font-bold">Dharani Govardhan</span>, 
+                merging industrial-grade <span className="text-violet-600">Full Stack</span> systems 
+                with advanced <span className="text-blue-600">Neural Engineering</span>.
+              </p>
+
+              <div className="flex flex-wrap items-center gap-8">
+                <a
+                  href="#projects"
+                  className="group relative px-12 py-6 bg-gray-900 text-white rounded-[2rem] font-bold text-lg overflow-hidden transition-all shadow-2xl shadow-gray-300"
+                >
+                  <div className="relative z-10 flex items-center gap-3">
+                    Launch Projects <ArrowRight size={22} className="group-hover:translate-x-1 transition-transform" />
+                  </div>
+                  <div className="absolute inset-0 bg-gradient-to-r from-violet-600 to-blue-600 opacity-0 group-hover:opacity-100 transition-opacity" />
+                </a>
+                
+                {/* Micro-stats */}
+                <div className="hidden md:flex gap-8 border-l border-gray-200 pl-8">
+                  <div>
+                    <p className="text-2xl font-space font-bold text-gray-900">06+</p>
+                    <p className="text-[10px] font-black text-gray-400 uppercase tracking-widest">Deployments</p>
+                  </div>
+                  <div>
+                    <p className="text-2xl font-space font-bold text-gray-900">1st</p>
+                    <p className="text-[10px] font-black text-gray-400 uppercase tracking-widest">Year AIML</p>
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+          </div>
+
+          {/* --- RIGHT VISUAL: INTERACTIVE 3D STACK --- */}
+          <div className="lg:col-span-5 relative perspective-2000 hidden lg:block">
+            <motion.div
+              style={{ rotateX, rotateY, transformStyle: "preserve-3d" }}
+              className="relative w-full aspect-[4/5]"
+            >
+              {/* Card 1: The Base (Shadow Layer) */}
+              <div className="absolute inset-4 bg-gray-200/20 rounded-[4rem] blur-2xl translate-z-[-50px]" />
+
+              {/* Card 2: The UI Layer */}
+              <div className="absolute inset-0 bg-white rounded-[3.5rem] border border-gray-100 shadow-[0_50px_100px_rgba(0,0,0,0.05)] p-12 flex flex-col justify-between overflow-hidden translate-z-[50px]">
+                <div className="flex items-center justify-between border-b border-gray-50 pb-8">
+                  <Terminal size={24} className="text-violet-500" />
+                  <div className="flex gap-2">
+                    <div className="w-8 h-1.5 rounded-full bg-gray-100" />
+                    <div className="w-4 h-1.5 rounded-full bg-gray-100" />
+                  </div>
+                </div>
+
+                <div className="flex-1 py-10">
+                  <p className="font-mono text-sm text-gray-400 mb-6 tracking-tight">
+                    <span className="text-violet-500">import</span> {'{ GPT }'} <span className="text-violet-500">from</span> 'brain';
                   </p>
-                  <p className="text-blue-600 font-bold tracking-tighter pt-4">Status: Deploying_Success</p>
-                </div>
-              </div>
-
-              {/* Card Footer */}
-              <div className="flex items-center justify-between pt-6 border-t border-gray-50">
-                <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 bg-violet-50 rounded-xl flex items-center justify-center text-violet-600">
-                    <Cpu size={20} />
-                  </div>
-                  <span className="text-[10px] font-black uppercase tracking-widest text-gray-400">Hardware Accel.</span>
-                </div>
-                <div className="text-right">
-                  <div className="h-2 w-24 bg-gray-100 rounded-full overflow-hidden">
-                    <motion.div 
-                      animate={{ x: [-100, 100] }}
-                      transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
-                      className="h-full w-1/2 bg-violet-500"
-                    />
+                  <h3 className="text-4xl font-space font-bold text-gray-900 leading-[1.1] mb-6">
+                    Building the <br /> Next-Gen <br /> <span className="text-gray-300 italic">Interface.</span>
+                  </h3>
+                  <div className="inline-flex items-center gap-2 px-3 py-1 bg-emerald-50 rounded-lg border border-emerald-100">
+                    <span className="w-1.5 h-1.5 bg-emerald-500 rounded-full animate-pulse" />
+                    <span className="text-[10px] font-black text-emerald-700 tracking-tighter uppercase">Ready for Production</span>
                   </div>
                 </div>
+
+                <div className="pt-8 border-t border-gray-50 flex items-center justify-between">
+                   <div className="flex -space-x-3">
+                      {[1, 2, 3].map(i => (
+                        <div key={i} className="w-10 h-10 rounded-full bg-gray-50 border-2 border-white flex items-center justify-center">
+                           <Sparkles size={14} className="text-gray-300" />
+                        </div>
+                      ))}
+                   </div>
+                   <Cpu className="text-gray-200" size={32} />
+                </div>
               </div>
 
-              {/* Subtle mesh inside the card */}
-              <div className="absolute -bottom-20 -right-20 w-64 h-64 bg-violet-100/30 rounded-full blur-3xl -z-10" />
+              {/* Card 3: Floating "AI" Element */}
+              <motion.div
+                style={{ translateZ: "120px" }}
+                animate={{ y: [0, -20, 0] }}
+                transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+                className="absolute -top-12 -right-12 w-48 h-48 bg-white/90 backdrop-blur-xl rounded-[2.5rem] shadow-2xl border border-white p-8 flex flex-col items-center justify-center text-center z-30"
+              >
+                <div className="w-16 h-16 bg-gradient-to-br from-violet-500 to-blue-600 rounded-2xl flex items-center justify-center text-white mb-4 shadow-xl shadow-violet-200">
+                  <Brain size={32} />
+                </div>
+                <p className="text-[10px] font-black uppercase tracking-widest text-gray-400">Logic.v15</p>
+                <p className="text-sm font-bold text-gray-900 mt-1 uppercase tracking-tighter">Neural Engine</p>
+              </motion.div>
             </motion.div>
 
-            {/* Floating Secondary Icon Card */}
-            <motion.div
-              animate={{ y: [0, 30, 0] }}
-              transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 1 }}
-              className="absolute -bottom-10 -left-10 w-44 h-44 bg-white rounded-[2rem] shadow-2xl border border-gray-100 p-8 flex flex-col items-center justify-center text-center z-20"
-            >
-              <div className="w-14 h-14 bg-blue-50 rounded-2xl flex items-center justify-center text-blue-600 mb-4">
-                <Brain size={28} />
-              </div>
-              <p className="text-[10px] font-black uppercase tracking-widest text-gray-400 mb-1">Domain</p>
-              <p className="text-sm font-bold text-gray-900">Neural Tech</p>
-            </motion.div>
-          </motion.div>
-
+            {/* Floating Tech Chips */}
+            {['Next.js 15', 'PyTorch', 'Bun'].map((tech, i) => (
+              <motion.div
+                key={tech}
+                animate={{ 
+                  y: [0, i % 2 === 0 ? -40 : 40, 0],
+                  x: [0, i % 2 === 0 ? 20 : -20, 0]
+                }}
+                transition={{ duration: 8 + i, repeat: Infinity, ease: "easeInOut" }}
+                className={`absolute ${i === 0 ? 'top-0 -left-20' : i === 1 ? 'bottom-20 -left-32' : 'top-1/2 -right-20'} px-5 py-2.5 bg-white border border-gray-100 rounded-full shadow-lg text-[10px] font-bold text-gray-500 uppercase tracking-widest z-0`}
+              >
+                {tech}
+              </motion.div>
+            ))}
+          </div>
         </div>
       </div>
     </section>
