@@ -5,28 +5,32 @@ const skillCategories = [
   {
     title: "Frontend Development",
     icon: Code2,
-    image: "https://images.unsplash.com/photo-1633356122544-f134324a6cee?w=800&auto=format&fit=crop&q=60", // React/Code image
-    color: "bg-purple-50 text-purple-600",
-    skills: ["React", "Next.js", "Tailwind", "JavaScript", "HTML5"],
+    // Modern abstract code/React visual
+    image: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=800&auto=format&fit=crop&q=80", 
+    color: "bg-blue-50 text-blue-600",
+    skills: ["React", "Next.js", "Tailwind", "JavaScript", "TypeScript"],
   },
   {
     title: "Tools & Workflow",
     icon: Database,
-    image: "https://images.unsplash.com/photo-1618401471353-b98aade122f1?w=800&auto=format&fit=crop&q=60", // GitHub/Dev tools image
-    color: "bg-blue-50 text-blue-600",
+    // Clean minimalist workspace/Git visual
+    image: "https://images.unsplash.com/photo-1618401471353-b98aade122f1?w=800&auto=format&fit=crop&q=80", 
+    color: "bg-slate-50 text-slate-600",
     skills: ["Git", "GitHub", "Vercel", "Vite", "NPM", "Docker"],
   },
   {
     title: "AI & Machine Learning",
     icon: Sparkles,
-    image: "https://images.unsplash.com/photo-1677442136019-21780ecad995?w=800&auto=format&fit=crop&q=60", // AI/Neural image
-    color: "bg-orange-50 text-orange-600",
+    // Futuristic neural network/AI visual
+    image: "https://images.unsplash.com/photo-1620712943543-bcc4628c9757?w=800&auto=format&fit=crop&q=80", 
+    color: "bg-purple-50 text-purple-600",
     skills: ["Python", "ML Basics", "Neural Networks", "Data Analysis"],
   },
   {
     title: "UI/UX Design",
     icon: PenTool,
-    image: "https://images.unsplash.com/photo-1561070791-2526d30994b5?w=800&auto=format&fit=crop&q=60", // Figma/Design image
+    // Modern clean design/interface visual
+    image: "https://images.unsplash.com/photo-1586717791821-3f44a563dc4c?w=800&auto=format&fit=crop&q=80", 
     color: "bg-rose-50 text-rose-600",
     skills: ["Figma", "Prototyping", "Wireframing", "Responsive UI"],
   },
@@ -48,11 +52,11 @@ export function Skills() {
             Technical <span className="text-gray-400">Arsenal</span>
           </h2>
           <p className="text-gray-500 text-xl font-sans">
-            A comprehensive set of tools and technologies I use to bring ideas to life.
+            A selection of technologies and creative tools I use to build production-ready applications.
           </p>
         </motion.div>
 
-        {/* Skills Grid - Matching Project Card Style */}
+        {/* Skills Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {skillCategories.map((category, idx) => {
             const Icon = category.icon;
@@ -65,12 +69,12 @@ export function Skills() {
                 transition={{ duration: 0.5, delay: idx * 0.1 }}
                 className="group flex flex-col bg-white rounded-[2.5rem] p-4 shadow-sm hover:shadow-2xl hover:shadow-gray-200/50 transition-all duration-500 border border-gray-100"
               >
-                {/* Image Container - Matching your reference image */}
-                <div className="relative aspect-square rounded-[2rem] bg-[#F4F4F4] overflow-hidden flex items-center justify-center p-6">
+                {/* Image Container */}
+                <div className="relative aspect-[4/5] rounded-[2rem] bg-[#F4F4F4] overflow-hidden flex items-center justify-center p-4">
                   <motion.div 
                     whileHover={{ scale: 1.05 }}
-                    transition={{ duration: 0.4 }}
-                    className="w-full h-full rounded-2xl overflow-hidden shadow-xl"
+                    transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+                    className="w-full h-full rounded-[1.8rem] overflow-hidden shadow-2xl shadow-black/10"
                   >
                     <img 
                       src={category.image} 
@@ -80,16 +84,16 @@ export function Skills() {
                   </motion.div>
                   
                   {/* Floating Icon Badge */}
-                  <div className="absolute top-8 left-8 w-12 h-12 bg-white rounded-xl shadow-lg flex items-center justify-center text-gray-900 border border-gray-50">
-                    <Icon size={24} />
+                  <div className="absolute top-8 left-8 w-12 h-12 bg-white/90 backdrop-blur-md rounded-2xl shadow-lg flex items-center justify-center text-gray-900 border border-white/50">
+                    <Icon size={22} />
                   </div>
                 </div>
 
                 {/* Content Area */}
                 <div className="px-4 py-6 flex-1 flex flex-col">
                   <div className="flex items-center mb-4">
-                    <span className={`px-4 py-1 rounded-full text-[12px] font-bold tracking-widest uppercase ${category.color}`}>
-                      Expertise
+                    <span className={`px-4 py-1 rounded-full text-[11px] font-bold tracking-widest uppercase ${category.color}`}>
+                      Core Skill
                     </span>
                   </div>
                   
@@ -102,7 +106,7 @@ export function Skills() {
                     {category.skills.map((skill) => (
                       <span
                         key={skill}
-                        className="px-3 py-1 text-[11px] font-bold bg-gray-50 text-gray-400 border border-gray-100 rounded-lg uppercase tracking-tighter group-hover:border-purple-200 group-hover:text-gray-600 transition-colors"
+                        className="px-3 py-1.5 text-[11px] font-bold bg-gray-50 text-gray-500 border border-gray-100 rounded-xl uppercase tracking-tighter group-hover:bg-white group-hover:border-blue-100 group-hover:text-gray-700 transition-all duration-300"
                       >
                         {skill}
                       </span>
