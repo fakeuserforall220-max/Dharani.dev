@@ -35,17 +35,21 @@ export function Navbar() {
           <div className="flex items-center justify-between relative">
             
             {/* LEFT: Logo */}
-            <a href="#home" className="text-2xl font-sans font-extrabold text-[#1E6BFF] tracking-tighter flex items-center gap-2">
-              <div className="w-8 h-8 bg-[#1E6BFF] rounded-lg flex items-center justify-center text-white font-sans">D</div>
-              Dharani
-            </a>
+            <div className="flex-shrink-0">
+              <a href="#home" className="text-[22px] font-sans font-extrabold text-[#1E6BFF] tracking-tighter flex items-center gap-2">
+                <div className="w-8 h-8 bg-[#1E6BFF] rounded-lg flex items-center justify-center text-white font-sans">
+                  <span className="text-lg">D</span>
+                </div>
+                Dharani
+              </a>
+            </div>
 
             {/* CENTER: Floating Capsule with Inner Pill */}
             <nav className="hidden lg:block absolute left-1/2 -translate-x-1/2">
               <div className={cn(
-                "flex items-center gap-1 px-2 py-1.5 rounded-full bg-white border border-gray-100 transition-all duration-300",
-                "shadow-[0_4px_20px_rgba(0,0,0,0.03)]",
-                isScrolled && "shadow-[0_10px_30px_rgba(0,0,0,0.08)] border-gray-200"
+                "flex items-center gap-1 px-1.5 py-1.5 rounded-full bg-white border border-gray-100 transition-all duration-300",
+                "shadow-[0_4px_20px_rgba(0,0,0,0.02)]",
+                isScrolled && "shadow-[0_10px_30px_rgba(0,0,0,0.06)] border-gray-200"
               )}>
                 {navItems.map((item) => (
                   <a
@@ -53,9 +57,9 @@ export function Navbar() {
                     href={item.href}
                     onClick={() => setActiveItem(item.name)}
                     className={cn(
-                      "text-[14px] font-semibold px-5 py-2.5 rounded-full transition-all duration-300",
+                      "text-[14px] font-semibold px-5 py-2 rounded-full transition-all duration-300",
                       activeItem === item.name 
-                        ? "bg-[#F4F4F4] text-gray-900 shadow-sm" // The "Inner Pill"
+                        ? "bg-[#F4F4F4] text-gray-900 shadow-sm" // Inner Pill
                         : "text-gray-500 hover:text-gray-900"
                     )}
                   >
@@ -65,12 +69,12 @@ export function Navbar() {
               </div>
             </nav>
 
-            {/* RIGHT: Black Pill Button */}
-            <div className="hidden lg:block">
-              <a href="#contact" className="group flex items-center gap-4 px-7 py-3.5 bg-[#111] hover:bg-black text-white rounded-full text-[15px] font-bold transition-all shadow-xl shadow-gray-200">
+            {/* RIGHT: Compact Black Pill Button */}
+            <div className="hidden lg:block flex-shrink-0">
+              <a href="#contact" className="group flex items-center gap-3 px-5 py-2.5 bg-[#111] hover:bg-black text-white rounded-full text-[14px] font-bold transition-all shadow-lg shadow-gray-200">
                 Book a Call
-                <div className="w-7 h-7 bg-white/10 rounded-full flex items-center justify-center group-hover:bg-white/20 transition-colors">
-                    <ArrowUpRight size={16} className="text-white" />
+                <div className="w-6 h-6 bg-white/10 rounded-full flex items-center justify-center group-hover:bg-white/20 transition-colors">
+                    <ArrowUpRight size={14} className="text-white" />
                 </div>
               </a>
             </div>
@@ -90,9 +94,9 @@ export function Navbar() {
             initial={{ opacity: 0, scale: 0.95, y: -20 }} 
             animate={{ opacity: 1, scale: 1, y: 0 }} 
             exit={{ opacity: 0, scale: 0.95, y: -20 }} 
-            className="fixed inset-x-4 top-24 z-[110] lg:hidden bg-white rounded-[2.5rem] border border-gray-100 shadow-2xl p-8"
+            className="fixed inset-x-4 top-24 z-[110] lg:hidden bg-white rounded-[2rem] border border-gray-100 shadow-2xl p-6"
           >
-            <div className="flex flex-col gap-4">
+            <div className="flex flex-col gap-2">
               {navItems.map((item) => (
                 <a 
                   key={item.name} 
@@ -102,7 +106,7 @@ export function Navbar() {
                     setActiveItem(item.name);
                   }} 
                   className={cn(
-                    "text-lg font-bold px-6 py-4 rounded-2xl transition-colors",
+                    "text-[16px] font-bold px-6 py-4 rounded-xl transition-colors",
                     activeItem === item.name ? "bg-gray-50 text-[#1E6BFF]" : "text-gray-600"
                   )}
                 >
@@ -110,8 +114,8 @@ export function Navbar() {
                 </a>
               ))}
               <div className="h-px bg-gray-50 my-2" />
-              <a href="#contact" className="flex items-center justify-center gap-2 px-5 py-5 rounded-[1.5rem] bg-[#111] text-white font-bold text-lg shadow-lg">
-                Book a Call <ArrowUpRight size={20} />
+              <a href="#contact" className="flex items-center justify-center gap-2 px-5 py-4 rounded-xl bg-[#111] text-white font-bold text-[16px]">
+                Book a Call <ArrowUpRight size={18} />
               </a>
             </div>
           </motion.div>
