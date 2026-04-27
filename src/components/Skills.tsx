@@ -6,38 +6,43 @@ const skillCategories = [
   {
     title: "Frontend",
     icon: Code2,
-    color: "text-brand-purple",
-    bgColor: "bg-brand-purple/10",
+    color: "text-purple-600",
+    bgColor: "bg-purple-50",
+    borderColor: "border-purple-100",
     skills: ["HTML5", "CSS3", "JavaScript", "React", "Next.js", "Tailwind CSS"],
   },
   {
     title: "Tools & Git",
     icon: Database,
-    color: "text-brand-blue",
-    bgColor: "bg-brand-blue/10",
+    color: "text-blue-600",
+    bgColor: "bg-blue-50",
+    borderColor: "border-blue-100",
     skills: ["Git", "GitHub", "Vite", "VS Code", "Vercel", "NPM"],
   },
   {
     title: "Learning / AIML",
     icon: Sparkles,
-    color: "text-brand-orange",
-    bgColor: "bg-brand-orange/10",
+    color: "text-orange-600",
+    bgColor: "bg-orange-50",
+    borderColor: "border-orange-100",
     skills: ["Python", "Machine Learning Basics", "Data Structures", "Algorithms"],
   },
   {
     title: "UI / Design",
     icon: PenTool,
-    color: "text-brand-violet",
-    bgColor: "bg-brand-violet/10",
+    color: "text-violet-600",
+    bgColor: "bg-violet-50",
+    borderColor: "border-violet-100",
     skills: ["Figma", "Responsive Design", "Wireframing", "Prototyping"],
   },
 ];
 
 export function Skills() {
   return (
-    <section id="skills" className="py-24 relative overflow-hidden">
-      <div className="absolute top-0 right-0 w-[400px] h-[400px] bg-brand-purple/5 rounded-full blur-[100px]" />
-      <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-brand-orange/5 rounded-full blur-[100px]" />
+    <section id="skills" className="py-24 relative overflow-hidden bg-[#FAFAFA]">
+      {/* Background Soft Blurs */}
+      <div className="absolute top-0 right-0 w-[400px] h-[400px] bg-purple-100/30 rounded-full blur-[100px]" />
+      <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-orange-100/30 rounded-full blur-[100px]" />
       
       <div className="container mx-auto px-6 md:px-12 relative z-10">
         <motion.div
@@ -46,10 +51,10 @@ export function Skills() {
           viewport={{ once: true }}
           className="mb-16 text-center"
         >
-          <h2 className="text-3xl md:text-5xl font-space font-bold text-white mb-4">
-            Technical <span className="text-brand-blue">Arsenal</span>
+          <h2 className="text-3xl md:text-5xl font-space font-bold text-gray-900 mb-4">
+            Technical <span className="text-blue-600">Arsenal</span>
           </h2>
-          <div className="w-20 h-1 bg-brand-blue mx-auto rounded-full" />
+          <div className="w-20 h-1.5 bg-blue-500 mx-auto rounded-full" />
         </motion.div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -62,22 +67,27 @@ export function Skills() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: idx * 0.1 }}
-                className="glass rounded-3xl p-6 border-white/5 hover:border-white/20 transition-all duration-300 group hover:-translate-y-2 relative overflow-hidden"
+                className="bg-white rounded-[2.5rem] p-8 border border-gray-100 shadow-sm hover:shadow-2xl hover:shadow-gray-200/50 transition-all duration-500 group hover:-translate-y-2 relative overflow-hidden"
               >
-                <div className={cn("absolute inset-0 opacity-0 group-hover:opacity-10 transition-opacity duration-500", category.bgColor)} />
+                {/* Subtle internal glow on hover */}
+                <div className={cn("absolute inset-0 opacity-0 group-hover:opacity-40 transition-opacity duration-500", category.bgColor)} />
                 
-                <div className="flex items-center gap-4 mb-6 relative z-10">
-                  <div className={cn("w-12 h-12 rounded-xl glass-dark flex items-center justify-center border border-white/10 group-hover:scale-110 transition-transform duration-300", category.bgColor)}>
-                    <Icon className={cn("w-6 h-6", category.color)} />
+                <div className="flex items-center gap-4 mb-8 relative z-10">
+                  <div className={cn(
+                    "w-14 h-14 rounded-2xl flex items-center justify-center border transition-all duration-500 group-hover:scale-110 shadow-sm",
+                    category.bgColor,
+                    category.borderColor
+                  )}>
+                    <Icon className={cn("w-7 h-7", category.color)} />
                   </div>
-                  <h3 className="text-xl font-space font-bold text-white">{category.title}</h3>
+                  <h3 className="text-xl font-space font-bold text-gray-900">{category.title}</h3>
                 </div>
 
-                <div className="flex flex-wrap gap-2 relative z-10">
+                <div className="flex flex-wrap gap-2.5 relative z-10">
                   {category.skills.map((skill) => (
                     <span
                       key={skill}
-                      className="px-3 py-1.5 text-sm font-medium rounded-full bg-white/5 text-gray-300 border border-white/10 group-hover:border-white/20 transition-all hover:bg-white/10 hover:text-white hover:shadow-[0_0_10px_rgba(255,255,255,0.1)] cursor-default"
+                      className="px-4 py-2 text-[13px] font-semibold rounded-xl bg-gray-50 text-gray-600 border border-gray-100 group-hover:bg-white group-hover:border-gray-200 transition-all duration-300 cursor-default"
                     >
                       {skill}
                     </span>
