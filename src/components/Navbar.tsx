@@ -34,38 +34,38 @@ export function Navbar() {
         <div className="container mx-auto px-4 md:px-12 max-w-7xl">
           <div
             className={cn(
-              "rounded-full transition-all duration-300 px-4 md:px-6 py-3 md:py-4",
-              "bg-brand-black/50 backdrop-blur-md border border-white/10",
-              "shadow-lg shadow-black/20",
-              isScrolled && "bg-brand-black/70 shadow-xl"
+              "rounded-full transition-all duration-500 px-4 md:px-8 py-3 md:py-4",
+              "bg-white/70 backdrop-blur-xl border border-white/20",
+              "shadow-[0_8px_32px_rgba(0,0,0,0.04)]",
+              isScrolled && "shadow-[0_20px_40px_rgba(0,0,0,0.06)] border-gray-100/50 bg-white/90"
             )}
           >
             <div className="flex items-center justify-between">
               <a
                 href="#home"
-                className="text-xl md:text-2xl font-space font-bold text-white tracking-tighter"
+                className="text-xl md:text-2xl font-space font-bold text-gray-900 tracking-tighter group flex items-center gap-1"
               >
-                Dharani<span className="text-brand-purple">.</span>
+                Dharani<span className="text-violet-600 group-hover:animate-pulse">.</span>
               </a>
 
               {/* Desktop Nav */}
-              <nav className="hidden md:flex items-center gap-8">
-                <ul className="flex items-center gap-8">
+              <nav className="hidden md:flex items-center gap-10">
+                <ul className="flex items-center gap-10">
                   {navItems.map((item) => (
                     <li key={item.name}>
                       <a
                         href={item.href}
-                        className="text-sm font-medium text-gray-300 hover:text-white transition-colors relative group"
+                        className="text-[13px] font-bold uppercase tracking-widest text-gray-400 hover:text-gray-900 transition-colors relative group"
                       >
                         {item.name}
-                        <span className="absolute -bottom-1 left-0 w-0 h-[2px] bg-brand-purple transition-all duration-300 group-hover:w-full" />
+                        <span className="absolute -bottom-1 left-0 w-0 h-[2px] bg-violet-600 transition-all duration-300 group-hover:w-full" />
                       </a>
                     </li>
                   ))}
                 </ul>
                 <a
                   href="#contact"
-                  className="px-5 py-2.5 rounded-full text-sm font-medium bg-white/5 hover:bg-white/10 border border-white/10 transition-all hover:border-brand-purple hover:shadow-[0_0_15px_rgba(124,58,237,0.3)] text-white"
+                  className="px-6 py-2.5 rounded-full text-sm font-bold bg-gray-900 text-white hover:bg-black transition-all shadow-lg shadow-gray-200 hover:scale-105 active:scale-95"
                 >
                   Let's Talk
                 </a>
@@ -73,11 +73,11 @@ export function Navbar() {
 
               {/* Mobile Nav Toggle */}
               <button
-                className="md:hidden text-gray-300 hover:text-white transition-colors"
+                className="md:hidden p-2 rounded-xl bg-gray-50 border border-gray-100 text-gray-600"
                 onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
                 aria-label="Toggle menu"
               >
-                {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+                {isMobileMenuOpen ? <X size={20} /> : <Menu size={20} />}
               </button>
             </div>
           </div>
@@ -88,29 +88,36 @@ export function Navbar() {
       <AnimatePresence>
         {isMobileMenuOpen && (
           <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: "auto" }}
-            exit={{ opacity: 0, height: 0 }}
-            className="fixed top-[72px] left-0 right-0 z-40 md:hidden bg-brand-black/95 backdrop-blur-xl border-b border-white/10 overflow-hidden"
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+            className="fixed top-24 left-4 right-4 z-40 md:hidden bg-white/95 backdrop-blur-2xl rounded-3xl border border-gray-100 shadow-2xl overflow-hidden shadow-gray-200/50"
           >
-            <div className="px-6 py-6 flex flex-col gap-4">
-              {navItems.map((item) => (
-                <a
+            <div className="px-8 py-10 flex flex-col gap-6">
+              {navItems.map((item, idx) => (
+                <motion.a
                   key={item.name}
                   href={item.href}
+                  initial={{ opacity: 0, x: -20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: idx * 0.1 }}
                   onClick={() => setIsMobileMenuOpen(false)}
-                  className="text-lg font-medium text-gray-300 hover:text-white py-2 border-b border-white/5 transition-colors"
+                  className="text-xl font-space font-bold text-gray-500 hover:text-gray-900 py-2 transition-colors flex justify-between items-center group"
                 >
                   {item.name}
-                </a>
+                  <span className="opacity-0 group-hover:opacity-100 text-violet-600 transition-opacity">→</span>
+                </motion.a>
               ))}
-              <a
+              <motion.a
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.5 }}
                 href="#contact"
                 onClick={() => setIsMobileMenuOpen(false)}
-                className="mt-4 px-5 py-3 text-center rounded-lg font-medium bg-brand-purple text-white hover:bg-brand-purple/90 transition-colors"
+                className="mt-4 px-5 py-4 text-center rounded-2xl font-bold bg-gray-900 text-white hover:bg-black transition-all"
               >
                 Let's Talk
-              </a>
+              </motion.a>
             </div>
           </motion.div>
         )}
