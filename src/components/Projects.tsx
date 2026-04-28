@@ -29,7 +29,7 @@ const PROJECTS = [
     description: 'A beautiful, intuitive personal finance and expense tracking application.',
     tags: ['React Native', 'Firebase', 'Redux'],
     type: 'Product',
-    image: 'https://images.unsplash.com/photo-1677442136019-21780ecad995?w=800&auto=format&fit=crop&q=60',
+    image: 'https://images.unsplash.com/photo-1556740714-a8395b3bf30f?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
     link: '#',
     github: '#',
     color: 'bg-emerald-50 text-emerald-600'
@@ -59,7 +59,7 @@ const PROJECTS = [
     description: 'A comprehensive railway tracking and ticketing portal with real-time updates.',
     tags: ['React', 'Express', 'Redis'],
     type: 'Utility',
-    image: 'https://images.unsplash.com/photo-1580442374555-3def8fb41738?q=80&w=580&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+    image: 'https://images.unsplash.com/photo-1527295110-5145f6b148d0?q=80&w=1131&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
     link: '#',
     github: '#',
     color: 'bg-indigo-50 text-indigo-600'
