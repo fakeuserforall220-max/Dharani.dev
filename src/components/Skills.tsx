@@ -27,19 +27,19 @@ const skillCategories = [
     title: "Deep Learning (AIML)",
     icon: Brain,
     // NEW High-Quality Neural Network Image
-    image: "https://images.unsplash.com/photo-1620712943543-bcc4628c9757?auto=format&fit=crop&w=800&q=80", 
+    image: "https://plus.unsplash.com/premium_photo-1680608979589-e9349ed066d5?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8cm9ib3R8ZW58MHx8MHx8fDA%3D", 
     skills: ["PyTorch", "TensorFlow", "Neural Networks", "CNNs / RNNs", "OpenCV"],
   },
   {
     title: "Generative AI",
     icon: Sparkles,
-    image: "https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&w=800&q=80", 
+    image: "https://plus.unsplash.com/premium_photo-1677269465314-d5d2247a0b0c?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", 
     skills: ["LangChain", "OpenAI API", "RAG", "Vector DBs", "Prompt Eng."],
   },
   {
     title: "Data Science",
     icon: BarChart3,
-    image: "https://images.unsplash.com/photo-1551288049-bbda646267a4?auto=format&fit=crop&w=800&q=80", 
+    image: "https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OTF8fGRhdGElMjBzY2llbmNlfGVufDB8fDB8fHww", 
     skills: ["Python", "NumPy", "Pandas", "Scikit-Learn", "Statistics"],
   },
   {
