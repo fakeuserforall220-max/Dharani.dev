@@ -16,187 +16,203 @@ export function Hero() {
     <section
       id="home"
       ref={containerRef}
-      className="relative min-h-screen flex items-center justify-center pt-32 pb-20 overflow-hidden"
-      style={{ backgroundColor: "#08080C" }}
+      className="relative min-h-screen flex items-center justify-center pt-32 pb-20 overflow-hidden bg-white"
     >
       {/* ============ LAYERED PATTERN BACKGROUND ============ */}
       <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
 
         {/* PATTERN 1 — Hexagonal Honeycomb */}
-        <svg className="absolute inset-0 w-full h-full opacity-[0.07]">
+        <svg className="absolute inset-0 w-full h-full opacity-[0.15]">
           <defs>
             <pattern id="honeycomb" x="0" y="0" width="56" height="100" patternUnits="userSpaceOnUse" patternTransform="scale(1.5)">
               <path
                 d="M28 66L0 50L0 16L28 0L56 16L56 50L28 66L28 100"
                 fill="none"
-                stroke="rgba(139,92,246,1)"
-                strokeWidth="0.5"
+                stroke="#8B5CF6"
+                strokeWidth="0.6"
               />
               <path
                 d="M28 0L28 34L0 50L0 84L28 100L56 84L56 50L28 34"
                 fill="none"
-                stroke="rgba(139,92,246,1)"
-                strokeWidth="0.5"
+                stroke="#8B5CF6"
+                strokeWidth="0.6"
               />
             </pattern>
           </defs>
           <rect width="100%" height="100%" fill="url(#honeycomb)" />
         </svg>
 
-        {/* PATTERN 2 — Diagonal Crosshatch Lines */}
+        {/* PATTERN 2 — Diagonal Crosshatch */}
         <div
-          className="absolute inset-0 opacity-[0.04]"
+          className="absolute inset-0 opacity-[0.06]"
           style={{
             backgroundImage: `
               repeating-linear-gradient(
                 45deg,
                 transparent,
-                transparent 40px,
-                rgba(139,92,246,0.6) 40px,
-                rgba(139,92,246,0.6) 41px
+                transparent 35px,
+                rgba(139,92,246,0.7) 35px,
+                rgba(139,92,246,0.7) 36px
               ),
               repeating-linear-gradient(
                 -45deg,
                 transparent,
-                transparent 40px,
-                rgba(59,130,246,0.6) 40px,
-                rgba(59,130,246,0.6) 41px
+                transparent 35px,
+                rgba(99,102,241,0.5) 35px,
+                rgba(99,102,241,0.5) 36px
               )
             `,
           }}
         />
 
-        {/* PATTERN 3 — Dot Matrix */}
+        {/* PATTERN 3 — Dot Grid */}
         <div
-          className="absolute inset-0 opacity-[0.12]"
+          className="absolute inset-0 opacity-[0.2]"
           style={{
-            backgroundImage: `radial-gradient(circle, rgba(139,92,246,0.5) 1px, transparent 1px)`,
-            backgroundSize: "32px 32px",
+            backgroundImage: `radial-gradient(circle, rgba(139,92,246,0.45) 1.2px, transparent 1.2px)`,
+            backgroundSize: "28px 28px",
           }}
         />
 
-        {/* PATTERN 4 — Large Circle Rings */}
-        <svg className="absolute inset-0 w-full h-full opacity-[0.05]">
+        {/* PATTERN 4 — Concentric Circle Rings */}
+        <svg className="absolute inset-0 w-full h-full opacity-[0.08]">
           <defs>
-            <pattern id="circles" x="0" y="0" width="120" height="120" patternUnits="userSpaceOnUse">
-              <circle cx="60" cy="60" r="40" fill="none" stroke="rgba(139,92,246,1)" strokeWidth="0.5" />
-              <circle cx="60" cy="60" r="20" fill="none" stroke="rgba(59,130,246,1)" strokeWidth="0.3" />
-              <circle cx="60" cy="60" r="2" fill="rgba(139,92,246,0.5)" />
+            <pattern id="circles" x="0" y="0" width="100" height="100" patternUnits="userSpaceOnUse">
+              <circle cx="50" cy="50" r="35" fill="none" stroke="#8B5CF6" strokeWidth="0.5" />
+              <circle cx="50" cy="50" r="18" fill="none" stroke="#6366F1" strokeWidth="0.4" />
+              <circle cx="50" cy="50" r="2" fill="rgba(139,92,246,0.4)" />
             </pattern>
           </defs>
           <rect width="100%" height="100%" fill="url(#circles)" />
         </svg>
 
-        {/* PATTERN 5 — Triangular Mesh */}
-        <svg className="absolute inset-0 w-full h-full opacity-[0.04]">
+        {/* PATTERN 5 — Triangle Mesh */}
+        <svg className="absolute inset-0 w-full h-full opacity-[0.06]">
           <defs>
             <pattern id="triangles" x="0" y="0" width="80" height="70" patternUnits="userSpaceOnUse">
-              <polygon points="40,0 80,70 0,70" fill="none" stroke="rgba(168,85,247,0.8)" strokeWidth="0.4" />
-              <polygon points="40,70 0,0 80,0" fill="none" stroke="rgba(59,130,246,0.5)" strokeWidth="0.3" />
+              <polygon points="40,0 80,70 0,70" fill="none" stroke="#A78BFA" strokeWidth="0.5" />
+              <polygon points="40,70 0,0 80,0" fill="none" stroke="#818CF8" strokeWidth="0.4" />
             </pattern>
           </defs>
           <rect width="100%" height="100%" fill="url(#triangles)" />
         </svg>
 
-        {/* PATTERN 6 — Plus/Cross Signs */}
-        <svg className="absolute inset-0 w-full h-full opacity-[0.06]">
+        {/* PATTERN 6 — Plus/Cross Marks */}
+        <svg className="absolute inset-0 w-full h-full opacity-[0.12]">
           <defs>
-            <pattern id="crosses" x="0" y="0" width="50" height="50" patternUnits="userSpaceOnUse">
-              <line x1="25" y1="20" x2="25" y2="30" stroke="rgba(139,92,246,0.8)" strokeWidth="0.8" />
-              <line x1="20" y1="25" x2="30" y2="25" stroke="rgba(139,92,246,0.8)" strokeWidth="0.8" />
+            <pattern id="crosses" x="0" y="0" width="44" height="44" patternUnits="userSpaceOnUse">
+              <line x1="22" y1="18" x2="22" y2="26" stroke="#8B5CF6" strokeWidth="1" strokeLinecap="round" />
+              <line x1="18" y1="22" x2="26" y2="22" stroke="#8B5CF6" strokeWidth="1" strokeLinecap="round" />
             </pattern>
           </defs>
           <rect width="100%" height="100%" fill="url(#crosses)" />
         </svg>
 
-        {/* ANIMATED FLOATING GRID — moves slowly */}
-        <motion.div
-          animate={{ x: [0, 30, 0], y: [0, -20, 0] }}
-          transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-          className="absolute inset-[-50px] opacity-[0.06]"
+        {/* PATTERN 7 — Square Grid (main visible grid) */}
+        <div
+          className="absolute inset-0 opacity-[0.12]"
+          style={{
+            backgroundImage: `
+              linear-gradient(rgba(139,92,246,0.35) 1px, transparent 1px),
+              linear-gradient(90deg, rgba(139,92,246,0.35) 1px, transparent 1px)
+            `,
+            backgroundSize: "60px 60px",
+          }}
+        />
+
+        {/* PATTERN 8 — Fine Sub Grid */}
+        <div
+          className="absolute inset-0 opacity-[0.06]"
           style={{
             backgroundImage: `
               linear-gradient(rgba(139,92,246,0.3) 1px, transparent 1px),
               linear-gradient(90deg, rgba(139,92,246,0.3) 1px, transparent 1px)
             `,
-            backgroundSize: "80px 80px",
+            backgroundSize: "20px 20px",
           }}
         />
 
-        {/* GLOWING ORBIT RINGS */}
+        {/* ANIMATED — Slow Moving Grid Overlay */}
+        <motion.div
+          animate={{ x: [0, 30, 0], y: [0, -20, 0] }}
+          transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
+          className="absolute inset-[-60px] opacity-[0.04]"
+          style={{
+            backgroundImage: `
+              linear-gradient(rgba(139,92,246,0.5) 1px, transparent 1px),
+              linear-gradient(90deg, rgba(139,92,246,0.5) 1px, transparent 1px)
+            `,
+            backgroundSize: "90px 90px",
+          }}
+        />
+
+        {/* ANIMATED — Rotating Orbit Rings */}
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
           <motion.div
             animate={{ rotate: 360 }}
             transition={{ duration: 60, repeat: Infinity, ease: "linear" }}
-            className="w-[700px] h-[700px] rounded-full border opacity-[0.06]"
-            style={{ borderColor: "rgba(139,92,246,0.5)" }}
+            className="w-[600px] h-[600px] rounded-full opacity-[0.08]"
+            style={{ border: "1px solid rgba(139,92,246,0.6)" }}
           />
         </div>
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
           <motion.div
             animate={{ rotate: -360 }}
             transition={{ duration: 80, repeat: Infinity, ease: "linear" }}
-            className="w-[900px] h-[900px] rounded-full border opacity-[0.04]"
-            style={{ borderColor: "rgba(59,130,246,0.5)" }}
+            className="w-[850px] h-[850px] rounded-full opacity-[0.05]"
+            style={{ border: "1px solid rgba(99,102,241,0.5)" }}
           />
         </div>
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
           <motion.div
             animate={{ rotate: 360 }}
             transition={{ duration: 100, repeat: Infinity, ease: "linear" }}
-            className="w-[1100px] h-[1100px] rounded-full opacity-[0.03]"
-            style={{ border: "1px dashed rgba(168,85,247,0.4)" }}
+            className="w-[1050px] h-[1050px] rounded-full opacity-[0.03]"
+            style={{ border: "1.5px dashed rgba(168,85,247,0.4)" }}
           />
         </div>
 
-        {/* GLOWING HORIZONTAL SCAN LINES */}
+        {/* ANIMATED — Scanning Horizontal Line */}
         <motion.div
-          animate={{ y: ["-100%", "200%"] }}
-          transition={{ duration: 8, repeat: Infinity, ease: "linear" }}
-          className="absolute left-0 right-0 h-[1px]"
+          animate={{ y: ["-10%", "110%"] }}
+          transition={{ duration: 10, repeat: Infinity, ease: "linear" }}
+          className="absolute left-0 right-0 h-[2px]"
           style={{
             background:
-              "linear-gradient(90deg, transparent, rgba(139,92,246,0.3) 20%, rgba(139,92,246,0.6) 50%, rgba(139,92,246,0.3) 80%, transparent)",
-          }}
-        />
-        <motion.div
-          animate={{ y: ["200%", "-100%"] }}
-          transition={{ duration: 12, repeat: Infinity, ease: "linear", delay: 4 }}
-          className="absolute left-0 right-0 h-[1px]"
-          style={{
-            background:
-              "linear-gradient(90deg, transparent, rgba(59,130,246,0.2) 20%, rgba(59,130,246,0.4) 50%, rgba(59,130,246,0.2) 80%, transparent)",
+              "linear-gradient(90deg, transparent 0%, rgba(139,92,246,0.15) 20%, rgba(139,92,246,0.35) 50%, rgba(139,92,246,0.15) 80%, transparent 100%)",
+            boxShadow: "0 0 15px rgba(139,92,246,0.1)",
           }}
         />
 
-        {/* AMBIENT GLOW BLOBS */}
+        {/* AMBIENT — Soft Color Blobs */}
         <div
-          className="absolute top-[-150px] left-[-150px] w-[700px] h-[700px] rounded-full"
+          className="absolute top-[-100px] left-[-100px] w-[600px] h-[600px] rounded-full"
           style={{
-            background: "radial-gradient(circle, rgba(139,92,246,0.1) 0%, transparent 65%)",
-            filter: "blur(60px)",
+            background: "radial-gradient(circle, rgba(139,92,246,0.08) 0%, transparent 60%)",
+            filter: "blur(50px)",
           }}
         />
         <div
-          className="absolute bottom-[-150px] right-[-150px] w-[700px] h-[700px] rounded-full"
+          className="absolute bottom-[-100px] right-[-100px] w-[600px] h-[600px] rounded-full"
           style={{
-            background: "radial-gradient(circle, rgba(59,130,246,0.08) 0%, transparent 65%)",
-            filter: "blur(60px)",
+            background: "radial-gradient(circle, rgba(99,102,241,0.06) 0%, transparent 60%)",
+            filter: "blur(50px)",
           }}
         />
         <div
-          className="absolute top-[30%] left-[50%] w-[400px] h-[400px] rounded-full"
+          className="absolute top-[35%] left-[55%] w-[400px] h-[400px] rounded-full"
           style={{
-            background: "radial-gradient(circle, rgba(168,85,247,0.06) 0%, transparent 65%)",
-            filter: "blur(80px)",
+            background: "radial-gradient(circle, rgba(168,85,247,0.05) 0%, transparent 60%)",
+            filter: "blur(70px)",
           }}
         />
 
-        {/* EDGE VIGNETTE */}
+        {/* EDGE VIGNETTE — fades patterns toward edges */}
         <div
           className="absolute inset-0"
           style={{
-            background: "radial-gradient(ellipse 80% 70% at 50% 50%, transparent 30%, #08080C 100%)",
+            background:
+              "radial-gradient(ellipse 85% 75% at 50% 50%, transparent 35%, rgba(255,255,255,0.7) 70%, white 100%)",
           }}
         />
       </div>
@@ -218,17 +234,11 @@ export function Hero() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.3, duration: 0.8 }}
-              className="inline-flex items-center gap-2.5 px-5 py-2.5 rounded-full w-fit text-sm font-medium backdrop-blur-md"
-              style={{
-                color: "rgba(196,167,255,1)",
-                border: "1px solid rgba(139,92,246,0.3)",
-                background: "rgba(139,92,246,0.08)",
-                boxShadow: "0 0 20px rgba(139,92,246,0.1), inset 0 1px 0 rgba(255,255,255,0.05)",
-              }}
+              className="inline-flex items-center gap-2.5 px-5 py-2.5 rounded-full w-fit text-sm font-semibold bg-violet-50 text-violet-700 border border-violet-200 shadow-sm"
             >
               <span className="relative flex h-2 w-2">
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-violet-400 opacity-75"></span>
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-violet-400"></span>
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-violet-500"></span>
               </span>
               Full Stack Developer · AIML Student
             </motion.div>
@@ -240,13 +250,8 @@ export function Hero() {
               transition={{ delay: 0.5, duration: 0.8 }}
               className="text-5xl md:text-7xl lg:text-8xl font-space font-bold leading-[1.05] tracking-tighter"
             >
-              <span className="text-white">Hi, I'm</span> <br />
-              <span
-                className="text-transparent bg-clip-text"
-                style={{
-                  backgroundImage: "linear-gradient(135deg, #A78BFA 0%, #818CF8 30%, #60A5FA 60%, #C084FC 100%)",
-                }}
-              >
+              <span className="text-gray-900">Hi, I'm</span> <br />
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-violet-600 via-purple-600 to-indigo-600">
                 Dharani Govardhan
               </span>
             </motion.h1>
@@ -256,8 +261,7 @@ export function Hero() {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.7, duration: 0.8 }}
-              className="text-lg md:text-xl font-sans leading-relaxed max-w-xl"
-              style={{ color: "rgba(156,163,175,1)" }}
+              className="text-lg md:text-xl text-gray-500 font-sans leading-relaxed max-w-xl"
             >
               I'm a first-year AIML student and full stack developer who builds
               modern, responsive, and real-world web applications with a focus on
@@ -273,30 +277,16 @@ export function Hero() {
             >
               <a
                 href="#projects"
-                className="group relative inline-flex items-center gap-2 px-8 py-4 rounded-full font-bold overflow-hidden transition-all text-[15px] text-white"
-                style={{
-                  background: "linear-gradient(135deg, #7C3AED, #6366F1, #7C3AED)",
-                  backgroundSize: "200% 200%",
-                  boxShadow: "0 0 25px rgba(124,58,237,0.4), 0 0 80px rgba(124,58,237,0.12)",
-                }}
+                className="group relative inline-flex items-center gap-2 px-8 py-4 rounded-full font-bold overflow-hidden transition-all text-[15px] text-white bg-gradient-to-r from-violet-600 to-indigo-600 shadow-lg shadow-violet-200 hover:shadow-xl hover:shadow-violet-300 hover:scale-[1.02] active:scale-[0.98]"
               >
                 <span className="relative z-10 flex items-center gap-2">
                   View Projects
                   <ArrowRight size={18} className="group-hover:translate-x-1.5 transition-transform" />
                 </span>
-                <div
-                  className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                  style={{ background: "linear-gradient(135deg, #6D28D9, #4F46E5, #6D28D9)" }}
-                />
               </a>
               <a
                 href="#contact"
-                className="inline-flex items-center gap-2 px-8 py-4 rounded-full font-bold text-[15px] transition-all duration-300 hover:border-violet-500/50 hover:text-white backdrop-blur-md"
-                style={{
-                  color: "rgba(209,213,219,1)",
-                  border: "1px solid rgba(75,85,99,0.5)",
-                  background: "rgba(255,255,255,0.03)",
-                }}
+                className="inline-flex items-center gap-2 px-8 py-4 rounded-full font-bold text-[15px] text-gray-700 bg-white border border-gray-200 shadow-sm hover:border-violet-300 hover:text-violet-700 hover:shadow-md transition-all duration-300 hover:scale-[1.02] active:scale-[0.98]"
               >
                 Contact Me
               </a>
@@ -316,64 +306,57 @@ export function Hero() {
                 rotateY: [-12, -5, -12],
               }}
               transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
-              className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-80 lg:w-96 h-96 rounded-[2.5rem] p-8 flex flex-col justify-between z-20"
-              style={{
-                background: "rgba(255,255,255,0.02)",
-                border: "1px solid rgba(139,92,246,0.2)",
-                boxShadow:
-                  "0 0 0 1px rgba(139,92,246,0.05), 0 40px 100px rgba(0,0,0,0.6), inset 0 1px 0 rgba(255,255,255,0.05)",
-                backdropFilter: "blur(24px)",
-              }}
+              className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-80 lg:w-96 h-96 rounded-[2.5rem] p-8 flex flex-col justify-between z-20 bg-white/80 backdrop-blur-xl border border-gray-200/80 shadow-[0_30px_80px_rgba(139,92,246,0.1),0_10px_30px_rgba(0,0,0,0.05)]"
             >
-              {/* Inner pattern on card */}
+              {/* Inner dot pattern on card */}
               <div
-                className="absolute inset-0 rounded-[2.5rem] opacity-[0.03]"
+                className="absolute inset-0 rounded-[2.5rem] opacity-[0.04]"
                 style={{
                   backgroundImage: `radial-gradient(circle, rgba(139,92,246,0.8) 1px, transparent 1px)`,
-                  backgroundSize: "16px 16px",
+                  backgroundSize: "14px 14px",
                 }}
               />
 
               {/* Card Top Bar */}
-              <div className="flex items-center justify-between pb-4 relative z-10" style={{ borderBottom: "1px solid rgba(255,255,255,0.06)" }}>
+              <div className="flex items-center justify-between pb-4 border-b border-gray-100 relative z-10">
                 <div className="flex gap-2">
-                  <div className="w-3 h-3 rounded-full" style={{ background: "rgba(239,68,68,0.5)" }} />
-                  <div className="w-3 h-3 rounded-full" style={{ background: "rgba(245,158,11,0.5)" }} />
-                  <div className="w-3 h-3 rounded-full" style={{ background: "rgba(16,185,129,0.5)" }} />
+                  <div className="w-3 h-3 rounded-full bg-red-400" />
+                  <div className="w-3 h-3 rounded-full bg-amber-400" />
+                  <div className="w-3 h-3 rounded-full bg-emerald-400" />
                 </div>
-                <Terminal className="w-5 h-5" style={{ color: "rgba(167,139,250,0.8)" }} />
+                <Terminal className="w-5 h-5 text-violet-500" />
               </div>
 
               {/* Code Block */}
               <div className="flex-1 py-6 font-mono text-sm space-y-2 relative z-10">
                 <p>
-                  <span style={{ color: "#C084FC" }}>const</span>{" "}
-                  <span style={{ color: "#93C5FD" }}>dharani</span>{" "}
-                  <span style={{ color: "rgba(107,114,128,0.8)" }}>= {"{"}</span>
+                  <span className="text-violet-600">const</span>{" "}
+                  <span className="text-blue-600">dharani</span>{" "}
+                  <span className="text-gray-400">= {"{"}</span>
                 </p>
-                <div className="pl-4 ml-1" style={{ borderLeft: "2px solid rgba(139,92,246,0.15)" }}>
+                <div className="pl-4 ml-1 border-l-2 border-violet-100">
                   <p>
-                    <span style={{ color: "rgba(156,163,175,0.7)" }}>name:</span>{" "}
-                    <span style={{ color: "#6EE7B7" }}>"Dharani G."</span>
-                    <span style={{ color: "rgba(107,114,128,0.5)" }}>,</span>
+                    <span className="text-gray-500">name:</span>{" "}
+                    <span className="text-emerald-600">"Dharani G."</span>
+                    <span className="text-gray-300">,</span>
                   </p>
                   <p>
-                    <span style={{ color: "rgba(156,163,175,0.7)" }}>role:</span>{" "}
-                    <span style={{ color: "#6EE7B7" }}>"Full Stack"</span>
-                    <span style={{ color: "rgba(107,114,128,0.5)" }}>,</span>
+                    <span className="text-gray-500">role:</span>{" "}
+                    <span className="text-emerald-600">"Full Stack"</span>
+                    <span className="text-gray-300">,</span>
                   </p>
                   <p>
-                    <span style={{ color: "rgba(156,163,175,0.7)" }}>aiml:</span>{" "}
-                    <span style={{ color: "#C084FC" }}>true</span>
-                    <span style={{ color: "rgba(107,114,128,0.5)" }}>,</span>
+                    <span className="text-gray-500">aiml:</span>{" "}
+                    <span className="text-violet-600">true</span>
+                    <span className="text-gray-300">,</span>
                   </p>
                 </div>
-                <p style={{ color: "rgba(107,114,128,0.8)" }}>{"}"}</p>
+                <p className="text-gray-400">{"}"}</p>
                 <p className="mt-4">
-                  <span style={{ color: "#C084FC" }}>await</span>{" "}
-                  <span style={{ color: "rgba(156,163,175,0.6)" }}>dharani.</span>
-                  <span style={{ color: "#93C5FD" }}>build</span>
-                  <span style={{ color: "rgba(107,114,128,0.5)" }}>();</span>
+                  <span className="text-violet-600">await</span>{" "}
+                  <span className="text-gray-500">dharani.</span>
+                  <span className="text-blue-600">build</span>
+                  <span className="text-gray-400">();</span>
                 </p>
               </div>
 
@@ -381,9 +364,9 @@ export function Hero() {
               <div
                 className="absolute inset-0 rounded-[2.5rem] -z-10"
                 style={{
-                  background: "radial-gradient(ellipse at center, rgba(139,92,246,0.12) 0%, transparent 70%)",
-                  filter: "blur(30px)",
-                  transform: "scale(1.2)",
+                  background: "radial-gradient(ellipse at center, rgba(139,92,246,0.06) 0%, transparent 70%)",
+                  filter: "blur(20px)",
+                  transform: "scale(1.15)",
                 }}
               />
             </motion.div>
@@ -392,55 +375,51 @@ export function Hero() {
             <motion.div
               animate={{ y: [0, 20, 0], x: [0, -10, 0] }}
               transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 1 }}
-              className="absolute top-10 right-0 lg:right-10 w-32 h-32 rounded-3xl flex items-center justify-center z-10"
-              style={{
-                background: "rgba(255,255,255,0.02)",
-                border: "1px solid rgba(59,130,246,0.2)",
-                boxShadow: "0 0 40px rgba(59,130,246,0.1), 0 20px 60px rgba(0,0,0,0.4)",
-                backdropFilter: "blur(16px)",
-              }}
+              className="absolute top-10 right-0 lg:right-10 w-32 h-32 rounded-3xl flex items-center justify-center z-10 bg-white/70 backdrop-blur-lg border border-gray-200/60 shadow-[0_20px_50px_rgba(59,130,246,0.08)]"
             >
-              <Code2 className="w-12 h-12" style={{ color: "rgba(147,197,253,0.8)" }} />
+              <Code2 className="w-12 h-12 text-blue-500" />
             </motion.div>
 
             {/* Floating Cpu Card */}
             <motion.div
               animate={{ y: [0, -30, 0], x: [0, 20, 0] }}
               transition={{ duration: 7, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
-              className="absolute bottom-10 left-0 lg:left-10 w-28 h-28 rounded-full flex items-center justify-center z-30"
-              style={{
-                background: "rgba(255,255,255,0.02)",
-                border: "1px solid rgba(249,115,22,0.2)",
-                boxShadow: "0 0 40px rgba(249,115,22,0.1), 0 20px 60px rgba(0,0,0,0.4)",
-                backdropFilter: "blur(16px)",
-              }}
+              className="absolute bottom-10 left-0 lg:left-10 w-28 h-28 rounded-full flex items-center justify-center z-30 bg-white/70 backdrop-blur-lg border border-gray-200/60 shadow-[0_20px_50px_rgba(249,115,22,0.08)]"
             >
-              <Cpu className="w-10 h-10" style={{ color: "rgba(251,146,60,0.8)" }} />
+              <Cpu className="w-10 h-10 text-orange-500" />
             </motion.div>
 
-            {/* Small floating particles */}
-            {[...Array(6)].map((_, i) => (
+            {/* Floating Particles */}
+            {[...Array(8)].map((_, i) => (
               <motion.div
                 key={i}
                 animate={{
                   y: [0, Math.random() * 40 - 20, 0],
                   x: [0, Math.random() * 30 - 15, 0],
-                  opacity: [0.3, 0.8, 0.3],
+                  opacity: [0.2, 0.6, 0.2],
                 }}
                 transition={{
                   duration: 3 + Math.random() * 4,
                   repeat: Infinity,
                   ease: "easeInOut",
-                  delay: i * 0.5,
+                  delay: i * 0.4,
                 }}
-                className="absolute w-1.5 h-1.5 rounded-full"
+                className="absolute rounded-full"
                 style={{
-                  top: `${20 + Math.random() * 60}%`,
-                  left: `${10 + Math.random() * 80}%`,
-                  background: i % 2 === 0 ? "rgba(139,92,246,0.6)" : "rgba(59,130,246,0.6)",
-                  boxShadow: i % 2 === 0
-                    ? "0 0 8px rgba(139,92,246,0.4)"
-                    : "0 0 8px rgba(59,130,246,0.4)",
+                  width: `${4 + Math.random() * 4}px`,
+                  height: `${4 + Math.random() * 4}px`,
+                  top: `${15 + Math.random() * 70}%`,
+                  left: `${5 + Math.random() * 90}%`,
+                  background: i % 3 === 0
+                    ? "rgba(139,92,246,0.5)"
+                    : i % 3 === 1
+                    ? "rgba(99,102,241,0.4)"
+                    : "rgba(59,130,246,0.4)",
+                  boxShadow: i % 3 === 0
+                    ? "0 0 10px rgba(139,92,246,0.3)"
+                    : i % 3 === 1
+                    ? "0 0 10px rgba(99,102,241,0.25)"
+                    : "0 0 10px rgba(59,130,246,0.25)",
                 }}
               />
             ))}
