@@ -14,7 +14,7 @@ const skillCategories = [
   {
     title: "Backend Engineering",
     icon: Database,
-    image: "https://images.unsplash.com/photo-1555066931-bf19f8fd1085?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTl8fGxhcHRvcCUyMHdpdGglMjBjb2Rpbmd8ZW58MHx8MHx8fDA%3D", 
+    image: "https://images.unsplash.com/photo-1618477388954-7852f32655ec?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8QkFDS0VORCUyMEVOR0lORUVSSU5HfGVufDB8fDB8fHww", 
     skills: ["Bun.js", "Node.js", "PostgreSQL", "Drizzle ORM", "Redis"],
   },
   {
@@ -45,7 +45,7 @@ const skillCategories = [
   {
     title: "MLOps & Tools",
     icon: Cpu,
-    image: "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=800&q=80", 
+    image: "https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8dGVjaE5PTE9HWSUyMHRvb2xzfGVufDB8fDB8fHww", 
     skills: ["FastAPI", "Docker", "Git/GitHub", "Streamlit", "Model Training"],
   },
   {
