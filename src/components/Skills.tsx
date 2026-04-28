@@ -8,7 +8,7 @@ const skillCategories = [
   {
     title: "Frontend Development",
     icon: Layout,
-    image: "https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=800&q=80", 
+    image: "https://media.istockphoto.com/id/1251148255/photo/relax-working-online-business-holding-coffee-cup-on-the-desk-to-work.webp?a=1&b=1&s=612x612&w=0&k=20&c=jN_ktV5bbbjFaEKImP6JEctbBtEpHg3mMhns4p4Bi90=", 
     skills: ["Next.js 15", "React 19", "TypeScript", "Tailwind CSS", "Framer Motion"],
   },
   {
@@ -20,7 +20,7 @@ const skillCategories = [
   {
     title: "Full Stack Architecture",
     icon: Layers,
-    image: "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?auto=format&fit=crop&w=800&q=80", 
+    image: "https://images.unsplash.com/photo-1602992708529-c9fdb12905c9?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NDN8fGZ1bGwlMjBzdGFjayUyMGRldmVsb3BlcnxlbnwwfHwwfHx8MA%3D%3D", 
     skills: ["T3 Stack", "Server Actions", "Auth.js", "Supabase", "TRPC"],
   },
   {
