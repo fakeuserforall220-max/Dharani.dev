@@ -1,5 +1,5 @@
 import { motion, useScroll, useTransform } from "framer-motion";
-import { ArrowRight, ChevronRight } from "lucide-react";
+import { ArrowRight, Terminal, Code2, Cpu, ChevronRight } from "lucide-react";
 import { useRef } from "react";
 
 export function Hero() {
@@ -9,123 +9,157 @@ export function Hero() {
     offset: ["start start", "end start"],
   });
 
-  const y = useTransform(scrollYProgress, [0, 1], [0, 150]);
+  const y1 = useTransform(scrollYProgress, [0, 1], [0, 200]);
+  const opacity = useTransform(scrollYProgress, [0, 0.8], [1, 0]);
 
   return (
     <section
-      ref={containerRef}
       id="home"
-      className="relative min-h-screen bg-white flex flex-col"
+      ref={containerRef}
+      className="relative min-h-screen flex flex-col justify-center overflow-hidden bg-white"
     >
-      {/* 1. BLACK HEADER BLOCK */}
-      <div className="bg-[#111] w-full pt-40 pb-20 px-6">
-        <div className="container mx-auto">
+      {/* ============ PHOTO STYLE BACKGROUND (GRIDS + SPLIT) ============ */}
+      <div className="absolute inset-0 z-0 pointer-events-none">
+        {/* Black Top Header Block from photo */}
+        <div className="h-[45vh] w-full bg-[#111] relative overflow-hidden">
+             {/* Large Watermark Text like the Photo */}
+             <h1 className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-[15vw] font-black text-white/5 tracking-[0.4em] pointer-events-none uppercase">
+                TYPING
+             </h1>
+             
+             {/* Your Original Honeycomb Pattern (on black) */}
+             <svg className="absolute inset-0 w-full h-full opacity-[0.05]">
+              <pattern id="honeycomb-dark" x="0" y="0" width="56" height="100" patternUnits="userSpaceOnUse" patternTransform="scale(1.5)">
+                <path d="M28 66L0 50L0 16L28 0L56 16L56 50L28 66L28 100" fill="none" stroke="white" strokeWidth="0.6" />
+              </pattern>
+              <rect width="100%" height="100%" fill="url(#honeycomb-dark)" />
+            </svg>
+        </div>
+
+        {/* The "Like Never Before" White Bar from photo */}
+        <div className="h-16 w-full bg-white border-y border-gray-100 flex items-center px-10">
+            <div className="text-[10px] font-bold tracking-[0.5em] text-gray-300 uppercase">
+                MECHANICAL • WIRELESS • HOT-SWAPPABLE
+            </div>
+        </div>
+
+        {/* Your Original Patterns (Layered on the white part) */}
+        <div className="absolute inset-0 top-[50vh]">
+            <div className="absolute inset-0 opacity-[0.03]" style={{ backgroundImage: `repeating-linear-gradient(45deg, transparent, transparent 35px, #8B5CF6 35px, #8B5CF6 36px)` }} />
+            <div className="absolute inset-0 opacity-[0.1]" style={{ backgroundImage: `radial-gradient(circle, #8B5CF6 1.2px, transparent 1.2px)`, backgroundSize: "28px 28px" }} />
+            <div className="absolute inset-0 opacity-[0.05]" style={{ backgroundImage: `linear-gradient(#8B5CF6 1px, transparent 1px), linear-gradient(90deg, #8B5CF6 1px, transparent 1px)`, backgroundSize: "60px 60px" }} />
+        </div>
+
+        {/* Your Original Animated Scanning Line */}
+        <motion.div
+          animate={{ y: ["-10%", "110%"] }}
+          transition={{ duration: 10, repeat: Infinity, ease: "linear" }}
+          className="absolute left-0 right-0 h-[1px] bg-violet-500/20 z-10"
+        />
+      </div>
+
+      {/* ============ CONTENT (SAME AS YOUR OLD CODE) ============ */}
+      <div className="container mx-auto px-6 md:px-12 relative z-10">
+        <div className="grid lg:grid-cols-2 gap-12 items-center">
+
+          {/* Left Content (Unchanged) */}
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            className="flex flex-col items-center"
-          >
-            {/* Main Bold Title */}
-            <h1 className="text-white text-6xl md:text-8xl lg:text-[120px] font-black tracking-[0.3em] md:tracking-[0.6em] text-center uppercase ml-[0.3em] md:ml-[0.6em]">
-              TYPING
-            </h1>
-          </motion.div>
-        </div>
-      </div>
-
-      {/* 2. WHITE STRIP WITH SUBTITLE */}
-      <div className="w-full bg-white border-y border-gray-100 py-6 px-6">
-        <motion.div 
-           initial={{ opacity: 0 }}
-           animate={{ opacity: 1 }}
-           transition={{ delay: 0.4 }}
-           className="container mx-auto flex flex-col md:flex-row justify-between items-center gap-4"
-        >
-          <h2 className="text-black text-xl md:text-2xl font-bold tracking-[0.4em] uppercase">
-            LIKE NEVER BEFORE
-          </h2>
-          <div className="flex gap-8 text-[10px] font-bold tracking-widest text-gray-400 uppercase">
-             <span>Mechanical</span>
-             <span>Wireless</span>
-             <span>Hot-swappable</span>
-          </div>
-        </motion.div>
-      </div>
-
-      {/* 3. MAIN CONTENT AREA */}
-      <div className="container mx-auto px-6 py-20 flex-grow">
-        <div className="grid lg:grid-cols-2 gap-16 items-center">
-          
-          {/* Left Side: Content */}
-          <motion.div 
-            initial={{ opacity: 0, x: -30 }}
+            initial={{ opacity: 0, x: -50 }}
             animate={{ opacity: 1, x: 0 }}
-            transition={{ delay: 0.6, duration: 0.8 }}
-            className="space-y-8"
+            transition={{ duration: 1, delay: 0.2 }}
+            className="flex flex-col gap-6 md:gap-8 max-w-2xl"
+            style={{ opacity }}
           >
-            <div className="space-y-4">
-               <h3 className="text-4xl md:text-5xl font-bold leading-tight text-gray-900">
-                The Portfolio <br />
-                Meet All You <br />
-                Need
-              </h3>
-              <p className="text-gray-500 max-w-md leading-relaxed text-sm tracking-wide">
-                Dharani Govardhan. First-year AIML student and full stack developer. 
-                Building high-performance interfaces with surgical precision and 
-                minimalist aesthetics.
-              </p>
-            </div>
-
-            <div className="flex flex-wrap gap-4">
-              <a href="#projects" className="bg-black text-white px-8 py-3 text-xs font-bold tracking-widest uppercase hover:bg-gray-800 transition-colors flex items-center gap-2">
-                View Projects <ArrowRight size={14} />
-              </a>
-              <a href="#contact" className="border border-black text-black px-8 py-3 text-xs font-bold tracking-widest uppercase hover:bg-black hover:text-white transition-all flex items-center gap-2">
-                Contact <ChevronRight size={14} />
-              </a>
-            </div>
-          </motion.div>
-
-          {/* Right Side: Large Product Image Mockup */}
-          <motion.div 
-            style={{ y }}
-            className="relative"
-          >
-            <div className="aspect-[4/3] bg-gray-100 relative overflow-hidden group">
-               {/* Replace with your actual image */}
-               <img 
-                src="https://images.unsplash.com/photo-1511467687858-23d96c32e4ae?auto=format&fit=crop&q=80&w=1000" 
-                alt="Product"
-                className="w-full h-full object-cover mix-blend-multiply grayscale hover:grayscale-0 transition-all duration-700"
-               />
-               <div className="absolute inset-0 border-[20px] border-white/50 pointer-events-none" />
-            </div>
-            {/* Small floating detail card */}
-            <motion.div 
-              animate={{ y: [0, -10, 0] }}
-              transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-              className="absolute -bottom-8 -left-8 bg-white p-6 shadow-2xl border border-gray-100 hidden md:block"
+            <motion.div
+              className="inline-flex items-center gap-2.5 px-5 py-2.5 rounded-full w-fit text-sm font-semibold bg-white/10 backdrop-blur-md text-violet-400 border border-white/10 shadow-sm"
             >
-                <p className="text-[10px] font-black tracking-tighter text-orange-500 uppercase mb-1">Status</p>
-                <p className="text-lg font-bold">Open to Work</p>
+              <span className="relative flex h-2 w-2">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-violet-400 opacity-75"></span>
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-violet-500"></span>
+              </span>
+              Full Stack Developer · AIML Student
             </motion.div>
-          </motion.div>
-        </div>
-      </div>
 
-      {/* 4. "USED BY" / LOGO BAR */}
-      <div className="border-t border-gray-100 py-10 bg-gray-50/50">
-        <div className="container mx-auto px-6">
-          <p className="text-center text-[10px] font-bold tracking-[0.3em] text-gray-400 uppercase mb-8">Tech Stack & Tools</p>
-          <div className="flex flex-wrap justify-center items-center gap-8 md:gap-16 opacity-40 grayscale">
-            {/* Using simple text or icons to represent logos */}
-            <span className="font-bold text-xl tracking-tighter">REACT</span>
-            <span className="font-bold text-xl tracking-tighter">PYTHON</span>
-            <span className="font-bold text-xl tracking-tighter">TYPESCRIPT</span>
-            <span className="font-bold text-xl tracking-tighter">NEXT.JS</span>
-            <span className="font-bold text-xl tracking-tighter">TAILWIND</span>
-          </div>
+            <motion.h1
+              className="text-5xl md:text-7xl lg:text-8xl font-space font-bold leading-[1.05] tracking-tighter"
+            >
+              <span className="text-gray-900 md:text-white lg:text-gray-900 transition-colors">Hi, I'm</span> <br />
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-violet-600 via-purple-600 to-indigo-600">
+                Dharani Govardhan
+              </span>
+            </motion.h1>
+
+            <motion.p className="text-lg md:text-xl text-gray-500 font-sans leading-relaxed max-w-xl">
+              I'm a first-year AIML student and full stack developer who builds
+              modern, responsive, and real-world web applications.
+            </motion.p>
+
+            <div className="flex flex-wrap items-center gap-4 pt-4">
+              <a href="#projects" className="group relative inline-flex items-center gap-2 px-8 py-4 rounded-full font-bold overflow-hidden transition-all text-[15px] text-white bg-black shadow-lg hover:scale-[1.02] active:scale-[0.98]">
+                View Projects <ArrowRight size={18} />
+              </a>
+              <a href="#contact" className="inline-flex items-center gap-2 px-8 py-4 rounded-full font-bold text-[15px] text-gray-700 bg-white border border-gray-200 hover:border-violet-300 transition-all hover:scale-[1.02]">
+                Contact Me
+              </a>
+            </div>
+          </motion.div>
+
+          {/* Right Visual (Updated with Keyboard from Photo) */}
+          <motion.div
+            className="relative h-[400px] sm:h-[500px] lg:h-[600px] w-full flex items-center justify-center"
+            style={{ y: y1 }}
+          >
+            {/* The Keyboard Image Visual */}
+            <motion.div 
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 1 }}
+              className="relative z-20 w-full"
+            >
+               {/* Main Keyboard Image */}
+               <img 
+                src="https://www.keychron.com/cdn/shop/files/Keychron-K6-wireless-mechanical-keyboard-for-mac-windows-white-backlight-gateron-brown-switch_1800x1800.jpg?v=1661933550" 
+                alt="Mechanical Keyboard"
+                className="w-full h-auto drop-shadow-[0_50px_50px_rgba(0,0,0,0.15)] rounded-lg"
+               />
+               
+               {/* Floating Code Overlay (Combining your old UI style) */}
+               <motion.div
+                  animate={{ y: [0, -15, 0] }}
+                  transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
+                  className="absolute -top-10 -right-4 bg-white/90 backdrop-blur-md p-4 rounded-xl border border-gray-200 shadow-xl hidden md:block"
+                >
+                  <div className="flex gap-1.5 mb-2">
+                    <div className="w-2 h-2 rounded-full bg-red-400" />
+                    <div className="w-2 h-2 rounded-full bg-amber-400" />
+                    <div className="w-2 h-2 rounded-full bg-emerald-400" />
+                  </div>
+                  <pre className="text-[10px] font-mono text-violet-600">
+                    <code>{`System.init("Dharani")`}</code>
+                  </pre>
+               </motion.div>
+            </motion.div>
+
+            {/* Your Original Floating Icons (Repositioned) */}
+            <motion.div
+              animate={{ y: [0, 20, 0] }}
+              transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 1 }}
+              className="absolute top-10 right-0 w-20 h-20 rounded-2xl flex items-center justify-center z-30 bg-white/80 backdrop-blur-md border border-gray-100 shadow-xl"
+            >
+              <Code2 className="w-8 h-8 text-blue-500" />
+            </motion.div>
+
+            {/* Your Original Particles */}
+            {[...Array(5)].map((_, i) => (
+              <motion.div
+                key={i}
+                animate={{ y: [0, -30, 0], opacity: [0.2, 0.5, 0.2] }}
+                transition={{ duration: 3 + i, repeat: Infinity }}
+                className="absolute w-2 h-2 bg-violet-400 rounded-full"
+                style={{ top: `${20 * i}%`, left: `${10 * i}%` }}
+              />
+            ))}
+          </motion.div>
         </div>
       </div>
     </section>
