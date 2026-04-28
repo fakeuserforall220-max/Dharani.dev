@@ -14,7 +14,7 @@ const skillCategories = [
   {
     title: "Backend Engineering",
     icon: Database,
-    image: "https://images.unsplash.com/photo-1558494949-ef010cbdcc48?auto=format&fit=crop&w=800&q=80", 
+    image: "https://images.unsplash.com/photo-1555066931-bf19f8fd1085?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTl8fGxhcHRvcCUyMHdpdGglMjBjb2Rpbmd8ZW58MHx8MHx8fDA%3D", 
     skills: ["Bun.js", "Node.js", "PostgreSQL", "Drizzle ORM", "Redis"],
   },
   {
