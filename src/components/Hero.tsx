@@ -18,57 +18,48 @@ export function Hero() {
       ref={containerRef}
       className="relative min-h-screen flex items-center justify-center pt-32 pb-20 overflow-hidden bg-[#FAFAFA]"
     >
-      {/* --- BLUEPRINT GRID BACKGROUND --- */}
+      {/* ============ BLUEPRINT GRID BACKGROUND ============ */}
       <div className="absolute inset-0 z-0 pointer-events-none">
-
-        {/* Large background grid - clearly visible */}
+        {/* Main Grid */}
         <div
           className="absolute inset-0"
           style={{
-            backgroundImage: `linear-gradient(#D1D5DB 1px, transparent 1px), linear-gradient(90deg, #D1D5DB 1px, transparent 1px)`,
+            backgroundImage: `linear-gradient(#E2E8F0 1px, transparent 1px), linear-gradient(90deg, #E2E8F0 1px, transparent 1px)`,
             backgroundSize: "60px 60px",
-            opacity: 0.6,
+            opacity: 0.7,
           }}
         />
-
-        {/* Smaller sub-grid for detail */}
+        {/* Sub-grid */}
         <div
           className="absolute inset-0"
           style={{
-            backgroundImage: `linear-gradient(#E5E7EB 1px, transparent 1px), linear-gradient(90deg, #E5E7EB 1px, transparent 1px)`,
+            backgroundImage: `linear-gradient(#F1F5F9 1px, transparent 1px), linear-gradient(90deg, #F1F5F9 1px, transparent 1px)`,
             backgroundSize: "20px 20px",
+            opacity: 0.5,
+          }}
+        />
+        {/* Intersection Dots */}
+        <div
+          className="absolute inset-0"
+          style={{
+            backgroundImage: `radial-gradient(circle, #CBD5E1 1px, transparent 1px)`,
+            backgroundSize: "60px 60px",
             opacity: 0.4,
           }}
         />
-
-        {/* Dot accent at intersections - optional extra detail */}
+        {/* Radial Edge Fade */}
         <div
           className="absolute inset-0"
           style={{
-            backgroundImage: `radial-gradient(circle, #9CA3AF 1px, transparent 1px)`,
-            backgroundSize: "60px 60px",
-            opacity: 0.3,
+            background: "radial-gradient(ellipse 80% 80% at 50% 50%, transparent 20%, #FAFAFA 100%)",
           }}
         />
-
-        {/* Radial fade — only fade edges, keep center visible */}
-        <div
-          className="absolute inset-0"
-          style={{
-            background:
-              "radial-gradient(ellipse 80% 80% at 50% 50%, transparent 40%, #FAFAFA 100%)",
-          }}
-        />
-
-        {/* Soft Ambient Globs — reduced opacity so grid shows through */}
-        <div className="absolute top-0 left-0 w-[500px] h-[500px] bg-violet-100/30 rounded-full blur-[120px]" />
-        <div className="absolute bottom-0 right-0 w-[500px] h-[500px] bg-blue-50/30 rounded-full blur-[120px]" />
       </div>
 
       <div className="container mx-auto px-6 md:px-12 relative z-10">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
 
-          {/* Left Content */}
+          {/* ============ LEFT CONTENT (ENHANCED COLORS) ============ */}
           <motion.div
             initial={{ opacity: 0, x: -50 }}
             animate={{ opacity: 1, x: 0 }}
@@ -76,126 +67,107 @@ export function Hero() {
             className="flex flex-col gap-6 md:gap-8 max-w-2xl"
             style={{ opacity }}
           >
-            {/* Status Badge */}
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white border border-gray-200 text-sm font-medium text-violet-600 w-fit shadow-sm">
+            {/* Status Badge - Refined Indigo/Slate */}
+            <div className="inline-flex items-center gap-2.5 px-4 py-2 rounded-full bg-white border border-slate-200 text-sm font-semibold text-indigo-600 w-fit shadow-sm">
               <span className="relative flex h-2 w-2">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-violet-400 opacity-75"></span>
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-violet-500"></span>
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-indigo-400 opacity-75"></span>
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-indigo-500"></span>
               </span>
               Full Stack Developer · AIML Student
             </div>
 
-            {/* Title */}
-            <h1 className="text-5xl md:text-7xl lg:text-8xl font-space font-bold leading-[1.1] tracking-tighter text-gray-900">
+            {/* Title - Slate 900 for "Hi, I'm" and a Sophisticated Gradient */}
+            <h1 className="text-6xl md:text-7xl lg:text-8xl font-space font-bold leading-[1.05] tracking-tighter text-slate-900">
               Hi, I'm <br />
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-violet-600 via-purple-600 to-blue-600">
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 via-violet-600 to-sky-500">
                 Dharani Govardhan
               </span>
             </h1>
 
-            {/* Description */}
-            <p className="text-lg md:text-xl text-gray-600 font-sans leading-relaxed max-w-xl">
-              I'm a first-year AIML student and full stack developer who builds modern,
-              responsive, and real-world web applications with a focus on clean design,
-              performance, and practical functionality.
+            {/* Description - Muted Slate for readability */}
+            <p className="text-lg md:text-xl text-slate-600 font-sans leading-relaxed max-w-xl">
+              I build high-performance, real-world web applications with a focus on 
+              clean design and practical AI integration.
             </p>
 
-            {/* Buttons */}
+            {/* Buttons - Black and Clean White */}
             <div className="flex flex-wrap items-center gap-4 pt-4">
               <a
                 href="#projects"
-                className="group relative inline-flex items-center gap-2 px-8 py-3.5 bg-gray-900 text-white rounded-full font-bold overflow-hidden transition-all hover:bg-black shadow-lg shadow-gray-200"
+                className="group relative inline-flex items-center gap-2 px-8 py-4 bg-slate-900 text-white rounded-full font-bold overflow-hidden transition-all hover:bg-black hover:scale-[1.02] shadow-xl shadow-slate-200"
               >
                 <span className="relative z-10 flex items-center gap-2 text-[15px]">
-                  View Projects{" "}
-                  <ArrowRight
-                    size={18}
-                    className="group-hover:translate-x-1 transition-transform"
-                  />
+                  View Projects <ArrowRight size={18} className="group-hover:translate-x-1.5 transition-transform" />
                 </span>
               </a>
               <a
                 href="#contact"
-                className="inline-flex items-center gap-2 px-8 py-3.5 bg-white border border-gray-200 rounded-full font-bold text-gray-900 text-[15px] hover:bg-gray-50 transition-all shadow-sm"
+                className="inline-flex items-center gap-2 px-8 py-4 bg-white border border-slate-200 rounded-full font-bold text-slate-700 text-[15px] hover:bg-slate-50 transition-all hover:border-slate-300 shadow-sm"
               >
                 Contact Me
               </a>
             </div>
           </motion.div>
 
-          {/* Right 3D Visual Scene */}
+          {/* ============ RIGHT VISUAL (KEYBOARD + GRID CARDS) ============ */}
           <motion.div
-            className="relative h-[400px] sm:h-[500px] lg:h-[600px] w-full perspective-1000 hidden md:block"
+            className="relative h-[400px] sm:h-[500px] lg:h-[600px] w-full hidden md:block"
             style={{ y: y1 }}
           >
-            {/* Center Main Card */}
-            <motion.div
-              animate={{
-                y: [0, -20, 0],
-                rotateX: [5, 12, 5],
-                rotateY: [-12, -5, -12],
-              }}
-              transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
-              className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-80 lg:w-96 h-96 bg-white rounded-[2.5rem] border border-gray-100 p-8 flex flex-col justify-between shadow-[0_30px_60px_rgba(0,0,0,0.06)] z-20 backdrop-blur-md"
+            {/* Keyboard Background Visual (Matches the Photo style) */}
+            <motion.div 
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 0.6, scale: 1 }}
+              transition={{ duration: 1.5 }}
+              className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[110%] pointer-events-none"
             >
-              <div className="flex items-center justify-between border-b border-gray-100 pb-4">
+              <img 
+                src="https://www.keychron.com/cdn/shop/files/Keychron-K6-wireless-mechanical-keyboard-for-mac-windows-white-backlight-gateron-brown-switch_1800x1800.jpg?v=1661933550" 
+                alt="Keyboard Background"
+                className="w-full h-auto grayscale contrast-125"
+              />
+            </motion.div>
+
+            {/* Center Main Card (Code Card) */}
+            <motion.div
+              animate={{ y: [0, -20, 0], rotateX: [5, 12, 5], rotateY: [-12, -5, -12] }}
+              transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
+              className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-80 lg:w-96 h-96 bg-white/90 backdrop-blur-xl rounded-[2.5rem] border border-slate-100 p-8 flex flex-col justify-between shadow-[0_30px_60px_rgba(0,0,0,0.08)] z-20"
+            >
+              <div className="flex items-center justify-between border-b border-slate-50 pb-4">
                 <div className="flex gap-2">
                   <div className="w-3 h-3 rounded-full bg-red-100" />
                   <div className="w-3 h-3 rounded-full bg-amber-100" />
                   <div className="w-3 h-3 rounded-full bg-emerald-100" />
                 </div>
-                <Terminal className="text-violet-500 w-5 h-5" />
+                <Terminal className="text-indigo-500 w-5 h-5" />
               </div>
 
-              <div className="flex-1 py-6 font-mono text-sm text-gray-600 space-y-2">
-                <p>
-                  <span className="text-violet-600">const</span>{" "}
-                  <span className="text-blue-600">dharani</span> = {"{"}
-                </p>
-                <div className="pl-4 border-l-2 border-gray-50 ml-1">
-                  <p>
-                    name: <span className="text-emerald-600">"Dharani G."</span>,
-                  </p>
-                  <p>
-                    role: <span className="text-emerald-600">"Full Stack"</span>,
-                  </p>
-                  <p>
-                    aiml: <span className="text-violet-600">true</span>,
-                  </p>
+              <div className="flex-1 py-6 font-mono text-sm text-slate-500 space-y-2">
+                <p><span className="text-indigo-600">const</span> <span className="text-sky-600">dharani</span> = {"{"}</p>
+                <div className="pl-4 border-l-2 border-slate-50 ml-1">
+                  <p>role: <span className="text-emerald-600">"Full Stack"</span>,</p>
+                  <p>focus: <span className="text-violet-600">"AIML"</span>,</p>
                 </div>
                 <p>{"}"};</p>
-                <p className="mt-4">
-                  <span className="text-violet-600">await</span>{" "}
-                  dharani.<span className="text-blue-600">build</span>();
-                </p>
               </div>
             </motion.div>
 
-            {/* Floating Elements */}
+            {/* Floating Tech Icons */}
             <motion.div
               animate={{ y: [0, 20, 0], x: [0, -10, 0] }}
-              transition={{
-                duration: 5,
-                repeat: Infinity,
-                ease: "easeInOut",
-                delay: 1,
-              }}
-              className="absolute top-10 right-0 lg:right-10 w-32 h-32 bg-white rounded-3xl border border-gray-50 flex items-center justify-center shadow-2xl z-10"
+              transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 1 }}
+              className="absolute top-10 right-0 w-28 h-28 bg-white rounded-3xl border border-slate-50 flex items-center justify-center shadow-2xl z-30"
             >
-              <Code2 className="w-12 h-12 text-blue-500" />
+              <Code2 className="w-10 h-10 text-sky-500" />
             </motion.div>
 
             <motion.div
               animate={{ y: [0, -30, 0], x: [0, 20, 0] }}
-              transition={{
-                duration: 7,
-                repeat: Infinity,
-                ease: "easeInOut",
-                delay: 0.5,
-              }}
-              className="absolute bottom-10 left-0 lg:left-10 w-28 h-28 bg-white rounded-full border border-gray-50 flex items-center justify-center shadow-2xl z-30"
+              transition={{ duration: 7, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
+              className="absolute bottom-10 left-0 w-24 h-24 bg-white rounded-full border border-slate-50 flex items-center justify-center shadow-2xl z-30"
             >
-              <Cpu className="w-10 h-10 text-orange-500" />
+              <Cpu className="w-8 h-8 text-indigo-500" />
             </motion.div>
           </motion.div>
         </div>
