@@ -20,26 +20,54 @@ export function Hero() {
     >
       {/* --- BLUEPRINT GRID BACKGROUND --- */}
       <div className="absolute inset-0 z-0 pointer-events-none">
-        {/* The Grid Lines */}
-        <div 
-          className="absolute inset-0 opacity-[0.4]" 
-          style={{ 
-            backgroundImage: `linear-gradient(#E5E7EB 1.5px, transparent 1.5px), linear-gradient(90deg, #E5E7EB 1.5px, transparent 1.5px)`,
-            backgroundSize: '45px 45px' 
+
+        {/* Large background grid - clearly visible */}
+        <div
+          className="absolute inset-0"
+          style={{
+            backgroundImage: `linear-gradient(#D1D5DB 1px, transparent 1px), linear-gradient(90deg, #D1D5DB 1px, transparent 1px)`,
+            backgroundSize: "60px 60px",
+            opacity: 0.6,
           }}
         />
-        
-        {/* Radial Mask */}
-        <div className="absolute inset-0 bg-[#FAFAFA] [mask-image:radial-gradient(ellipse_at_center,transparent_20%,black)]" />
 
-        {/* Soft Ambient Globs */}
-        <div className="absolute top-0 left-0 w-[500px] h-[500px] bg-violet-100/50 rounded-full blur-[120px]" />
-        <div className="absolute bottom-0 right-0 w-[500px] h-[500px] bg-blue-50/50 rounded-full blur-[120px]" />
+        {/* Smaller sub-grid for detail */}
+        <div
+          className="absolute inset-0"
+          style={{
+            backgroundImage: `linear-gradient(#E5E7EB 1px, transparent 1px), linear-gradient(90deg, #E5E7EB 1px, transparent 1px)`,
+            backgroundSize: "20px 20px",
+            opacity: 0.4,
+          }}
+        />
+
+        {/* Dot accent at intersections - optional extra detail */}
+        <div
+          className="absolute inset-0"
+          style={{
+            backgroundImage: `radial-gradient(circle, #9CA3AF 1px, transparent 1px)`,
+            backgroundSize: "60px 60px",
+            opacity: 0.3,
+          }}
+        />
+
+        {/* Radial fade — only fade edges, keep center visible */}
+        <div
+          className="absolute inset-0"
+          style={{
+            background:
+              "radial-gradient(ellipse 80% 80% at 50% 50%, transparent 40%, #FAFAFA 100%)",
+          }}
+        />
+
+        {/* Soft Ambient Globs — reduced opacity so grid shows through */}
+        <div className="absolute top-0 left-0 w-[500px] h-[500px] bg-violet-100/30 rounded-full blur-[120px]" />
+        <div className="absolute bottom-0 right-0 w-[500px] h-[500px] bg-blue-50/30 rounded-full blur-[120px]" />
       </div>
 
       <div className="container mx-auto px-6 md:px-12 relative z-10">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
-          
+
           {/* Left Content */}
           <motion.div
             initial={{ opacity: 0, x: -50 }}
@@ -67,19 +95,23 @@ export function Hero() {
 
             {/* Description */}
             <p className="text-lg md:text-xl text-gray-600 font-sans leading-relaxed max-w-xl">
-              I’m a first-year AIML student and full stack developer who builds modern,
+              I'm a first-year AIML student and full stack developer who builds modern,
               responsive, and real-world web applications with a focus on clean design,
               performance, and practical functionality.
             </p>
 
-            {/* BUTTONS - Refined to Pill Shape */}
+            {/* Buttons */}
             <div className="flex flex-wrap items-center gap-4 pt-4">
               <a
                 href="#projects"
                 className="group relative inline-flex items-center gap-2 px-8 py-3.5 bg-gray-900 text-white rounded-full font-bold overflow-hidden transition-all hover:bg-black shadow-lg shadow-gray-200"
               >
                 <span className="relative z-10 flex items-center gap-2 text-[15px]">
-                  View Projects <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
+                  View Projects{" "}
+                  <ArrowRight
+                    size={18}
+                    className="group-hover:translate-x-1 transition-transform"
+                  />
                 </span>
               </a>
               <a
@@ -121,9 +153,15 @@ export function Hero() {
                   <span className="text-blue-600">dharani</span> = {"{"}
                 </p>
                 <div className="pl-4 border-l-2 border-gray-50 ml-1">
-                  <p>name: <span className="text-emerald-600">"Dharani G."</span>,</p>
-                  <p>role: <span className="text-emerald-600">"Full Stack"</span>,</p>
-                  <p>aiml: <span className="text-violet-600">true</span>,</p>
+                  <p>
+                    name: <span className="text-emerald-600">"Dharani G."</span>,
+                  </p>
+                  <p>
+                    role: <span className="text-emerald-600">"Full Stack"</span>,
+                  </p>
+                  <p>
+                    aiml: <span className="text-violet-600">true</span>,
+                  </p>
                 </div>
                 <p>{"}"};</p>
                 <p className="mt-4">
@@ -136,7 +174,12 @@ export function Hero() {
             {/* Floating Elements */}
             <motion.div
               animate={{ y: [0, 20, 0], x: [0, -10, 0] }}
-              transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 1 }}
+              transition={{
+                duration: 5,
+                repeat: Infinity,
+                ease: "easeInOut",
+                delay: 1,
+              }}
               className="absolute top-10 right-0 lg:right-10 w-32 h-32 bg-white rounded-3xl border border-gray-50 flex items-center justify-center shadow-2xl z-10"
             >
               <Code2 className="w-12 h-12 text-blue-500" />
@@ -144,7 +187,12 @@ export function Hero() {
 
             <motion.div
               animate={{ y: [0, -30, 0], x: [0, 20, 0] }}
-              transition={{ duration: 7, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
+              transition={{
+                duration: 7,
+                repeat: Infinity,
+                ease: "easeInOut",
+                delay: 0.5,
+              }}
               className="absolute bottom-10 left-0 lg:left-10 w-28 h-28 bg-white rounded-full border border-gray-50 flex items-center justify-center shadow-2xl z-30"
             >
               <Cpu className="w-10 h-10 text-orange-500" />
