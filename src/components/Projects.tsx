@@ -59,7 +59,7 @@ const PROJECTS = [
     description: 'A comprehensive railway tracking and ticketing portal with real-time updates.',
     tags: ['React', 'Express', 'Redis'],
     type: 'Utility',
-    image: 'https://images.unsplash.com/photo-1474487059418-f2360580c8df?w=800&auto=format&fit=crop&q=60',
+    image: 'https://images.unsplash.com/photo-1580442374555-3def8fb41738?q=80&w=580&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
     link: '#',
     github: '#',
     color: 'bg-indigo-50 text-indigo-600'
