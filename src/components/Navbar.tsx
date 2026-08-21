@@ -59,11 +59,7 @@ export function Navbar() {
             
             {/* LEFT: Logo */}
             <div className="flex-shrink-0">
-              
-                href="#home"
-                onClick={handleLogoClick}
-                className="text-[22px] font-sans font-extrabold text-[#1E6BFF] tracking-tighter flex items-center gap-2 select-none"
-              >
+              <a href="#home" onClick={handleLogoClick} className="text-[22px] font-sans font-extrabold text-[#1E6BFF] tracking-tighter flex items-center gap-2 select-none">
                 <div className="w-8 h-8 bg-[#1E6BFF] rounded-lg flex items-center justify-center text-white font-sans">
                   <span className="text-lg">D</span>
                 </div>
@@ -79,11 +75,7 @@ export function Navbar() {
                 isScrolled && "shadow-[0_10px_30px_rgba(0,0,0,0.06)] border-gray-200"
               )}>
                 {navItems.map((item) => (
-                  
-                    key={item.name}
-                    href={item.href}
-                    onClick={() => setActiveItem(item.name)}
-                    className={cn(
+                  <a key={item.name} href={item.href} onClick={() => setActiveItem(item.name)} className={cn(
                       "text-[14px] font-semibold px-5 py-2 rounded-full transition-all duration-300",
                       activeItem === item.name 
                         ? "bg-[#F4F4F4] text-gray-900 shadow-sm" // Inner Pill
