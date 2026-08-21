@@ -1,62 +1,18 @@
 import { motion } from "framer-motion";
-import { 
-  Cpu, Brain, Database, Sparkles, Layout, 
-  Layers, Terminal, BarChart3 
+import {
+  Cpu, Brain, Database, Sparkles, Layout,
+  Layers, Terminal, BarChart3, Code, Globe, Server, Smartphone,
+  type LucideIcon,
 } from "lucide-react";
+import { useSkillCategories } from "../lib/useSkillCategories";
 
-const skillCategories = [
-  {
-    title: "Frontend Development",
-    icon: Layout,
-    image: "https://media.istockphoto.com/id/1251148255/photo/relax-working-online-business-holding-coffee-cup-on-the-desk-to-work.webp?a=1&b=1&s=612x612&w=0&k=20&c=jN_ktV5bbbjFaEKImP6JEctbBtEpHg3mMhns4p4Bi90=", 
-    skills: ["Next.js 15", "React 19", "TypeScript", "Tailwind CSS", "Framer Motion"],
-  },
-  {
-    title: "Backend Engineering",
-    icon: Database,
-    image: "https://images.unsplash.com/photo-1618477388954-7852f32655ec?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8QkFDS0VORCUyMEVOR0lORUVSSU5HfGVufDB8fDB8fHww", 
-    skills: ["Bun.js", "Node.js", "PostgreSQL", "Drizzle ORM", "Redis"],
-  },
-  {
-    title: "Full Stack Architecture",
-    icon: Layers,
-    image: "https://images.unsplash.com/photo-1602992708529-c9fdb12905c9?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NDN8fGZ1bGwlMjBzdGFjayUyMGRldmVsb3BlcnxlbnwwfHwwfHx8MA%3D%3D", 
-    skills: ["T3 Stack", "Server Actions", "Auth.js", "Supabase", "TRPC"],
-  },
-  {
-    title: "Deep Learning (AIML)",
-    icon: Brain,
-    // NEW High-Quality Neural Network Image
-    image: "https://plus.unsplash.com/premium_photo-1680608979589-e9349ed066d5?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8cm9ib3R8ZW58MHx8MHx8fDA%3D", 
-    skills: ["PyTorch", "TensorFlow", "Neural Networks", "CNNs / RNNs", "OpenCV"],
-  },
-  {
-    title: "Generative AI",
-    icon: Sparkles,
-    image: "https://plus.unsplash.com/premium_photo-1677269465314-d5d2247a0b0c?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", 
-    skills: ["LangChain", "OpenAI API", "RAG", "Vector DBs", "Prompt Eng."],
-  },
-  {
-    title: "Data Science",
-    icon: BarChart3,
-    image: "https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OTF8fGRhdGElMjBzY2llbmNlfGVufDB8fDB8fHww", 
-    skills: ["Python", "NumPy", "Pandas", "Scikit-Learn", "Statistics"],
-  },
-  {
-    title: "MLOps & Tools",
-    icon: Cpu,
-    image: "https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8dGVjaE5PTE9HWSUyMHRvb2xzfGVufDB8fDB8fHww", 
-    skills: ["FastAPI", "Docker", "Git/GitHub", "Streamlit", "Model Training"],
-  },
-  {
-    title: "Core Programming",
-    icon: Terminal,
-    image: "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?auto=format&fit=crop&w=800&q=80", 
-    skills: ["C / C++", "Java Basics", "Data Structures", "Algorithms"],
-  },
-];
+const ICON_MAP: Record<string, LucideIcon> = {
+  Cpu, Brain, Database, Sparkles, Layout,
+  Layers, Terminal, BarChart3, Code, Globe, Server, Smartphone,
+};
 
 export function Skills() {
+  const { categories, loading } = useSkillCategories();
   return (
     <section id="skills" className="py-24 relative overflow-hidden bg-[#FAFAFA]">
       <div className="container mx-auto px-6 md:px-12 relative z-10">
@@ -78,12 +34,15 @@ export function Skills() {
         </motion.div>
 
         {/* Skills Grid - 4 Columns */}
+        {loading ? (
+          <div className="text-gray-400 text-lg">Loading skills...</div>
+        ) : (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-          {skillCategories.map((category, idx) => {
-            const Icon = category.icon;
+          {categories.map((category, idx) => {
+            const Icon = ICON_MAP[category.icon] || Layout;
             return (
               <motion.div
-                key={category.title}
+                key={category.id}
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
@@ -141,6 +100,7 @@ export function Skills() {
             );
           })}
         </div>
+        )}
       </div>
     </section>
   );
