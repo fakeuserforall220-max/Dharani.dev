@@ -1,7 +1,8 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X, ArrowUpRight } from "lucide-react";
 import { cn } from "../utils/cn";
+import { ADMIN_PATH } from "../lib/adminPath";
 
 const navItems = [
   { name: "Home", href: "#home" },
@@ -11,10 +12,15 @@ const navItems = [
   { name: "Contact", href: "#contact" },
 ];
 
+const SECRET_CLICKS_REQUIRED = 5;
+const SECRET_CLICK_WINDOW_MS = 2000;
+
 export function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [activeItem, setActiveItem] = useState("Home");
+  const logoClickCount = useRef(0);
+  const logoClickTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -23,6 +29,23 @@ export function Navbar() {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  const handleLogoClick = (e: React.MouseEvent) => {
+    logoClickCount.current += 1;
+
+    if (logoClickTimer.current) clearTimeout(logoClickTimer.current);
+
+    if (logoClickCount.current >= SECRET_CLICKS_REQUIRED) {
+      e.preventDefault();
+      logoClickCount.current = 0;
+      window.location.href = ADMIN_PATH;
+      return;
+    }
+
+    logoClickTimer.current = setTimeout(() => {
+      logoClickCount.current = 0;
+    }, SECRET_CLICK_WINDOW_MS);
+  };
 
   return (
     <>
@@ -36,7 +59,11 @@ export function Navbar() {
             
             {/* LEFT: Logo */}
             <div className="flex-shrink-0">
-              <a href="#home" className="text-[22px] font-sans font-extrabold text-[#1E6BFF] tracking-tighter flex items-center gap-2">
+              
+                href="#home"
+                onClick={handleLogoClick}
+                className="text-[22px] font-sans font-extrabold text-[#1E6BFF] tracking-tighter flex items-center gap-2 select-none"
+              >
                 <div className="w-8 h-8 bg-[#1E6BFF] rounded-lg flex items-center justify-center text-white font-sans">
                   <span className="text-lg">D</span>
                 </div>
@@ -52,7 +79,7 @@ export function Navbar() {
                 isScrolled && "shadow-[0_10px_30px_rgba(0,0,0,0.06)] border-gray-200"
               )}>
                 {navItems.map((item) => (
-                  <a
+                  
                     key={item.name}
                     href={item.href}
                     onClick={() => setActiveItem(item.name)}
