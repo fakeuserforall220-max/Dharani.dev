@@ -4,36 +4,16 @@ import { motion, useScroll, useSpring } from "framer-motion";
 import { Navbar } from "./components/Navbar";
 import { Hero } from "./components/Hero";
 import { About } from "./components/About";
-import { Projects } from "./components/Projects";
-import { Skills } from "./components/Skills";
+import Projects from './components/Projects';
 import { Highlights } from "./components/Highlights";
 import { Contact } from "./components/Contact";
 import { Footer } from "./components/Footer";
+import KeyboardDemo from "./components/keyboard-demo";
+import { CloudShader } from "./components/ui/cloud-shader";
+import { ToolsScroll } from "./components/ToolsScroll";
 
 export function PortfolioSite() {
-  useEffect(() => {
-    const lenis = new Lenis({
-      duration: 1.2,
-      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-      orientation: "vertical",
-      gestureOrientation: "vertical",
-      smoothWheel: true,
-      wheelMultiplier: 1,
-      touchMultiplier: 2,
-    });
-
-    function raf(time: number) {
-      lenis.raf(time);
-      requestAnimationFrame(raf);
-    }
-
-    requestAnimationFrame(raf);
-
-    return () => {
-      lenis.destroy();
-    };
-  }, []);
-
+  // Lenis removed for max performance native scrolling
   const { scrollYProgress } = useScroll();
   const scaleX = useSpring(scrollYProgress, {
     stiffness: 100,
@@ -42,7 +22,12 @@ export function PortfolioSite() {
   });
 
   return (
-    <div className="bg-brand-black min-h-screen text-white font-sans selection:bg-brand-purple/30 selection:text-brand-purple">
+    <div className="relative min-h-screen text-slate-900 font-sans selection:bg-brand-purple/30 selection:text-brand-purple">
+      {/* Global Cloud Shader Background */}
+      <div className="fixed inset-0 z-[-2]">
+        <CloudShader className="h-full w-full" speed={0.5} count={3} />
+      </div>
+
       {/* Scroll Progress Bar */}
       <motion.div
         className="fixed top-0 left-0 right-0 h-1 bg-gradient-to-r from-brand-violet via-brand-purple to-brand-blue origin-left z-[100]"
@@ -56,7 +41,8 @@ export function PortfolioSite() {
         <About />
         <Highlights />
         <Projects />
-        <Skills />
+        <ToolsScroll />
+        <KeyboardDemo />
         <Contact />
       </main>
 

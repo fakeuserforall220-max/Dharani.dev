@@ -18,7 +18,7 @@ export function Contact() {
   };
 
   return (
-    <section id="contact" className="py-24 relative overflow-hidden bg-[#FAFAFA]">
+    <section id="contact" className="py-24 relative overflow-hidden ">
       {/* Soft Light Background Blurs */}
       <div className="absolute top-1/2 left-0 w-[500px] h-[500px] bg-violet-100/40 rounded-full blur-[150px] pointer-events-none" />
       <div className="absolute top-1/2 right-0 w-[500px] h-[500px] bg-blue-100/40 rounded-full blur-[150px] pointer-events-none" />
@@ -150,3 +150,4 @@ export function Contact() {
     </section>
   );
 }
+

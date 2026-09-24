@@ -1,100 +1,91 @@
-import { motion } from 'framer-motion';
-import { ExternalLink } from 'lucide-react';
-import { FaGithub } from 'react-icons/fa';
-import { useProjects } from '../lib/useProjects';
-import type { Project } from '../lib/types';
+import { useProjects } from "../lib/useProjects";
+import { RadialCarousel, type GalleryItem } from "./ui/radial-carousel";
+import { motion } from "framer-motion";
 
-const ProjectCard = ({ project, index }: { project: Project, index: number }) => {
-  return (
-    <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{ duration: 0.5, delay: index * 0.1 }}
-      className="group flex flex-col bg-white rounded-[2.5rem] p-4 shadow-sm hover:shadow-xl transition-all duration-500 border border-gray-100"
-    >
-      {/* Image Container - Styled like your screenshot */}
-      <div className="relative aspect-[4/3] rounded-[2rem] bg-[#F4F4F4] overflow-hidden flex items-center justify-center p-6">
-        <motion.div 
-          whileHover={{ scale: 1.02 }}
-          transition={{ duration: 0.4 }}
-          className="w-full h-full rounded-xl overflow-hidden shadow-2xl shadow-black/10"
-        >
-            <img 
-              src={project.image} 
-              alt={project.title}
-              className="w-full h-full object-cover"
-            />
-        </motion.div>
-        
-        {/* Overlay Links */}
-        <div className="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center gap-4">
-          <a href={project.github} className="p-3 bg-white rounded-full hover:scale-110 transition-transform shadow-lg text-gray-900">
-            <FaGithub size={20} />
-          </a>
-          <a href={project.link} className="p-3 bg-white rounded-full hover:scale-110 transition-transform shadow-lg text-gray-900">
-            <ExternalLink size={20} />
-          </a>
+const demo_images = [
+    { id: 1, url: 'https://images.unsplash.com/photo-1501785888041-af3ef285b470?auto=format&fit=crop&w=800&q=80', title: 'Mountain Lake' },
+    { id: 2, url: 'https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80', title: 'Yosemite' },
+    { id: 3, url: 'https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?auto=format&fit=crop&w=800&q=80', title: 'Misty Forest' },
+    { id: 4, url: 'https://images.unsplash.com/photo-1441974231531-c6227db76b6e?auto=format&fit=crop&w=800&q=80', title: 'Sunlight Forest' },
+    { id: 5, url: 'https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=800&q=80', title: 'Grasslands' },
+    { id: 6, url: 'https://images.unsplash.com/photo-1472396961693-142e6e269027?auto=format&fit=crop&w=800&q=80', title: 'Deer in Field' },
+    { id: 7, url: 'https://images.unsplash.com/photo-1467830839049-11173e7b2755?q=80&w=1332&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D', title: 'Autumn Road' },
+    { id: 8, url: 'https://images.unsplash.com/photo-1469474968028-56623f02e42e?auto=format&fit=crop&w=800&q=80', title: 'Hills' },
+    { id: 9, url: 'https://images.unsplash.com/photo-1447752875215-b2761acb3c5d?auto=format&fit=crop&w=800&q=80', title: 'Morning mist' },
+    { id: 10, url: 'https://images.unsplash.com/photo-1546882588-d9bd63f85a7e?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTV8fHdhdGVyJTIwZmFsbHxlbnwwfHwwfHx8MA%3D%3D', title: 'Waterfall' },
+    { id: 11, url: 'https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=800&q=80', title: 'Snowy Peak' },
+    { id: 12, url: 'https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&w=800&q=80', title: 'Culinary' },
+];
+
+export default function Projects() {
+  const { projects, loading, error } = useProjects();
+
+  if (loading) {
+    return (
+      <section id="projects" className="py-32 px-6 max-w-[1400px] mx-auto w-full flex justify-center">
+        <div className="animate-pulse text-indigo-300 font-medium tracking-widest uppercase text-sm">
+          Loading Portfolio...
         </div>
-      </div>
+      </section>
+    );
+  }
 
-      {/* Content Area */}
-      <div className="px-4 py-6">
-        <div className="flex items-center mb-4">
-          <span className={`px-4 py-1 rounded-full text-[13px] font-semibold tracking-wide ${project.color}`}>
-            {project.type}
-          </span>
-        </div>
-        
-        <h3 className="text-2xl font-bold text-gray-900 mb-3 tracking-tight">
-          {project.title}
-        </h3>
-        
-        <p className="text-gray-500 text-base leading-relaxed mb-4 line-clamp-2">
-          {project.description}
-        </p>
-
-        <div className="flex flex-wrap gap-2">
-          {project.tags.slice(0, 3).map((tag, i) => (
-            <span key={i} className="text-[11px] font-bold uppercase tracking-wider text-gray-400">
-              {tag} {i !== 2 && "•"}
-            </span>
-          ))}
-        </div>
-      </div>
-    </motion.div>
-  );
-};
-
-export function Projects() {
-  const { projects, loading } = useProjects();
+  // Convert projects to the expected format for RadialCarousel, or fallback to default
+  const carouselItems: GalleryItem[] = projects && projects.length > 0 
+    ? projects.map((project, idx) => ({
+        id: project.id || idx,
+        url: project.image,
+        title: project.title,
+      }))
+    : demo_images;
 
   return (
-    <section id="projects" className="py-24 bg-[#FAFAFA]">
-      <div className="container mx-auto px-6">
+    <section id="projects" className="py-32 max-w-[1400px] mx-auto w-full font-sans relative z-10 overflow-hidden">
+      
+      {/* Section Header */}
+      <div className="text-center mb-10 max-w-2xl mx-auto px-4 relative z-20">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="max-w-2xl mb-16"
+          className="flex justify-center mb-6"
         >
-          <h2 className="text-5xl md:text-6xl font-bold text-gray-900 mb-6 tracking-tighter">
-            Selected <span className="text-gray-400">Works</span>
-          </h2>
-          <p className="text-gray-500 text-xl leading-relaxed">
-            A curated collection of my live projects. From high-performance utility apps to immersive creative platforms.
-          </p>
+          <div className="flex items-center gap-2.5 bg-slate-900/10 backdrop-blur-md px-4 py-1.5 rounded-full text-[11px] font-bold tracking-[0.2em] text-slate-900 uppercase shadow-sm border border-slate-900/20">
+            <span>005</span>
+            <div className="w-1.5 h-1.5 rounded-full bg-emerald-500"></div>
+            <span>Selected Projects</span>
+          </div>
         </motion.div>
 
-        {loading ? (
-          <div className="text-gray-400 text-lg">Loading projects...</div>
-        ) : (
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {projects.map((project, i) => (
-              <ProjectCard key={project.id} project={project} index={i} />
-            ))}
-          </div>
-        )}
+        <motion.h2 
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.1 }}
+          className="text-4xl md:text-5xl lg:text-[4rem] font-bold tracking-tight text-slate-900 mb-6"
+        >
+          Featured Work
+        </motion.h2>
+        
+        <motion.p
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.2 }}
+          className="text-slate-600 text-lg md:text-xl max-w-xl mx-auto"
+        >
+          Explore some of my most recent and impactful projects.
+        </motion.p>
+      </div>
+
+      {/* Radial Carousel */}
+      <div className="sm:h-[650px] h-[500px] w-full flex flex-col items-center justify-center relative mt-12 z-10">
+          <RadialCarousel
+              items={carouselItems}
+              radius={250}
+              thumbnailSize={110}
+              centerSize={350}
+          />
       </div>
     </section>
   );

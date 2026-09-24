@@ -1,4 +1,4 @@
-import { motion } from 'framer-motion';
+﻿import { motion } from 'framer-motion';
 import { Terminal, Code, Cpu, Sparkles, Award, Zap } from 'lucide-react';
 
 export function About() {
@@ -16,7 +16,7 @@ export function About() {
   ];
 
   return (
-    <section id="about" className="py-32 relative overflow-hidden bg-[#FAFAFA]">
+    <section id="about" className="py-32 relative overflow-hidden ">
       {/* Background Elements - Subdued for Light Theme */}
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute top-1/4 right-1/4 w-96 h-96 bg-purple-100/40 rounded-full blur-[120px]" />
@@ -155,25 +155,10 @@ export function About() {
 
         </div>
 
-        {/* Bottom Quote - Simplified Light Theme */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8, delay: 0.4 }}
-          className="mt-20 text-center max-w-4xl mx-auto"
-        >
-          <div className="bg-white border border-gray-100 rounded-[2.5rem] p-10 lg:p-16 shadow-2xl shadow-gray-200/50 relative overflow-hidden">
-            <div className="absolute top-0 left-0 w-2 h-full bg-gradient-to-b from-violet-500 to-blue-500" />
-            <blockquote className="relative z-10">
-              <p className="text-2xl lg:text-3xl font-medium text-gray-800 italic leading-relaxed font-sans">
-                "Turning complex problems into elegant solutions, one line of code at a time."
-              </p>
-              <footer className="mt-6 text-violet-600 font-bold tracking-widest uppercase text-sm">— Dharani Govardhan</footer>
-            </blockquote>
-          </div>
-        </motion.div>
+        
       </div>
     </section>
   );
 }
+
+

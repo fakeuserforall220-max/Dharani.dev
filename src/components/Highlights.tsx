@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { CheckCircle2, TrendingUp, Zap, Target } from "lucide-react";
 import { cn } from "../utils/cn";
+import TextFlippingBoardDemo from "./text-flipping-board-demo";
 
 const highlights = [
   {
@@ -39,16 +40,17 @@ const highlights = [
 
 export function Highlights() {
   return (
-    <section className="py-24 relative overflow-hidden bg-[#FAFAFA]">
+    <section className="py-24 relative overflow-hidden ">
       {/* Subtle Background Glow */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-violet-100/30 rounded-full blur-[150px] pointer-events-none" />
       
       <div className="container mx-auto px-6 md:px-12 relative z-10">
+        <TextFlippingBoardDemo />
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="mb-16 text-center"
+          className="mb-16 mt-8 text-center"
         >
           <h2 className="text-3xl md:text-5xl font-space font-bold text-gray-900 mb-4">
             Why Work With <span className="text-orange-600">Me</span>
@@ -105,3 +107,4 @@ export function Highlights() {
     </section>
   );
 }
+
