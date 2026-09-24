@@ -9,6 +9,7 @@ import { Highlights } from "./components/Highlights";
 import { Contact } from "./components/Contact";
 import { Footer } from "./components/Footer";
 import KeyboardDemo from "./components/keyboard-demo";
+import Globe3DDemo from "./components/3d-globe-demo";
 import { CloudShader } from "./components/ui/cloud-shader";
 import { ToolsScroll } from "./components/ToolsScroll";
 
@@ -43,6 +44,7 @@ export function PortfolioSite() {
         <Projects />
         <ToolsScroll />
         <KeyboardDemo />
+        <Globe3DDemo />
         <Contact />
       </main>
 
