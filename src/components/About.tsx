@@ -1,164 +1,129 @@
-﻿import { motion } from 'framer-motion';
-import { Terminal, Code, Cpu, Sparkles, Award, Zap } from 'lucide-react';
+import { motion } from 'framer-motion';
+import { GraduationCap, BookOpen, School, ChevronRight, Terminal, Folder, FolderOpen } from 'lucide-react';
+import { useState } from 'react';
 
 export function About() {
-  const stats = [
-    { icon: Terminal, value: "6+", label: "Live Projects", color: "from-blue-600 to-blue-400" },
-    { icon: Award, value: "1st", label: "Year AIML", color: "from-purple-600 to-purple-400" },
-    { icon: Zap, value: "24/7", label: "Learning", color: "from-orange-600 to-orange-400" },
-    { icon: Sparkles, value: "100%", label: "Dedication", color: "from-violet-600 to-violet-400" },
-  ];
+  const [hoveredFolder, setHoveredFolder] = useState(false);
 
-  const skills = [
-    { icon: Terminal, label: "Full Stack Dev", color: "text-blue-600", bg: "bg-blue-50" },
-    { icon: Cpu, label: "AIML Enthusiast", color: "text-purple-600", bg: "bg-purple-50" },
-    { icon: Code, label: "Creative Coder", color: "text-orange-600", bg: "bg-orange-50" },
+  const education = [
+    {
+      icon: GraduationCap,
+      degree: "B.Tech — Artificial Intelligence & Machine Learning",
+      institution: "Saveetha Institute of Medical and Technical Sciences (SIMATS)",
+      description: "Currently pursuing B.Tech in Artificial Intelligence & Machine Learning.",
+      status: "Present",
+      years: "2025 – 2029",
+      color: "from-blue-400 to-cyan-300"
+    },
+    {
+      icon: BookOpen,
+      degree: "11th – 12th — Intermediate",
+      institution: "Chaitanya Junior College",
+      description: "Completed higher secondary education.",
+      status: "Completed",
+      years: "2023 – 2025",
+      color: "from-purple-400 to-fuchsia-300"
+    },
+    {
+      icon: School,
+      degree: "Schooling — SSC",
+      institution: "Nirmala High School",
+      description: "Completed school education.",
+      status: "Completed",
+      years: "Upto 2023",
+      color: "from-emerald-400 to-teal-300"
+    }
   ];
 
   return (
-    <section id="about" className="py-32 relative overflow-hidden ">
-      {/* Background Elements - Subdued for Light Theme */}
-      <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute top-1/4 right-1/4 w-96 h-96 bg-purple-100/40 rounded-full blur-[120px]" />
-        <div className="absolute bottom-1/4 left-1/4 w-96 h-96 bg-blue-100/40 rounded-full blur-[120px]" />
-      </div>
+    <section id="about" className="py-24 relative overflow-hidden">
+      <div className="container mx-auto px-6 relative z-10 max-w-5xl">
+        
+        {/* Techy Folder Breadcrumb Navigation */}
+        <motion.nav 
+          initial={{ opacity: 0, y: -10 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="flex items-center gap-1.5 text-[13px] text-white/70 mb-16 font-medium font-mono"
+        >
+          <a href="#home" className="flex items-center gap-1.5 hover:text-white transition-colors px-2 py-1 rounded-md hover:bg-white/10">
+            <Terminal size={14} />
+            <span>~</span>
+          </a>
+          <ChevronRight size={14} className="opacity-40" />
+          
+          <div 
+            className="flex items-center gap-1.5 px-2 py-1 rounded-md hover:bg-white/10 hover:text-white transition-colors cursor-pointer"
+            onMouseEnter={() => setHoveredFolder(true)}
+            onMouseLeave={() => setHoveredFolder(false)}
+          >
+            {hoveredFolder ? <FolderOpen size={14} className="text-blue-300" /> : <Folder size={14} className="text-blue-300" />}
+            <span>about_me</span>
+          </div>
+          
+          <ChevronRight size={14} className="opacity-40" />
+          
+          <div className="flex items-center gap-1.5 text-white px-2 py-1 rounded-md bg-white/10 border border-white/10 shadow-sm backdrop-blur-sm">
+            <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
+            <span>education.md</span>
+          </div>
+        </motion.nav>
 
-      <div className="container mx-auto px-6 relative z-10">
         {/* Section Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="text-center mb-20"
+          className="mb-16"
         >
-          <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white border border-gray-200 text-sm font-medium text-violet-600 mb-6 shadow-sm"
-          >
-            <Sparkles className="w-4 h-4" />
-            About Me
-          </motion.div>
-          <h2 className="text-4xl md:text-6xl font-black font-space mb-4 text-gray-900">
-            Decoding the <span className="text-transparent bg-clip-text bg-gradient-to-r from-violet-600 via-purple-600 to-blue-600">Future</span>
+          <h2 className="text-4xl md:text-5xl font-black font-display text-white tracking-tight">
+            Educational <span className="font-serif italic text-blue-200 tracking-normal">Details</span>
           </h2>
         </motion.div>
 
-        <div className="grid lg:grid-cols-2 gap-16 items-start">
-          
-          {/* Left Column - Text Content */}
-          <motion.div
-            initial={{ opacity: 0, x: -50 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 0.8 }}
-            className="space-y-6"
-          >
-            <div className="space-y-6">
-              <p className="text-lg md:text-xl text-gray-600 font-sans leading-relaxed">
-                I'm <span className="text-gray-900 font-bold">Dharani Govardhan</span>, a 1st-year AIML student with an insatiable curiosity for intelligent systems and cutting-edge web technologies.
-              </p>
-              <p className="text-lg text-gray-500 font-sans leading-relaxed">
-                While my academic roots are in Artificial Intelligence, my creative playground is the frontend world. I don't just write code; I craft digital ecosystems that blend functionality with immersive experiences.
-              </p>
-              <div className="bg-white border border-gray-100 rounded-[2rem] p-8 shadow-xl shadow-gray-200/50">
-                <p className="text-lg text-gray-600 font-sans leading-relaxed">
-                  Having already built <span className="text-purple-600 font-bold">6+ live, production-ready websites</span>, I specialize in bridging the gap between highly functional backend logic and cinematic frontend experiences.
+        {/* Education Timeline */}
+        <div className="space-y-8 relative before:absolute before:inset-0 before:ml-6 before:-translate-x-px md:before:mx-auto md:before:translate-x-0 before:h-full before:w-0.5 before:bg-gradient-to-b before:from-white/5 before:via-white/20 before:to-white/5">
+          {education.map((item, index) => (
+            <motion.div
+              key={index}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ duration: 0.6, delay: index * 0.2 }}
+              className="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group is-active"
+            >
+              {/* Icon / Marker */}
+              <div className="flex items-center justify-center w-12 h-12 rounded-full border-4 border-[#7A9EBA]/50 backdrop-blur-md bg-white/10 shadow-lg shadow-black/20 shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2 relative z-10 transition-transform duration-300 group-hover:scale-110">
+                <div className={`absolute inset-0 rounded-full bg-gradient-to-br ${item.color} opacity-30`} />
+                <item.icon className="w-5 h-5 text-white drop-shadow-md" />
+              </div>
+
+              {/* Glass Card */}
+              <div className="w-[calc(100%-4rem)] md:w-[calc(50%-3rem)] p-6 md:p-8 rounded-3xl bg-white/5 backdrop-blur-xl border border-white/20 shadow-xl shadow-black/10 hover:bg-white/10 hover:border-white/30 transition-all duration-300 group-hover:-translate-y-1 group-hover:shadow-2xl group-hover:shadow-black/20">
+                <div className="flex justify-between items-start mb-4">
+                  <span className={`px-3 py-1 text-[11px] font-bold uppercase tracking-wider rounded-full border ${item.status === 'Present' ? 'bg-blue-500/20 text-blue-200 border-blue-500/30' : 'bg-white/10 text-white/70 border-white/10'}`}>
+                    {item.status}
+                  </span>
+                  <span className="text-xs font-bold text-white/70 font-mono tracking-wider">
+                    {item.years}
+                  </span>
+                </div>
+                <h3 className="text-xl md:text-2xl font-bold font-sans text-white mb-2 leading-tight drop-shadow-sm">
+                  {item.degree}
+                </h3>
+                <h4 className="text-sm font-medium text-white/60 mb-5 font-display tracking-wide uppercase">
+                  {item.institution}
+                </h4>
+                <p className="text-white/80 text-sm md:text-base leading-relaxed">
+                  {item.description}
                 </p>
               </div>
-            </div>
-
-            {/* Skills Tags */}
-            <div className="pt-6">
-              <h3 className="text-sm font-bold text-gray-400 uppercase tracking-widest mb-4">What I Do</h3>
-              <div className="flex flex-wrap gap-3">
-                {skills.map((skill, index) => (
-                  <motion.div
-                    key={skill.label}
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.5, delay: index * 0.1 }}
-                    whileHover={{ scale: 1.05, y: -2 }}
-                    className={`flex items-center gap-3 px-6 py-3 rounded-full bg-white border border-gray-200 hover:border-purple-300 transition-all duration-300 group cursor-pointer shadow-sm hover:shadow-md`}
-                  >
-                    <skill.icon className={`${skill.color} w-5 h-5 group-hover:scale-110 transition-transform`} />
-                    <span className="font-bold text-sm text-gray-700">{skill.label}</span>
-                  </motion.div>
-                ))}
-              </div>
-            </div>
-
-            {/* CTA Button */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.4 }}
-              className="pt-4"
-            >
-              <a
-                href="#projects"
-                className="inline-flex items-center gap-2 px-10 py-4 bg-gray-900 text-white rounded-full font-bold hover:bg-black transition-all duration-300 hover:scale-105 shadow-xl shadow-gray-200"
-              >
-                View My Work
-                <Code className="w-4 h-4" />
-              </a>
             </motion.div>
-          </motion.div>
-
-          {/* Right Column - Stats Grid */}
-          <motion.div
-            initial={{ opacity: 0, x: 50 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            className="relative"
-          >
-            <div className="grid grid-cols-2 gap-4 lg:gap-6">
-              {stats.map((stat, index) => (
-                <motion.div
-                  key={stat.label}
-                  initial={{ opacity: 0, scale: 0.8 }}
-                  whileInView={{ opacity: 1, scale: 1 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.5, delay: index * 0.1 }}
-                  whileHover={{ y: -8 }}
-                  className="group relative"
-                >
-                  {/* Card */}
-                  <div className="bg-white rounded-[2rem] p-6 lg:p-10 border border-gray-100 hover:border-purple-200 transition-all duration-500 relative overflow-hidden shadow-xl shadow-gray-200/40">
-                    
-                    {/* Icon */}
-                    <div className="flex justify-start mb-6">
-                      <div className={`w-14 h-14 rounded-2xl bg-gradient-to-br ${stat.color} p-3.5 shadow-lg shadow-gray-200 group-hover:scale-110 transition-transform duration-500`}>
-                        <stat.icon className="w-full h-full text-white" />
-                      </div>
-                    </div>
-
-                    {/* Value */}
-                    <h3 className={`text-4xl lg:text-5xl font-black font-space text-transparent bg-clip-text bg-gradient-to-br ${stat.color} mb-2`}>
-                      {stat.value}
-                    </h3>
-
-                    {/* Label */}
-                    <p className="text-gray-400 text-[11px] lg:text-xs font-bold uppercase tracking-[0.2em] group-hover:text-gray-600 transition-colors">
-                      {stat.label}
-                    </p>
-                  </div>
-                </motion.div>
-              ))}
-            </div>
-          </motion.div>
-
+          ))}
         </div>
 
-        
       </div>
     </section>
   );
 }
-
-

@@ -3,6 +3,7 @@ import { AuthProvider } from "./lib/AuthContext";
 import { PortfolioSite } from "./PortfolioSite";
 import { AdminGate } from "./admin/AdminGate";
 import { ADMIN_PATH } from "./lib/adminPath";
+import { ProjectDetails } from "./pages/ProjectDetails";
 
 export default function App() {
   return (
@@ -10,6 +11,7 @@ export default function App() {
       <AuthProvider>
         <Routes>
           <Route path="/" element={<PortfolioSite />} />
+          <Route path="/project/:id" element={<ProjectDetails />} />
           <Route path={ADMIN_PATH} element={<AdminGate />} />
         </Routes>
       </AuthProvider>
