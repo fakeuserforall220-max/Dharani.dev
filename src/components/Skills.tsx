@@ -83,7 +83,7 @@ function SkillCard({ category, idx }: { category: SkillCategory; idx: number }) 
         </Lens>
         
         {/* Floating Icon Badge */}
-        <div className="absolute top-6 left-6 w-12 h-12 bg-[#121318]/80 backdrop-blur-xl rounded-2xl shadow-xl flex items-center justify-center text-white border border-white/10 z-20 pointer-events-none">
+        <div className="absolute top-6 left-6 w-12 h-12 bg-[#121318] rounded-2xl shadow-xl flex items-center justify-center text-white border border-white/20 z-20 pointer-events-none">
           <Icon size={22} />
         </div>
       </div>

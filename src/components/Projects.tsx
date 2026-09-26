@@ -4,8 +4,8 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 
-// Dynamically import all images from the /projects folder at the root
-const projectImages = import.meta.glob('/projects/*.{png,jpg,jpeg,svg,webp}', { eager: true, query: '?url', import: 'default' });
+// Dynamically import all images from the Projects folder at the root
+const projectImages = import.meta.glob('../../Projects/*.{png,jpg,jpeg,svg,webp}', { eager: true, query: '?url', import: 'default' });
 
 const projects = Object.entries(projectImages).map(([path, url]) => {
   const filename = path.split('/').pop()?.split('.')[0] || 'Project';
@@ -45,7 +45,7 @@ export default function Projects() {
             initial={{ opacity: 0, scale: 0.8 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
-            className="flex items-center gap-2.5 bg-white/5 px-4 py-1.5 rounded-full text-xs font-bold tracking-[0.2em] text-white uppercase shadow-sm mb-6 border border-white/20"
+            className="flex items-center gap-2.5 bg-white px-4 py-1.5 rounded-full text-xs font-bold tracking-[0.2em] text-slate-900 uppercase shadow-sm border border-slate-200 mb-6"
           >
             <div className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></div>
             <span>Selected Projects</span>

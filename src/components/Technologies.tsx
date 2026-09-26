@@ -55,7 +55,7 @@ function IntegrationCard({ app }: { app: (typeof integrations)[0] }) {
   const Icon = app.icon;
   return (
     <div 
-      className="group bg-white/40 relative flex h-16 w-16 items-center justify-center rounded-2xl shadow-[inset_0_0_2px_2px_rgba(255,255,255,1),inset_0_0_0_1px_rgba(0,0,0,0.1),0px_1px_2px_-1px_rgba(0,0,0,0.08),0px_2px_4px_0px_rgba(0,0,0,0.06)] sm:h-20 sm:w-20 lg:h-24 lg:w-24 transition-all duration-300 hover:scale-110 hover:bg-white/60 cursor-pointer"
+      className="group bg-white relative flex h-16 w-16 items-center justify-center rounded-2xl border border-white/20 shadow-xl sm:h-20 sm:w-20 lg:h-24 lg:w-24 transition-all duration-300 hover:scale-110 hover:-translate-y-1 cursor-pointer"
       title={app.name}
     >
       <Icon 
@@ -63,7 +63,7 @@ function IntegrationCard({ app }: { app: (typeof integrations)[0] }) {
         style={{ color: app.color }} 
       />
       {/* Tooltip */}
-      <div className="absolute -bottom-8 opacity-0 group-hover:opacity-100 transition-opacity duration-300 text-xs font-bold text-slate-800 bg-white/80 px-2 py-1 rounded-md shadow-sm pointer-events-none">
+      <div className="absolute -bottom-8 opacity-0 group-hover:opacity-100 transition-opacity duration-300 text-xs font-bold text-slate-800 bg-white px-2 py-1 rounded-md shadow-sm border border-slate-200 pointer-events-none">
         {app.name}
       </div>
     </div>
@@ -79,7 +79,7 @@ export default function Technologies() {
             initial={{ opacity: 0, scale: 0.8 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
-            className="flex items-center gap-2.5 bg-white/20 backdrop-blur-md px-4 py-1.5 rounded-full text-xs font-bold tracking-[0.2em] text-slate-800 uppercase shadow-sm mb-6"
+            className="flex items-center gap-2.5 bg-white px-4 py-1.5 rounded-full text-xs font-bold tracking-[0.2em] text-slate-800 uppercase shadow-sm border border-white/20 mb-6"
           >
             <div className="w-2 h-2 rounded-full bg-blue-500 animate-pulse"></div>
             <span>Core Arsenal</span>
@@ -88,7 +88,7 @@ export default function Technologies() {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-slate-900 mb-6 text-4xl font-display font-bold tracking-tight md:text-5xl lg:text-6xl"
+            className="text-white mb-6 text-4xl font-display font-bold tracking-tight md:text-5xl lg:text-6xl"
           >
             Technologies I Use
           </motion.h2>
@@ -97,7 +97,7 @@ export default function Technologies() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.1 }}
-            className="text-slate-600 text-lg md:text-xl max-w-xl mx-auto"
+            className="text-white/80 text-lg md:text-xl max-w-xl mx-auto"
           >
             A comprehensive stack built for highly scalable, intelligent, and production-ready applications.
           </motion.p>
