@@ -6,7 +6,6 @@ import { ADMIN_PATH } from "../lib/adminPath";
 
 const navItems = [
   { name: "Home", href: "#home" },
-  { name: "Services", href: "#about" },
   { name: "Our Work", href: "#projects" },
   { name: "Skills", href: "#skills" },
   { name: "Contact", href: "#contact" },

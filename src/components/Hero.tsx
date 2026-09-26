@@ -17,7 +17,7 @@ export function Hero() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, ease: "easeOut" }}
-            className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/20 mb-4"
+            className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/5 border border-white/20 mb-4"
           >
             <span className="relative flex h-2 w-2">
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
@@ -136,31 +136,31 @@ export function Hero() {
             />
           </motion.div>
 
-          {/* Floating Glass Icon 1 (Code) */}
+          {/* Floating Icon 1 (Code) */}
           <motion.div 
             animate={{ y: [-10, 10, -10], rotate: [-2, 2, -2] }}
             transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
-            className="absolute top-[35%] left-[5%] lg:left-[-5%] p-5 bg-white/10 backdrop-blur-xl rounded-3xl shadow-xl border border-white/30 z-20"
+            className="absolute top-[35%] left-[5%] lg:left-[-5%] p-5 bg-white rounded-3xl shadow-xl border border-slate-200 z-20"
           >
-            <Code2 size={32} className="text-white" />
+            <Code2 size={32} className="text-slate-900" />
           </motion.div>
 
-          {/* Floating Glass Icon 2 (Robot/AI) */}
+          {/* Floating Icon 2 (Robot/AI) */}
           <motion.div 
             animate={{ y: [15, -15, 15], rotate: [2, -2, 2] }}
             transition={{ duration: 7, repeat: Infinity, ease: "easeInOut", delay: 1 }}
-            className="absolute top-[50%] right-[0%] lg:right-[-10%] p-5 bg-white/10 backdrop-blur-xl rounded-3xl shadow-xl border border-white/30 z-20"
+            className="absolute top-[50%] right-[0%] lg:right-[-10%] p-5 bg-white rounded-3xl shadow-xl border border-slate-200 z-20"
           >
-            <Bot size={32} className="text-white" />
+            <Bot size={32} className="text-slate-900" />
           </motion.div>
 
-          {/* Floating Glass Icon 3 (Chart/Data) */}
+          {/* Floating Icon 3 (Chart/Data) */}
           <motion.div 
             animate={{ y: [-12, 12, -12], rotate: [-1, 1, -1] }}
             transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 2 }}
-            className="absolute bottom-[20%] right-[10%] lg:right-[5%] p-4 bg-white/10 backdrop-blur-xl rounded-3xl shadow-xl border border-white/30 z-20"
+            className="absolute bottom-[20%] right-[10%] lg:right-[5%] p-4 bg-white rounded-3xl shadow-xl border border-slate-200 z-20"
           >
-            <BarChart3 size={28} className="text-white" />
+            <BarChart3 size={28} className="text-slate-900" />
           </motion.div>
 
           {/* Floating small dot 1 */}

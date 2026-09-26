@@ -8,40 +8,44 @@ export function WhyWorkWithMe() {
       title: "Live Deployed Websites",
       description: "Successfully built and deployed multiple functional web applications from scratch, handling everything from design to deployment.",
       icon: Zap,
+      imageIcon: "/live-deployed.png",
       tags: ["Next.js", "Firebase", "Vercel"],
       glowColor: "from-orange-500/80 to-amber-500/20",
       iconColor: "text-orange-400",
-      iconBg: "bg-orange-500/20",
+      iconBg: "bg-orange-50",
     },
     {
       id: "02",
       title: "Academic Background",
       description: "Currently pursuing B.Tech in Artificial Intelligence and Machine Learning, building a strong foundation in AI/ML and software development.",
       icon: GraduationCap,
+      imageIcon: "/academic-bg.png",
       tags: ["B.Tech AIML", "SIMATS", "Chennai"],
       glowColor: "from-purple-500/80 to-fuchsia-500/20",
-      iconColor: "text-purple-400",
-      iconBg: "bg-purple-500/20",
+      iconColor: "text-purple-600",
+      iconBg: "bg-purple-50",
     },
     {
       id: "03",
       title: "UI/UX & Product Thinking",
       description: "Strong frontend focus with a modern design mindset for building clean, user-friendly and premium digital experiences.",
       icon: Code2,
+      imageIcon: "/ui-ux.png",
       tags: ["UI/UX", "React", "Tailwind"],
       glowColor: "from-blue-500/80 to-cyan-500/20",
-      iconColor: "text-blue-400",
-      iconBg: "bg-blue-500/20",
+      iconColor: "text-blue-600",
+      iconBg: "bg-blue-50",
     },
     {
       id: "04",
       title: "Growth Mindset",
       description: "Quick learner and practical builder constantly exploring new technologies, taking up real-world projects and improving every day.",
       icon: TrendingUp,
+      imageIcon: "/growth.png",
       tags: ["Learn", "Build", "Improve"],
       glowColor: "from-emerald-500/80 to-teal-500/20",
-      iconColor: "text-emerald-400",
-      iconBg: "bg-emerald-500/20",
+      iconColor: "text-emerald-600",
+      iconBg: "bg-emerald-50",
     }
   ];
 
@@ -56,7 +60,7 @@ export function WhyWorkWithMe() {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="flex items-center gap-2 px-4 py-1.5 rounded-full border border-white/20 bg-white/5 backdrop-blur-md mb-8"
+            className="flex items-center gap-2 px-4 py-1.5 rounded-full border border-white/20 bg-white/5 mb-8"
           >
             <div className="w-2 h-2 rounded-full border-[1.5px] border-white/70"></div>
             <span className="text-[11px] font-bold tracking-widest text-white/80 uppercase">
@@ -118,25 +122,27 @@ export function WhyWorkWithMe() {
                  <div className={`absolute -bottom-16 -right-16 w-48 h-48 rounded-full bg-gradient-to-tl ${card.glowColor} blur-2xl opacity-60 group-hover:opacity-100 transition-opacity duration-500`}></div>
               </div>
 
-              <div className="relative h-full p-8 rounded-[2rem] bg-white/5 backdrop-blur-xl border border-white/10 shadow-2xl flex flex-col transition-transform duration-500 hover:-translate-y-2 overflow-hidden bg-gradient-to-b from-white/[0.08] to-transparent">
+              <div className="relative h-full p-8 rounded-[2rem] bg-white text-slate-900 border border-slate-200 shadow-xl flex flex-col transition-transform duration-500 hover:-translate-y-2 overflow-hidden">
                 
-                {/* Header row: Icon & Number */}
                 <div className="flex justify-between items-start mb-6">
-                  <div className={`w-12 h-12 rounded-xl flex items-center justify-center shadow-lg ${card.iconBg} border border-white/10 relative overflow-hidden group-hover:scale-110 transition-transform duration-300`}>
-                    <div className={`absolute inset-0 opacity-50 bg-gradient-to-br ${card.glowColor}`}></div>
-                    <card.icon className={`w-6 h-6 relative z-10 ${card.iconColor}`} />
+                  <div className={`w-14 h-14 rounded-2xl flex items-center justify-center ${card.imageIcon ? 'bg-transparent overflow-visible' : `shadow-sm ${card.iconBg} overflow-hidden`} relative group-hover:scale-110 transition-transform duration-300`}>
+                    {card.imageIcon ? (
+                      <img src={card.imageIcon} alt={card.title} className="w-16 h-16 object-contain relative z-10 filter drop-shadow-md scale-125" />
+                    ) : (
+                      <card.icon className={`w-6 h-6 relative z-10 ${card.iconColor}`} />
+                    )}
                   </div>
                   
-                  <div className="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center text-white/50 text-[11px] font-bold shadow-inner">
+                  <div className="w-8 h-8 flex items-center justify-center text-slate-400 text-[11px] font-bold">
                     {card.id}
                   </div>
                 </div>
 
-                <h3 className="text-xl font-bold text-white mb-3">
+                <h3 className="text-xl font-black text-slate-900 mb-3">
                   {card.title}
                 </h3>
                 
-                <p className="text-white/60 text-[13px] leading-relaxed mb-10 flex-grow">
+                <p className="text-slate-600 font-medium text-[13px] leading-relaxed mb-10 flex-grow">
                   {card.description}
                 </p>
 
@@ -145,7 +151,7 @@ export function WhyWorkWithMe() {
                   {card.tags.map((tag) => (
                     <span 
                       key={tag} 
-                      className="px-3 py-1.5 rounded-full bg-white/5 border border-white/10 text-white/60 text-[11px] font-medium tracking-wide transition-colors hover:bg-white/10 hover:text-white/90"
+                      className="px-3 py-1.5 rounded-full bg-slate-100 border border-slate-200 text-slate-600 text-[11px] font-bold tracking-wide transition-colors hover:bg-slate-200 hover:text-slate-900"
                     >
                       {tag}
                     </span>

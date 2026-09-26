@@ -2,11 +2,9 @@ import { lazy, Suspense, useState, useEffect, useRef } from "react";
 import { motion, useScroll, useSpring } from "framer-motion";
 import { Navbar } from "./components/Navbar";
 import { Hero } from "./components/Hero";
-import { About } from "./components/About";
 import { WhyWorkWithMe } from "./components/WhyWorkWithMe";
 import Projects from './components/Projects';
 import Technologies from './components/Technologies';
-import { Highlights } from "./components/Highlights";
 import { Contact } from "./components/Contact";
 import { Footer } from "./components/Footer";
 
@@ -61,9 +59,7 @@ export function PortfolioSite() {
       
       <main>
         <Hero />
-        <About />
         <WhyWorkWithMe />
-        <Highlights />
         <Projects />
         <Technologies />
         

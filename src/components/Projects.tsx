@@ -45,7 +45,7 @@ export default function Projects() {
             initial={{ opacity: 0, scale: 0.8 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
-            className="flex items-center gap-2.5 bg-white/10 backdrop-blur-md px-4 py-1.5 rounded-full text-xs font-bold tracking-[0.2em] text-white uppercase shadow-sm mb-6 border border-white/20"
+            className="flex items-center gap-2.5 bg-white/5 px-4 py-1.5 rounded-full text-xs font-bold tracking-[0.2em] text-white uppercase shadow-sm mb-6 border border-white/20"
           >
             <div className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></div>
             <span>Selected Projects</span>
@@ -81,22 +81,25 @@ export default function Projects() {
             <Link to={`/project/${project.id}`} key={project.id}>
               <motion.div 
                 variants={itemVariants}
-                className="group relative flex flex-col items-center justify-center gap-6 p-6 rounded-3xl bg-white/5 border border-white/10 backdrop-blur-sm transition-all duration-300 hover:bg-white/10 hover:border-white/20 hover:-translate-y-2 shadow-xl hover:shadow-2xl h-full"
+                className="group relative flex flex-col items-center justify-center gap-6 p-4 transition-all duration-500 h-full"
               >
-                {/* Premium Glow effect behind the logo on hover */}
-                <div className="absolute inset-0 rounded-3xl bg-gradient-to-tr from-blue-500/0 via-purple-500/0 to-emerald-500/0 opacity-0 transition-all duration-500 group-hover:from-blue-500/20 group-hover:via-purple-500/20 group-hover:to-emerald-500/20 pointer-events-none blur-xl scale-110" />
+                {/* Minimal background glow on hover instead of a solid card */}
+                <div className="absolute inset-0 rounded-[2rem] bg-white/0 group-hover:bg-white/[0.03] transition-colors duration-500 pointer-events-none" />
                 
-                <div className="relative h-24 w-24 md:h-28 md:w-28 flex items-center justify-center transition-transform duration-500 group-hover:scale-110">
+                <div className="relative h-28 w-28 md:h-36 md:w-36 flex items-center justify-center transition-transform duration-700 ease-out group-hover:scale-110 group-hover:-translate-y-4">
                   <img 
                     src={project.icon} 
                     alt={project.name} 
-                    className="h-full w-full object-contain filter drop-shadow-[0_0_15px_rgba(255,255,255,0.3)] transition-all duration-300 group-hover:drop-shadow-[0_0_25px_rgba(255,255,255,0.5)]"
+                    className="h-full w-full object-contain filter drop-shadow-[0_10px_20px_rgba(0,0,0,0.5)] transition-all duration-500 group-hover:drop-shadow-[0_20px_40px_rgba(255,255,255,0.15)]"
                   />
                 </div>
                 
-                <h3 className="text-lg md:text-xl font-bold text-white tracking-tight relative z-10 text-center font-sans transition-colors duration-300">
-                  {project.name}
-                </h3>
+                <div className="relative z-10 flex flex-col items-center gap-2 mt-4 opacity-70 group-hover:opacity-100 transition-opacity duration-500">
+                  <h3 className="text-lg md:text-xl font-bold text-white tracking-tight text-center font-sans transition-colors duration-300">
+                    {project.name}
+                  </h3>
+                  <div className="h-0.5 w-0 bg-white/50 group-hover:w-12 transition-all duration-500 ease-out" />
+                </div>
               </motion.div>
             </Link>
           ))}
